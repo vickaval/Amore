@@ -1,4 +1,4 @@
-package Logica;
+package amore;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Logica;
+package amore;
 
 public class Cliente extends Usuario{
 	private int cuit;

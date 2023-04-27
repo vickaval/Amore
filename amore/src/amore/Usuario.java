@@ -1,5 +1,7 @@
 package amore;
 
+import javax.swing.JOptionPane;
+
 public abstract class Usuario {
 	
 	private String nombre;
@@ -107,6 +109,39 @@ public abstract class Usuario {
 	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
 	}
+
+	public boolean iniciarSesion(Usuario u) {
+   
+		String []usuario= {"Cliente" , "Administrador","Operario","Almacenista", "Vendedor"};
+			  int usu = JOptionPane.showOptionDialog(null, "Elija una opcion", "Mi pantalla de pregunta",JOptionPane.DEFAULT_OPTION,
+					  JOptionPane.QUESTION_MESSAGE, null, usuario, usuario[0]);
+			  
+			  
+			  String pass = (String)JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+		if(pass.equals(getContraseña())) {
+		
+		//mensaje de confirmacion por tipo de usuario
+				  if (usu == 0) {
+				  System.out.println("Bienvenido a Amore Pastas");
+				  } else if (usu == 1) {
+					  System.out.println("Bienvenido Administrador");
+				  } else if (usu == 2) {
+					  System.out.println("Bienvenido Operario");
+				  } else if (usu == 3) {
+				   System.out.println("Bienvenido Almacenista");
+				  } else if (usu == 4) {
+				   System.out.println("Bienvenido Vendedor");
+				  }
+			  
+			  //inicio sesion (usuario y contaseña correcta)
+		   return true;
+		} else {
+		 //no pudo iniciar sesion
+		 return false;
+		}
+	   }
+
+
 	
 	
 
@@ -117,5 +152,6 @@ public abstract class Usuario {
 				+ ", aniosAntiguedad=" + aniosAntiguedad + ", telefono=" + telefono + ", usuario=" + usuario
 				+ ", contraseña=" + contraseña + ", sueldo=" + sueldo + "]";
 		}
+
 	
 	}
