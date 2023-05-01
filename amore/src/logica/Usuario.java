@@ -127,20 +127,28 @@ public abstract class Usuario {
 		}
 		
 		public boolean iniciarSesion(Usuario u) {
-		    String[] usuario = {"Cliente", "Administrador", "Operario", "Almacenista", "Vendedor"};
+		    String[] usuario = {"Cliente", "Administrador", "Operario", "Almacenista", "Vendedor", "Cliente"};
 		    int usu = JOptionPane.showOptionDialog(null, "Elija una opcion", "Mi pantalla de pregunta", JOptionPane.DEFAULT_OPTION,
 		            JOptionPane.QUESTION_MESSAGE, null, usuario, usuario[0]);
 
-		    String pass;
+		    String pass, nombreUsuario;
 		    boolean claveCorrecta = false;
+			boolean usuarioCorrecto=false;
 		    do {
+				nombreUsuario=JOptionPane.showInputDialog(null, "Ingrese su usuario: ");
 		        pass = JOptionPane.showInputDialog(null, "Ingrese su contrase�a: ");
-		        if (pass.equals(getContrasena())) {
+		        if (pass.equals(getContrasena())&& nombreUsuario.equals(getUsuario())) {
 		            claveCorrecta = true;
-		        } else {
+					usuarioCorrecto= true;
+
+		        } else if(pass!=getContrasena()) {
 		            JOptionPane.showMessageDialog(null, "La clave ingresada es incorrecta. Por favor, int�ntelo de nuevo.");
-		        }
-		    } while (!claveCorrecta);
+		        } else if (nombreUsuario!=getUsuario()){
+					JOptionPane.showMessageDialog(null, "El usuario ingresado es incorrecto. Por favor, int�ntelo de nuevo.");
+				}else if (pass!=getContrasena() && nombreUsuario !=getUsuario()){
+					JOptionPane.showMessageDialog(null, "El usurio y contraseña son incorrectos. Por favor, int�ntelo de nuevo.");
+				}
+		    } while (!claveCorrecta || !usuarioCorrecto);
 
 		    // mensaje de confirmaci�n por tipo de usuario
 		    if (usu == 0) {
@@ -153,7 +161,9 @@ public abstract class Usuario {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Almacenista");
 		    } else if (usu == 4) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Vendedor");
-		    }
+		    }else if(usu == 5){
+				JOptionPane.showMessageDialog(null, "Bienvenido Cliente");
+			}
 
 		    // inicio sesi�n (usuario y contrase�a correcta)
 		    return true;
