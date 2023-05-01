@@ -11,12 +11,12 @@ public abstract class Usuario {
 		private int aniosAntiguedad;
 		private int telefono;
 		private String usuario;
-		private String contraseña;
+		private String contrasena;
 		private double sueldo;
 
 
 
-		public Usuario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contraseña, double sueldo) {
+		public Usuario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contrasena, double sueldo) {
 			this.nombre = nombre;
 			this.apellido = apellido;
 			this.id = id;
@@ -24,7 +24,7 @@ public abstract class Usuario {
 			this.aniosAntiguedad = aniosAntiguedad;
 			this.telefono = telefono;
 			this.usuario = usuario;
-			this.contraseña = contraseña;
+			this.contrasena = contrasena;
 			this.sueldo = sueldo;
 		}
 
@@ -99,11 +99,11 @@ public abstract class Usuario {
 
 
 
-		public String getContraseña() {
-			return contraseña;
+		public String getContrasena() {
+			return contrasena;
 		}
-		public void setContraseña(String contraseña) {
-			this.contraseña = contraseña;
+		public void setContrasena(String contrasena) {
+			this.contrasena = contrasena;
 		}
 
 
@@ -123,15 +123,15 @@ public abstract class Usuario {
 		    String pass;
 		    boolean claveCorrecta = false;
 		    do {
-		        pass = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
-		        if (pass.equals(getContraseña())) {
+		        pass = JOptionPane.showInputDialog(null, "Ingrese su contraseï¿½a: ");
+		        if (pass.equals(getContrasena())) {
 		            claveCorrecta = true;
 		        } else {
-		            JOptionPane.showMessageDialog(null, "La clave ingresada es incorrecta. Por favor, inténtelo de nuevo.");
+		            JOptionPane.showMessageDialog(null, "La clave ingresada es incorrecta. Por favor, intï¿½ntelo de nuevo.");
 		        }
 		    } while (!claveCorrecta);
 
-		    // mensaje de confirmación por tipo de usuario
+		    // mensaje de confirmaciï¿½n por tipo de usuario
 		    if (usu == 0) {
 		       
 		    } else if (usu == 1) {
@@ -144,7 +144,7 @@ public abstract class Usuario {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Vendedor");
 		    }
 
-		    // inicio sesión (usuario y contraseña correcta)
+		    // inicio sesiï¿½n (usuario y contraseï¿½a correcta)
 		    return true;
 		}
 
@@ -157,7 +157,7 @@ public abstract class Usuario {
 		public String toString() {
 			return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", nombreArea=" + nombreArea
 					+ ", aniosAntiguedad=" + aniosAntiguedad + ", telefono=" + telefono + ", usuario=" + usuario
-					+ ", contraseña=" + contraseña + ", sueldo=" + sueldo + "]";
+					+ ", contraseï¿½a=" + contrasena + ", sueldo=" + sueldo + "]";
 			}
 
 		}
