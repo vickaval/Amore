@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:amore/src/amore/Cliente.java
 package Logica;
 
 public class Cliente extends Usuario{
@@ -42,3 +43,14 @@ public class Cliente extends Usuario{
 	
 
 }
+=======
+package logica;
+
+public class Cliente extends Usuario {
+    private int cuit;
+    private int razonSocial;
+    private String condicionIva;
+
+    
+}
+>>>>>>> Stashed changes:amore/src/logica/Cliente.java
