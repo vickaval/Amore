@@ -44,5 +44,8 @@ public class Cliente extends Usuario{
 
 
     //metodo inicar sesion esta en  usuario, lo modifique para que aparezca cliente
+    public void realizarPedido(){
+        //faltan clases para hacer correctamente el metodo como Pedido
+    }
     
 }
