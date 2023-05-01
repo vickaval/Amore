@@ -5,8 +5,8 @@ public class Almacenista extends Usuario {
 	
 
 public Almacenista(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-			String usuario, String contraseña, double sueldo) {
-		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
+			String usuario, String contrasena, double sueldo) {
+		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
 	}
 
 public Almacenista(){;
@@ -14,13 +14,13 @@ public Almacenista(){;
 }
 
 
-public boolean iniciarSesion(String usuario, String contraseña) {
-    // Verificar si el usuario y la contraseña son válidos
-    if (usuario.equals(getUsuario()) &&contraseña.equals(getContraseña())) {
-        System.out.println("Inicio de sesión exitoso.");
+public boolean iniciarSesion(String usuario, String contrasena) {
+    // Verificar si el usuario y la contraseï¿½a son vï¿½lidos
+    if (usuario.equals(getUsuario()) &&contrasena.equals(getContrasena())) {
+        System.out.println("Inicio de sesiï¿½n exitoso.");
         return true;
     } else {
-        System.out.println("Inicio de sesión fallido. Por favor verifique su usuario, contraseña y permiso.");
+        System.out.println("Inicio de sesiï¿½n fallido. Por favor verifique su usuario, contraseï¿½a y permiso.");
         return false;
     }
 }
