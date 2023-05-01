@@ -7,8 +7,8 @@ public class Operario extends Usuario{
 
 	
 	public Operario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-			String usuario, String contraseña, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
-		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
+			String usuario, String contrasena, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
+		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
 		this.turno = turno;
 		this.mps = mps;
 	}
