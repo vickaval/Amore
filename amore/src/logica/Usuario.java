@@ -28,6 +28,17 @@ public abstract class Usuario {
 			this.sueldo = sueldo;
 		}
 
+		//constructor 2, el que se va a usar en cliente
+		Usuario(String nombre, String apellido, int telefono, String usuario, String contrasena){
+			this.nombre=nombre;
+			this.apellido=apellido;
+			this.telefono=telefono;
+			this.usuario=usuario;
+			this.contrasena=contrasena;
+
+
+		}
+
 
 
 		public Usuario() {
