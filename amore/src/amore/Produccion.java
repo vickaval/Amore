@@ -104,6 +104,7 @@ public class Produccion<Producto> extends Operario{
 
 
 	//metodos
+	//si hay materia prima para producir, lo hace
 	public boolean producir (Producto p) {
 		int cantProd = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad a producir: "));
 		if(ArrayList<MateriaPrima>.lenght() <= cantProd ) {
