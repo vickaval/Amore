@@ -17,5 +17,9 @@ public class Vendedor extends Usuario {
 	public double calcularPerdidas(Produccion p) {
 		
 	}
+	
+	public void visualizarStock() {
+		System.out.print("Stock: " + ArrayList<Producto>.getProductos());
+	}
 
 }
