@@ -1,6 +1,10 @@
 package interfaz;
 import logica.Operario;
+import logica.Pasta;
 import logica.Produccion;
+import logica.Producto;
+import logica.Queso;
+import logica.Salsa;
 
 import java.util.ArrayList;
 
@@ -63,7 +67,33 @@ public class test {
 	    	             JOptionPane.showMessageDialog(null, mensaje);
 	    	            break;
 	    	        case 1:
-	    	            //depo.visualizarStockDeProductos();
+	    	        	Queso quesoParmesano = new Queso(1, "Queso Parmesano", "Queso", 3.50, 10);
+	    	    		Queso quesoCheddar = new Queso(2, "Queso Cheddar", "Queso", 4.50, 8);
+	    	    		Queso quesoMozzarella = new Queso(3, "Queso Mozzarella", "Queso", 2.50, 12);
+	    	    		Salsa salsaTomate = new Salsa(4, "Salsa de Tomate", "Salsa", 1.50, 15);
+	    	    		Salsa salsaAlfredo = new Salsa(5, "Salsa Alfredo", "Salsa", 2.50, 12);
+	    	    		Salsa salsaBoloñesa = new Salsa(6, "Salsa Boloñesa", "Salsa", 3.50, 10);
+	    	    		Pasta spaghetti = new Pasta(7, "Spaghetti", "Pasta", 2.50, 20);
+	    	    		Pasta fettuccine = new Pasta(8, "Fettuccine", "Pasta", 3.00, 18);
+	    	    		Pasta penne = new Pasta(9, "Penne", "Pasta", 2.00, 22);
+	    	    		
+	    	    		depo.agregarProducto(quesoParmesano);
+	    	    		depo.agregarProducto(quesoCheddar);
+	    	    		depo.agregarProducto(quesoMozzarella);
+	    	    		depo.agregarProducto(salsaTomate);
+	    	    		depo.agregarProducto(salsaAlfredo);
+	    	    		depo.agregarProducto(salsaBoloñesa);
+	    	    		depo.agregarProducto(spaghetti);
+	    	    		depo.agregarProducto(fettuccine);
+	    	    		depo.agregarProducto(penne);
+	    	    		
+	    	    		 ArrayList<Producto> productos = depo.getProductos();
+	    	             String mensaje2 = "Listado de Productos: \n\n";
+	    	             for (Producto produ : productos) {
+	    	             	mensaje2 += "Código: " + produ.getIdProducto() + " - " + "Nombre: " + produ.getNombre() +  " - " 
+	    	             + " tipo: " + produ.getTipo() + " - " + "Stock: " + produ.getStockDisponible() + "\n";
+	    	             }
+	    	             JOptionPane.showMessageDialog(null, mensaje2);
 	    	            break;
 	    	        case 2:
 	    	            //depo.prepararPedidos();
