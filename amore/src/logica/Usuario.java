@@ -132,15 +132,13 @@ public abstract class Usuario {
 		    } while (!claveCorrecta);
 
 		    // mensaje de confirmaci�n por tipo de usuario
-		    if (usu == 0) {
-		       
-		    } else if (usu == 1) {
+			if (usu == 0) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
-		    } else if (usu == 2) {
+		    } else if (usu == 1) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Operario");
-		    } else if (usu == 3) {
+		    } else if (usu == 2) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Almacenista");
-		    } else if (usu == 4) {
+		    } else if (usu == 3) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Vendedor");
 		    }
 
