@@ -47,6 +47,7 @@ public class Administrador extends Usuario{
 		
 	}
 	
+	//sirve o no?
 	public boolean editarEmpleado (Empleado e) {
 		
 	}
