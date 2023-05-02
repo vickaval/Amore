@@ -122,6 +122,7 @@ public abstract class Usuario {
 		
 		
 		//metodos
+	//selecciona rol
 		public boolean iniciarSesion(Usuario u) {
 			
 			String []usuario= {"Cliente" , "Administrador","Operario","Almacenista", "Vendedor"};
