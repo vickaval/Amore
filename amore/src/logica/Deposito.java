@@ -7,15 +7,18 @@ import javax.swing.JOptionPane;
 public class Deposito {
     private int idDepo;
     private String nombre;
-    ArrayList<Categoria> categorias;
+    ArrayList<Producto> productos;
     ArrayList<Almacenista> almacenistas;
+    
+    
         
     public Deposito(int idDepo, String nombre) {
         super();
         this.idDepo = idDepo;
         this.nombre = nombre;
-        this.categorias = new ArrayList<>();
+        this.productos = new ArrayList<>();
         this.almacenistas = new ArrayList<>();
+        
     }
 
 	public Deposito(){
@@ -38,8 +41,8 @@ public class Deposito {
 		this.nombre = nombre;
 	}
 	
-	public void agregarCategorias(Categoria c) {
-		this.categorias.add(c);
+	public void agregarProducto(Producto p) {
+		this.productos.add(p);
 	}
 	
 	public void agregarAlmacenistas(Almacenista a) {
@@ -50,8 +53,12 @@ public class Deposito {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+		
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+
 	public void registroAlmacenista() {
 			JOptionPane.showMessageDialog(null, "Vamos a dar de alta un nuevo almacenista");
 	    
@@ -72,7 +79,7 @@ public class Deposito {
 	
 	
 	
-	public void iniciarSesionAlmacenista() {
+	public boolean iniciarSesionAlmacenista() {
 	    int intentos = 3;
 	    while(intentos > 0) {
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese su usuario");
@@ -98,6 +105,7 @@ public class Deposito {
 	        }
 	        JOptionPane.showMessageDialog(null, "Inicio de sesión fallido. Por favor verifique su usuario, contraseña y permiso. Intentos restantes: " + intentos);
 	    }
+		return false;
 	}
 
 	public void mostrarAlmacenistas() {
@@ -107,6 +115,10 @@ public class Deposito {
 	    }
 	    JOptionPane.showMessageDialog(null, sb.toString(), "Almacenistas registrados: ", JOptionPane.PLAIN_MESSAGE);
 	}
+
+
+
+
 
 
 

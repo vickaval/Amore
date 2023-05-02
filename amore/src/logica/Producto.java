@@ -1,17 +1,17 @@
 package logica;
 
-public class Producto {
+public abstract class Producto {
 	private int idProducto;
 	private String nombre;
-	private String marca;
-	private String precio;
+	private String tipo;
+	private double precio;
 	private int stockDisponible;
 	
-	public Producto(int idProducto, String nombre, String marca, String precio, int stockDisponible) {
+	public Producto(int idProducto, String nombre, String tipo, double precio, int stockDisponible) {
 		super();
 		this.idProducto = idProducto;
 		this.nombre = nombre;
-		this.marca = marca;
+		this.tipo = tipo;
 		this.precio = precio;
 		this.stockDisponible = stockDisponible;
 	}
@@ -36,19 +36,11 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public String getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
@@ -59,6 +51,21 @@ public class Producto {
 	public void setStockDisponible(int stockDisponible) {
 		this.stockDisponible = stockDisponible;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio
+				+ ", stockDisponible=" + stockDisponible + "]";
+	}
+	
 	
 	
 
