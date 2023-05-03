@@ -7,12 +7,25 @@ public class Produccion {
 	
 	private int idProduccion;
 	private Date fechaProduccion;
-	private Categoria categoriaProducida;
+	private Producto productoAElaborar;
 	private int totalProducido;
 	private ArrayList<Operario> operarios;
+	private ArrayList<MateriaPrima> matePrimaUsada;
+	private ArrayList<Produccion> datosProduccion;
 	
-	
-	
+	public Produccion(int idProduccion, Date fechaProduccion, Producto productoAElaborar, int totalProducido,
+			ArrayList<Operario> operarios, ArrayList<MateriaPrima> matePrimaUsada,
+			ArrayList<Produccion> datosProduccion) {
+		
+		this.idProduccion = idProduccion;
+		this.fechaProduccion = fechaProduccion;
+		this.productoAElaborar = productoAElaborar;
+		this.totalProducido = totalProducido;
+		this.operarios = operarios;
+		this.matePrimaUsada = matePrimaUsada;
+		this.datosProduccion = datosProduccion;
+	}
+
 	public int getIdProduccion() {
 		return idProduccion;
 	}
@@ -29,12 +42,12 @@ public class Produccion {
 		this.fechaProduccion = fechaProduccion;
 	}
 
-	public Categoria getCategoriaProducida() {
-		return categoriaProducida;
+	public Producto getProductoAElaborar() {
+		return productoAElaborar;
 	}
 
-	public void setCategoriaProducida(Categoria categoriaProducida) {
-		this.categoriaProducida = categoriaProducida;
+	public void setProductoAElaborar(Producto productoAElaborar) {
+		this.productoAElaborar = productoAElaborar;
 	}
 
 	public int getTotalProducido() {
@@ -53,13 +66,57 @@ public class Produccion {
 		this.operarios = operarios;
 	}
 
-	public void ingresarOperario(Operario op) {
-		this.operarios.add(op);
+	public ArrayList<MateriaPrima> getMatePrimaUsada() {
+		return matePrimaUsada;
+	}
+
+	public void setMatePrimaUsada(ArrayList<MateriaPrima> matePrimaUsada) {
+		this.matePrimaUsada = matePrimaUsada;
+	}
+
+	public ArrayList<Produccion> getDatosProduccion() {
+		return datosProduccion;
+	}
+
+	public void setDatosProduccion(ArrayList<Produccion> datosProduccion) {
+		this.datosProduccion = datosProduccion;
+	}
+
+	public void agregarOperario(Operario op) {
+		//chequear
+		operarios.add(op);
 	}
 	
-	public void producir(Producto pr) {
-		
+	public void agregarMateriaPrima (MateriaPrima mp) {
+		//chequeear
+		matePrimaUsada.add(mp);
 	}
+	
+	public void producir (Producto p) {
+		//chequear
+		System.out.println("Se empieza a producir el producto "+p.getNombre());
+	}
+	
+	public void agregarProduccion (Produccion pr) {
+		//chequeear
+		datosProduccion.add(pr);
+	}
+	
+	public void infoProduccion (Produccion pr) {
+		//chequear
+		boolean chequear=datosProduccion.contains(pr);
+		if(chequear) {
+			for (int i = 0; i < datosProduccion.size(); i++) {
+				System.out.println(i);
+				}
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }

@@ -107,5 +107,9 @@ public class Deposito {
 	    }
 	    JOptionPane.showMessageDialog(null, sb.toString(), "Almacenistas registrados: ", JOptionPane.PLAIN_MESSAGE);
 	}
+
+	public void alertaStock(){
+		//ver mas adelante
+	}
 }
 
