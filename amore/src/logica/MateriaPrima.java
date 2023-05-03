@@ -1,4 +1,5 @@
 package logica;
+import java.util.ArrayList;
 
 public class MateriaPrima {
 	
@@ -7,6 +8,7 @@ public class MateriaPrima {
 	private double precio;
 	private int stockDisponible;
 	private int codigoMp;
+	ArrayList<MateriaPrima> nombreYPrecioMateriaPrima;
 	
 	
 	MateriaPrima(){

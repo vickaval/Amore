@@ -18,6 +18,14 @@ public class Operario extends Usuario{
 
 	private String turno;
 	private ArrayList<MateriaPrima> mps;
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
 	
 	public void ingresarMateriaPrima(MateriaPrima mp) {
 		this.mps.add(mp);
