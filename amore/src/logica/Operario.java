@@ -39,12 +39,13 @@ public class Operario extends Usuario{
 		this.mps.add(mp);
 	}
 
-	public boolean consultarStock (MateriaPrima mp){
+	public void visualizarStock (MateriaPrima mp){
 		boolean tieneStock=mps.contains(mp);//chequear
 		if(tieneStock){
-			System.out.println("Hay stock");
+			System.out.println(mp.getNombre());
+			System.out.println(mp.getStockDisponible());
 		}else{
-			System.out.println("Hay stock");
+			System.out.println("No hay stock");
 		}
 	}
 
