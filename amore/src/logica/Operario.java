@@ -26,9 +26,19 @@ public class Operario extends Usuario{
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
+
+	public ArrayList<MateriaPrima> getMps() {
+		return mps;
+	}
+
+	public void setMps(ArrayList<MateriaPrima> mps) {
+		this.mps = mps;
+	}
 	
 	public void ingresarMateriaPrima(MateriaPrima mp) {
 		this.mps.add(mp);
 	}
+
+	
 
 }
