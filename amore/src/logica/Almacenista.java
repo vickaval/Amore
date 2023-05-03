@@ -2,7 +2,7 @@ package logica;
 
 public class Almacenista extends Usuario {
 
-	
+	ArrayList<Producto>productos;
 
 public Almacenista(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
 			String usuario, String contrasena, double sueldo) {
@@ -33,6 +33,33 @@ public void visualizarStockMateriaPrima(MateriaPrima mp){
 		}else{
 			System.out.println("No hay stock");
 		}
+}
+
+public void visualizarStockProductos (Producto p){
+    boolean tieneStock=mps.contains(mp);//chequear
+    if(tieneStock){
+        System.out.println(mp.getNombre());
+        System.out.println(mp.getIdProducto());
+        System.out.println(mp.getStockDisponible());
+    }else{
+        System.out.println("No hay stock");
+    }
+}
+
+public ArrayList<Producto> getProductos() {
+    return productos;
+}
+
+public void setProductos(ArrayList<Producto> productos) {
+    this.productos = productos;
+}
+
+public void agregarProducto (Producto p){
+    productos.add(p);//chequear
+}
+
+public void eliminarProducto(Producto p){
+    productos.remove(p);
 }
 
 

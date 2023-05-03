@@ -1,11 +1,14 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class Producto {
 	private int idProducto;
 	private String nombre;
 	private String marca;
 	private String precio;
 	private int stockDisponible;
+	
 	
 	public Producto(int idProducto, String nombre, String marca, String precio, int stockDisponible) {
 		super();
@@ -59,6 +62,8 @@ public class Producto {
 	public void setStockDisponible(int stockDisponible) {
 		this.stockDisponible = stockDisponible;
 	}
+
+	
 	
 	
 
