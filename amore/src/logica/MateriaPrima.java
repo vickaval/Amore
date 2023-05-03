@@ -73,14 +73,7 @@ public class MateriaPrima {
 		this.mps = mps;
 	}
 
-	public boolean consultarStock (MateriaPrima mp){
-		boolean tieneStock=nombreYPrecioMateriaPrima.contains(mp);//chequear
-		if(tieneStock){
-			System.out.println("Hay stock");
-		}else{
-			System.out.println("Hay stock");
-		}
-	}
+	
 
 
 }

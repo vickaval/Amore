@@ -25,7 +25,15 @@ public boolean iniciarSesion(String usuario, String contrasena) {
     }
 }
 
-
+public void visualizarStockMateriaPrima(MateriaPrima mp){
+    boolean tieneStock=mps.contains(mp);//chequear
+		if(tieneStock){
+			System.out.println(mp.getNombre());
+			System.out.println(mp.getStockDisponible());
+		}else{
+			System.out.println("No hay stock");
+		}
+}
 
 
 	
