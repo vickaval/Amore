@@ -26,6 +26,7 @@ public class MateriaPrima {
 		}
 
 
+	//getters y setters
 		public String getNombre() {
 			return nombre;
 		}
