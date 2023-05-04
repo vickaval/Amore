@@ -1,0 +1,46 @@
+package amore;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Operario extends Usuario{
+
+	ArrayList<Operario> operarios;
+	private String turno;
+	private ArrayList<MateriaPrima> mps;
+		
+		
+		public Operario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
+				String usuario, String contraseña, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
+			super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
+			this.setTurno(turno);
+			this.mps = mps;
+		}
+		
+		//public Operario() {
+		//}
+
+		
+		
+		public void ingresarMateriaPrima(MateriaPrima mp) {
+			this.mps.add(mp);
+		}
+
+		
+		
+		
+		
+		
+		//setters y getters de turno
+		public String getTurno() {
+			return turno;
+		}
+
+		public void setTurno(String turno) {
+			this.turno = turno;
+		}
+
+	
+
+}
