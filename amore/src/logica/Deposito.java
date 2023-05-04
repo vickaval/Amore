@@ -48,11 +48,11 @@ public class Deposito {
 	
 	public ArrayList<Almacenista> getAlmacenistas() {
 		// TODO Auto-generated method stub
-		return null;
+		return almacenistas;
 	}
 	
 	
-	public void registroAlmacenista() {
+	public void registroAlmacenista() {//metodo hecho por Sebastian
 			JOptionPane.showMessageDialog(null, "Vamos a dar de alta un nuevo almacenista");
 	    
 	        String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
@@ -72,7 +72,7 @@ public class Deposito {
 	
 	
 	
-	public void iniciarSesionAlmacenista() {
+	public void iniciarSesionAlmacenista() {//metodo hecho por Sebastian
 	    int intentos = 3;
 	    while(intentos > 0) {
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese su usuario");
@@ -100,7 +100,7 @@ public class Deposito {
 	    }
 	}
 
-	public void mostrarAlmacenistas() {
+	public void mostrarAlmacenistas() {//metodo hecho por Sebastian
 	    StringBuilder sb = new StringBuilder();
 	    for (Almacenista almacenista : almacenistas) {
 	        sb.append(almacenista.getUsuario()).append(" - ").append(almacenista.getNombreArea()).append("\n");

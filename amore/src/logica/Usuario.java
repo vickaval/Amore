@@ -132,7 +132,13 @@ public abstract class Usuario {
 		    } while (!claveCorrecta);
 
 		    // mensaje de confirmaci�n por tipo de usuario
+<<<<<<< Updated upstream
 			if (usu == 0) {
+=======
+		    if (usu == 0) {
+				JOptionPane.showMessageDialog(null, "Bienvenido Cliente");
+		    } else if (usu == 1) {
+>>>>>>> Stashed changes
 		        JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
 		    } else if (usu == 1) {
 		        JOptionPane.showMessageDialog(null, "Bienvenido Operario");

@@ -1,7 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 public class Operario extends Usuario{
 
 
@@ -23,6 +23,7 @@ public class Operario extends Usuario{
 		return turno;
 	}
 
+<<<<<<< Updated upstream
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
@@ -51,4 +52,32 @@ public class Operario extends Usuario{
 
 	
 
+=======
+	public void registrarOperario(){
+	//chequear
+			String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
+	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
+	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
+	        String nombreArea = JOptionPane.showInputDialog(null, "Ingrese el nombre del �rea en la que trabaja");
+	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
+	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
+	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
+	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
+	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
+	        Operario nuevoAlmacenista = new Operario(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
+	        registrarOperario(nuevoAlmacenista);
+	        JOptionPane.showMessageDialog(null, "Registro exitoso.");		
+	}
+
+	//rol de iniciar sesion el mismo que usuario
+	public void cargarMateriaPrima(MateriaPrima mp){
+		mps.add(mp);	
+	}
+
+	public void producirMercaderia(Operario op){
+		JOptionPane.showMessageDialog(null, "Bienvenido "+op.getNombre());
+
+	}
+
+>>>>>>> Stashed changes
 }

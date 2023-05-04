@@ -1,7 +1,7 @@
 package logica;
 
 public class Cliente extends Usuario{
-
+//hecho por mi
     private int cuit;
     private String razonSocial;
     private String condicionIva;

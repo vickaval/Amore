@@ -1,8 +1,13 @@
 package logica;
 
 public class Almacenista extends Usuario {
+<<<<<<< Updated upstream
 
 	ArrayList<Producto>productos;
+=======
+//clase hecha por Sebastian
+	
+>>>>>>> Stashed changes
 
 public Almacenista(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
 			String usuario, String contrasena, double sueldo) {
