@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-public class Produccion<Producto> extends Operario{
+public class Produccion extends Operario{
 	
 	int idProduccion;
 	Date fechaProduccion;
@@ -17,9 +17,12 @@ public class Produccion<Producto> extends Operario{
 	
 	
 	
-	public Produccion(int idProduccion, Date fechaProduccion, Producto prodElaborados, int totalProducido,
+	public Produccion(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
+			String usuario, String contraseña, double sueldo, String turno, ArrayList<MateriaPrima> mps, 
+			int idProduccion, Date fechaProduccion, Producto prodElaborados, int totalProducido,
 			ArrayList<Operario> operarios, ArrayList<MateriaPrima> materiasPrimas) {
-		super();
+		super(nombre,  apellido,  id,  nombreArea,  aniosAntiguedad,  telefono,
+				 usuario,  contraseña,  sueldo,  turno, mps);
 		this.idProduccion = idProduccion;
 		this.fechaProduccion = fechaProduccion;
 		this.prodElaborados = prodElaborados;
@@ -104,10 +107,9 @@ public class Produccion<Producto> extends Operario{
 
 
 	//metodos
-	//si hay materia prima para producir, lo hace
 	public boolean producir (Producto p) {
 		int cantProd = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad a producir: "));
-		if(ArrayList<MateriaPrima>.lenght() <= cantProd ) {
+		if(materiasPrimas.lenght() <= cantProd ) {
 			JOptionPane.showMessageDialog(null, "Cantidad aceptable. Inicia la produccion");
 			return true;
 		} else {
@@ -116,7 +118,7 @@ public class Produccion<Producto> extends Operario{
 		}
 	}
 	
-	public void infoProduccion() { 
+	public String infoProduccion() { 
 		return "Produccion [idProduccion=" + idProduccion + ", fechaProduccion=" + fechaProduccion + ", prodElaborados=" + prodElaborados + ", totalProducido=" + totalProducido
 				+ ", Operario=" + operarios + ", Materias Primas=" + materiasPrimas  + "]";
 	}
