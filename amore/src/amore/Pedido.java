@@ -1,42 +1,43 @@
 package amore;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 public class Pedido extends Vendedor{
 
-	int idPedido;
-	Usuario usuario;
+	int idPedido;;
 	double descuento;
 	double total;
 	Date fecha;
 	ArrayList <Producto> productos;
 	Cliente cliente;
 
+	ArrayList <Pedido> pedidos;
+	
+	
 	
 	public enum formaPago
 	{
 	    EFECTVO, TRANSFERENCIA
 	}
 
-	
-	
-	
 
+	
 	public Pedido(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-			String usuario, String contraseña, double sueldo, int idPedido, Usuario usuario2, double descuento,
+			 String contraseña, double sueldo, int idPedido, Usuario usuario2, double descuento,
 			double total, Date fecha, ArrayList<Producto> productos, Cliente cliente) {
 		
-		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
+		super(nombre, apellido, id, null, telefono, aniosAntiguedad, null, null, sueldo);
 		
 		this.idPedido = idPedido;
-		usuario = usuario;
 		this.descuento = descuento;
 		this.total = total;
 		this.fecha = fecha;
-		this.productos = productos;
 		this.cliente = cliente;
+		this.productos = new ArrayList<>();
+		this.pedidos = new ArrayList<>();
 
 	}
 	
@@ -52,12 +53,6 @@ public class Pedido extends Vendedor{
 
 
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 
 
@@ -104,14 +99,22 @@ public class Pedido extends Vendedor{
 		this.cliente = cliente;
 	}
 
+	
 
-	
-	
+	public ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(ArrayList<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+
+
 	//metodos
-	public String agregarPedido (Producto p) {
+	public String agregarPedido (Pedido pedidos) {
 
 		  total = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el total: "));
-		  Pedido.this.setTotal(total);
+		  pedidos.setTotal(total);
 		  
 		  int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cuit del cliente: "));
 		  Pedido.this.setCliente(cuit);
@@ -145,7 +148,10 @@ public class Pedido extends Vendedor{
 				//ArrayList<String> pedidos = new ArrayList<String>();
 					   pedidos.remove(pedidos.size()-1);			 
 					   System.out.println("Se ha eliminado el pedido");  
-					   System.out.println("Hay " + pedidos.size() + " pedidos en la lista");	
+					   System.out.println("Hay " + pedidos.size() + " pedidos en la lista");
+					   
+					   
+					return "Pedido eliminado";	
 	}
 	
 	
