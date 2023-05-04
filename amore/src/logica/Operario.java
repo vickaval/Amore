@@ -36,7 +36,7 @@ public class Operario extends Usuario{
 	}
 	
 	public void ingresarMateriaPrima(MateriaPrima mp) {
-		this.mps.add(mp);
+		this.mps.add(mp);//chequear
 	}
 
 	public void visualizarStock (MateriaPrima mp){

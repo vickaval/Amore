@@ -109,6 +109,8 @@ public class Produccion {
 			for (int i = 0; i < datosProduccion.size(); i++) {
 				System.out.println(i);
 				}
+		}else{
+			System.out.println("No existe esta produccion");
 		}
 	}
 	
