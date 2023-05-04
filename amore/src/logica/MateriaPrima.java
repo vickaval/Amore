@@ -65,12 +65,22 @@ public class MateriaPrima {
 		this.codigoMp = codigoMp;
 	}
 
-	public ArrayList<MateriaPrima> getMps() {
-		return mps;
+	public ArrayList<MateriaPrima> getNombreYPrecioMateriaPrima() {
+		return nombreYPrecioMateriaPrima;
 	}
 
-	public void setMps(ArrayList<MateriaPrima> mps) {
-		this.mps = mps;
+	public void setMps(ArrayList<MateriaPrima> nombreYPrecioMateriaPrima) {
+		this.nombreYPrecioMateriaPrima = nombreYPrecioMateriaPrima;
+	}
+
+	public void visualizarStockMateriaPrima(MateriaPrima mp){
+		boolean tieneStock=nombreYPrecioMateriaPrima.contains(mp);//chequear
+			if(tieneStock){
+				System.out.println(mp.getNombre());
+				System.out.println(mp.getStockDisponible());
+			}else{
+				System.out.println("No hay stock");
+			}
 	}
 
 	
