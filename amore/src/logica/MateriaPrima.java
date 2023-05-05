@@ -8,7 +8,7 @@ public class MateriaPrima {
 	private double precio;
 	private int stockDisponible;
 	private int codigoMp;
-	ArrayList<MateriaPrima> nombreYPrecioMateriaPrima;
+	ArrayList<MateriaPrima> infoMateriaPrima;
 	
 	
 	MateriaPrima(){
@@ -65,16 +65,16 @@ public class MateriaPrima {
 		this.codigoMp = codigoMp;
 	}
 
-	public ArrayList<MateriaPrima> getNombreYPrecioMateriaPrima() {
-		return nombreYPrecioMateriaPrima;
+	public ArrayList<MateriaPrima> getInfoMateriaPrima() {
+		return infoMateriaPrima;
 	}
 
-	public void setMps(ArrayList<MateriaPrima> nombreYPrecioMateriaPrima) {
-		this.nombreYPrecioMateriaPrima = nombreYPrecioMateriaPrima;
+	public void setMps(ArrayList<MateriaPrima> infoMateriaPrima) {
+		this.infoMateriaPrima = infoMateriaPrima;
 	}
 
 	public void visualizarStockMateriaPrima(MateriaPrima mp){
-		boolean tieneStock=nombreYPrecioMateriaPrima.contains(mp);//chequear
+		boolean tieneStock=infoMateriaPrima.contains(mp);//chequear
 			if(tieneStock){
 				System.out.println(mp.getNombre());
 				System.out.println(mp.getStockDisponible());
