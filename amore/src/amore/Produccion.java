@@ -132,7 +132,7 @@ public class Produccion extends Operario{
 	
 	
 	public String infoProduccion(Produccion pr) { 
-		//chequear
+		//chequear (de marti)
 				boolean chequear = produccion.contains(pr);
 				if(chequear) {
 					for (int i = 0; i < produccion.size(); i++) {
@@ -148,7 +148,7 @@ public class Produccion extends Operario{
 	
 	
 	public void agregarProduccion (Produccion pr) {
-		//chequeear
+		//chequeear (de marti)
 		produccion.add(pr);
 	}
 	
