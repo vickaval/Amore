@@ -11,7 +11,7 @@ import logica.Produccion;
 public class testVisualizarMPs {
 
 	public static void main(String[] args) {
-		Produccion prod = new Produccion(1, null, null);
+		Produccion prod = new Produccion(1, null);
 		
 		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "España", 1.50, 500);
 		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "México", 0.75, 300);

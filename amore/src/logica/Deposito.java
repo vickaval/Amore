@@ -65,7 +65,7 @@ public class Deposito {
 	        String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
-	        String nombreArea = JOptionPane.showInputDialog(null, "Ingrese el nombre del área en la que trabaja");
+	        String nombreArea = "Almacenista";
 	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));
 	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su número de teléfono"));
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
@@ -116,14 +116,5 @@ public class Deposito {
 	    JOptionPane.showMessageDialog(null, sb.toString(), "Almacenistas registrados: ", JOptionPane.PLAIN_MESSAGE);
 	}
 
-
-
-
-
-
-
-
-	
-	
 
 }

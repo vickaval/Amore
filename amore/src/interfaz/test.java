@@ -19,7 +19,7 @@ public class test {
 	public static void main(String[] args) {
 		//creo el deposito y un almacenista
 		Deposito depo = new Deposito(1,"Depo");
-		Almacenista al = new Almacenista("Juan", "Perez", "123456789", "Almacén de materiales", 5, 12345678, "jperez", "123", 50000.0);
+		Almacenista al = new Almacenista("Juan", "Perez", "123456789", "Almacenista", 5, 12345678, "jperez", "123", 50000.0);
 
 		//agrego almacenista al depo
 		depo.agregarAlmacenistas(al);
@@ -45,7 +45,7 @@ public class test {
 	    	    int eleccion = JOptionPane.showOptionDialog(null, "¿Qué acción desea realizar?", "Menú principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:
-	    	        	Produccion prod = new Produccion(1, null, null);
+	    	        	Produccion prod = new Produccion(1, null);
 	    	    		
 	    	    		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "España", 1.50, 500);
 	    	    		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "México", 0.75, 300);
@@ -75,7 +75,7 @@ public class test {
 	    	    		Salsa salsaBoloñesa = new Salsa(6, "Salsa Boloñesa", "Salsa", 3.50, 10);
 	    	    		Pasta spaghetti = new Pasta(7, "Spaghetti", "Pasta", 2.50, 20);
 	    	    		Pasta fettuccine = new Pasta(8, "Fettuccine", "Pasta", 3.00, 18);
-	    	    		Pasta penne = new Pasta(9, "Penne", "Pasta", 2.00, 22);
+	    	    		Pasta mostachol = new Pasta(9, "Mostachol", "Pasta", 2.00, 22);
 	    	    		
 	    	    		depo.agregarProducto(quesoParmesano);
 	    	    		depo.agregarProducto(quesoCheddar);
@@ -85,7 +85,7 @@ public class test {
 	    	    		depo.agregarProducto(salsaBoloñesa);
 	    	    		depo.agregarProducto(spaghetti);
 	    	    		depo.agregarProducto(fettuccine);
-	    	    		depo.agregarProducto(penne);
+	    	    		depo.agregarProducto(mostachol);
 	    	    		
 	    	    		 ArrayList<Producto> productos = depo.getProductos();
 	    	             String mensaje2 = "Listado de Productos: \n\n";
@@ -96,10 +96,13 @@ public class test {
 	    	             JOptionPane.showMessageDialog(null, mensaje2);
 	    	            break;
 	    	        case 2:
-	    	            //depo.prepararPedidos();
+	    	            //depo.prepararPedidos();   ********RESTA DEFINIR******* cómo se registran los pedidos y cómo se actualiza el stock 
+	    	        	//de los productos después de que se envía un pedido. 
 	    	            break;
 	    	        case 3:
-	    	            //depo.enviarPedidos();
+	    	            //depo.enviarPedidos();     ********RESTA DEFINIR******* cómo se registran los pedidos y cómo se actualiza el stock 
+	    	        	//de los productos después de que se envía un pedido. 
+	    	    
 	    	            break;
 	    	        default:
 	    	            JOptionPane.showMessageDialog(null, "Opción no válida.");
@@ -119,7 +122,7 @@ public class test {
 		//llamo a metodo de inicio de sesion en el depo
 		//depo.iniciarSesionAlmacenista();
 	    
-	   //depo.mostrarAlmacenistas();
+	   depo.mostrarAlmacenistas();
 		
 		
 

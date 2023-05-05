@@ -7,14 +7,10 @@ public class MateriaPrima {
 	private String procedencia;
 	private double precio;
 	private int stockDisponible;
-	
-	
-	
+		
 	MateriaPrima(){
 		
 	}
-
-
 
 	public MateriaPrima(int codigoMp, String nombre, String procedencia, double precio, int stockDisponible) {
 		super();
