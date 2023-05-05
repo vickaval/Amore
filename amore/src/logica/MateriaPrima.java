@@ -8,7 +8,6 @@ public class MateriaPrima {
 	private double precio;
 	private int stockDisponible;
 	private int codigoMp;
-	ArrayList<MateriaPrima> infoMateriaPrima;
 	
 	
 	MateriaPrima(){
@@ -65,22 +64,14 @@ public class MateriaPrima {
 		this.codigoMp = codigoMp;
 	}
 
-	public ArrayList<MateriaPrima> getInfoMateriaPrima() {
-		return infoMateriaPrima;
-	}
-
-	public void setMps(ArrayList<MateriaPrima> infoMateriaPrima) {
-		this.infoMateriaPrima = infoMateriaPrima;
-	}
-
-	public void visualizarStockMateriaPrima(MateriaPrima mp){
-		boolean tieneStock=infoMateriaPrima.contains(mp);//chequear
-			if(tieneStock){
-				System.out.println(mp.getNombre());
-				System.out.println(mp.getStockDisponible());
-			}else{
-				System.out.println("No hay stock");
-			}
+	
+	@Override
+	public String toString() {
+		return "Nombre=" + nombre +
+				" ,Procedencia=" + procedencia + 
+				" ,Precio=" + precio
+				+ " ,Stock disponible=" + stockDisponible + 
+				", codigo=" + codigoMp;
 	}
 
 	
