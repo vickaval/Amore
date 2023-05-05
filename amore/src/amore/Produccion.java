@@ -13,6 +13,7 @@ public class Produccion extends Operario{
 	int totalProducido;
 	ArrayList <Operario> operarios;
 	ArrayList <MateriaPrima> materiasPrimas;
+	ArrayList<Produccion> produccion;
 	
 	
 	
@@ -29,6 +30,7 @@ public class Produccion extends Operario{
 		this.totalProducido = totalProducido;
 		this.operarios = operarios;
 		this.materiasPrimas = materiasPrimas;
+		this.produccion = new ArrayList<>();
 	}
 	
 	
@@ -103,13 +105,22 @@ public class Produccion extends Operario{
 	public void setMateriasPrimas(ArrayList<MateriaPrima> materiasPrimas) {
 		this.materiasPrimas = materiasPrimas;
 	}
+	
+	
+	
+	public ArrayList<Produccion> getProduccion() {
+		return produccion;
+	}
+	public void setProduccion(ArrayList<Produccion> produccion) {
+		this.produccion = produccion;
+	}
 
 
 
 	//metodos
 	public boolean producir (Producto p) {
 		int cantProd = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad a producir: "));
-		if(materiasPrimas.lenght() <= cantProd ) {
+		if(materiasPrimas.size() <= cantProd ) {
 			JOptionPane.showMessageDialog(null, "Cantidad aceptable. Inicia la produccion");
 			return true;
 		} else {
@@ -118,16 +129,26 @@ public class Produccion extends Operario{
 		}
 	}
 	
-	public String infoProduccion() { 
+	
+	
+	public String infoProduccion(Produccion pr) { 
+		//chequear
+				boolean chequear = produccion.contains(pr);
+				if(chequear) {
+					for (int i = 0; i < produccion.size(); i++) {
+						System.out.println(i);
+						}
+				}else{
+					System.out.println("No existe esta produccion");
+				}
 		return "Produccion [idProduccion=" + idProduccion + ", fechaProduccion=" + fechaProduccion + ", prodElaborados=" + prodElaborados + ", totalProducido=" + totalProducido
 				+ ", Operario=" + operarios + ", Materias Primas=" + materiasPrimas  + "]";
 	}
 		
 	
 	
+	public void agregarProduccion (Produccion pr) {
+		//chequeear
+		produccion.add(pr);
+	}
 	
-
-	
-
-
-}
