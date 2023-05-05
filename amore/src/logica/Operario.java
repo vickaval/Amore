@@ -6,15 +6,14 @@ import javax.swing.JOptionPane;
 public class Operario extends Usuario{
 
 	private String turno;
-	private ArrayList<MateriaPrima> mps;
-	private ArrayList<Producto> infoProductos;
+	private ArrayList<MateriaPrima> mps=new ArrayList<>();
+	private ArrayList<Producto> infoProductos=new ArrayList<>();
 
 	 
 	public Operario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-			String usuario, String contrasena, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
+			String usuario, String contrasena, double sueldo, String turno) {
 		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
 		this.turno = turno;
-		this.mps = mps;
 	}
 	
 	public Operario() {
@@ -38,28 +37,48 @@ public class Operario extends Usuario{
 		this.mps = mps;
 	}
 	
-	public void ingresarMateriaPrima(MateriaPrima mp) {
-		boolean ingreso=mps.add(mp);
-		if(ingreso){
-			System.out.println("Materia prima agregada");
-		}else{
-			System.out.println("Materia prima repetida");
-		}
+	public ArrayList<Producto> getInfoProductos() {
+		return infoProductos;
 	}
 
-	public void visualizarStockMateriaPrima (MateriaPrima mp){
+	public void setInfoProductos(ArrayList<Producto> infoProductos) {
+		this.infoProductos = infoProductos;
+	}
+
+	public void ingresarMateriaPrima(MateriaPrima mp) {//cheuqeado
+		boolean ingreso=mps.add(mp);
+		if(ingreso) {
+			System.out.println("materia prima ingresada correctamente");
+		}
+	}
+	
+	public void cargarProductos(Producto p){
+		boolean ingreso=infoProductos.add(p);
+		if(ingreso) {
+			System.out.println("Producto ingresado correctamente");	
+		}
+
+	}
+	
+	
+	
+	public void visualizarStockMateriaPrima (MateriaPrima mp){//chequeado
 		boolean tieneStock=mps.contains(mp);//chequear
 		if(tieneStock){
-			System.out.println(mp.getNombre());
-			System.out.println(mp.getStockDisponible());
+			System.out.println("Nombre del producto: "+mp.getNombre());
+			System.out.println("Cantidad de stock disponible: "+mp.getStockDisponible());
 		}else{
 			System.out.println("No hay stock");
 		}
 	}
+	
+	public void infoMateriaPrima() {//chequeado
+		System.out.println(mps);
+	}
 
 
-	public void registrarOperario(){
-	//chequear
+	public void registrarOperario(Operario op){
+	//chequeado
 			String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su dni");
@@ -67,42 +86,42 @@ public class Operario extends Usuario{
 	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antiguedad"));
 	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su numero de telefono"));
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
-	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese una contrasela");
+	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese una contrasena");
 	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
 			String turno = JOptionPane.showInputDialog(null, "Ingrese en que turno trabaja");
-	        Operario op = new Operario(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo, turno);
-	        registrarOperario(op);
-
-			//String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-			//String usuario, String contrasena, double sueldo, String turno,
+	        op.setNombre(nombre);
+	        op.setApellido(apellido);
+	        op.setId(id);
+	        op.setNombreArea(nombreArea);
+	        op.setAniosAntiguedad(aniosAntiguedad);
+	        op.setTelefono(telefono);
+	        op.setUsuario(usuario);
+	        op.setContrasena(contrasena);
+	        op.setSueldo(sueldo);
+	        op.setTurno(turno);
 	        JOptionPane.showMessageDialog(null, "Registro exitoso.");		
 	}
 
-	//rol de iniciar sesion el mismo que usuario, chequear
+	//rol de iniciar sesion el mismo que usuario, chequeado
 
-	public void producirMercaderia(Operario op, MateriaPrima mp, int cantidad){
-		JOptionPane.showMessageDialog(null, "Bienvenido "+op.getNombre());
-		boolean producir=mps.contains(mp) && mp.getStockDisponible()<=cantidad; 
+	public void producirMercaderia(Operario op, MateriaPrima mp, int cantidad){//chequeado
+		boolean producir=mps.contains(mp)&& mp.getStockDisponible()>=cantidad; 
 		if(producir){
 			System.out.println("produciendo con la materia prima "+mp.getNombre());	
 		}else{
-			System.out.println("Materiaprima inexistente o stock insuficiente");	
+			System.out.println("Materia prima inexistente o stock insuficiente");	
 		}
 
 	}
 
-	public void buscarMateriaPrima(MateriaPrima mp){
+	public void buscarMateriaPrima(MateriaPrima mp){//chequeado
 			boolean buscar=mps.contains(mp);
 			if(buscar){
-				System.out.println(mp.getNombre());
-				System.out.println(mp.getStockDisponible());
+				System.out.println(mp.toString());
 			}
 	}
 
-	public void cargarProductos(Producto p){
-		infoProductos.add(p);
-
-	}
 
 
 }
+
