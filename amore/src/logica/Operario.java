@@ -9,7 +9,7 @@ public class Operario extends Usuario{
 	private ArrayList<MateriaPrima> mps;
 	private ArrayList<Producto> infoProductos;
 
-	//hacer metodo producir 
+	 
 	public Operario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
 			String usuario, String contrasena, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
 		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
@@ -80,13 +80,13 @@ public class Operario extends Usuario{
 
 	//rol de iniciar sesion el mismo que usuario, chequear
 
-	public void producirMercaderia(Operario op, MateriaPrima mp){
+	public void producirMercaderia(Operario op, MateriaPrima mp, int cantidad){
 		JOptionPane.showMessageDialog(null, "Bienvenido "+op.getNombre());
-		MateriaPrima mp= JOptionPane.showInputDialog(null, "Ingrese la materia prima que va a producir: ");
-		int cantidad=JOptionPane.showInputDialog(null, "Ingrese la cantidad de materia prima que va a utilizar: ");
-
-		if(){
-
+		boolean producir=mps.contains(mp) && mp.getStockDisponible()<=cantidad; 
+		if(producir){
+			System.out.println("produciendo con la materia prima "+mp.getNombre());	
+		}else{
+			System.out.println("Materiaprima inexistente o stock insuficiente");	
 		}
 
 	}
