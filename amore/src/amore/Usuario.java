@@ -122,11 +122,10 @@ public abstract class Usuario {
 		
 		
 		//metodos
-	//selecciona rol
 		public boolean iniciarSesion(Usuario u) {
 			
 			String []usuario= {"Cliente" , "Administrador","Operario","Almacenista", "Vendedor"};
-	        int usu = JOptionPane.showOptionDialog(null, "Elija una opcion", "Mi pantalla de pregunta",JOptionPane.DEFAULT_OPTION,
+	        int usu = JOptionPane.showOptionDialog(null, "Tipo de usuario", "Iniciar Sesion",JOptionPane.DEFAULT_OPTION,
 	                JOptionPane.QUESTION_MESSAGE, null, usuario, usuario[0]);
 	        
 	        
@@ -135,10 +134,10 @@ public abstract class Usuario {
 	        if(pass.length() <= 8) {
 	        		    
 			if(pass.equals(getContraseña())) {
-			
+			JOptionPane.showMessageDialog(null, "Bienvenido a Amore Pastas");
 			//mensaje de confirmacion por tipo de usuario
 	            if (usu == 0) {
-	            System.out.println("Bienvenido a Amore Pastas");
+	            System.out.println("Bienvenido a Amore Pastas");            
 	            } else  if (usu == 1) {
 	                System.out.println("Bienvenido Administrador");
 	            } else  if (usu == 2) {
@@ -147,6 +146,8 @@ public abstract class Usuario {
 	            	System.out.println("Bienvenido Almacenista");
 	            } else if (usu == 4) {
 	            	System.out.println("Bienvenido Vendedor");
+	            }else {
+	            	JOptionPane.showMessageDialog(null, "No se pudo iniciar sesion");
 	            }
 	        
 	        //inicio sesion (usuario y contaseña correcta)
