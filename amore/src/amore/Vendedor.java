@@ -22,35 +22,45 @@ public class Vendedor extends Usuario {
 	
 
 	//metodos
-	public double calcularGanacias(Pedido pedidos) {
+	public double calcularGanacias(ArrayList<Pedido> pedidos) {
 	         double ventas2 = 0;
 	         
-	         System.out.println("Número de pedidos " + ((List<Vendedor>) pedidos).size());
+	         System.out.println("Número de pedidos " + pedidos.size());
 
-	             for(int i=1;i<= pedidos.lenght ;i++) {
-	                  System.out.print("Monto pedido "+ pedidos.getTotal());
-	                  ventas2 = pedidos.getTotal();
-	                  ventas2 += pedidos.getTotal();	 
+	             for(int i=1;i<= pedidos.size() ;i++) {
+	                  System.out.print("Monto pedido "+ pedidos.get(i).getTotal());	                  
+	                  ventas2 = pedidos.get(i).getTotal();
+	                  ventas2 += pedidos.get(i).getTotal();	 
 	             }
 	             
-	             double ganancia = ventas2 / ((List<Vendedor>) pedidos).size();
+	             double ganancia = ventas2 / pedidos.size();
 	         System.out.println("El promedio de ventas es " + ganancia);
 	         JOptionPane.showMessageDialog(null, "El promedio de ventas es " + ganancia);
 	         
 		return ganancia;
 		
+		
+		/*
+		Iterator<String> iterator = lista.iterator();
+        while (iterator.hasNext()) {
+            String elemento = iterator.next();
+            System.out.println(elemento);
+            }
+            */
+        
+		
 	}
 	
 	
 	
-	public double calcularPerdidas(MateriaPrima materiasPrimas, Pedido pedidos) {
-		double monto;
-		for(int i=1; i<= materiasPrimas.lenght ;i++) {
+	public double calcularPerdidas(MateriaPrima materiasPrimas, ArrayList<Pedido> pedidos) {
+		double monto = 0;
+		for(int i=1; i<= materiasPrimas.length() ;i++) {
 			 monto = materiasPrimas.getPrecio();
 			 monto += materiasPrimas.getPrecio();	
 		}
 		
-		double perdida = monto / ((List<Vendedor>) pedidos).size();
+		double perdida = monto /  pedidos.size();
 		System.out.println("El promedio de perdida es " + perdida);
         JOptionPane.showMessageDialog(null, "El promedio de ventas es " + perdida);
 		
@@ -61,11 +71,27 @@ public class Vendedor extends Usuario {
 	
 	
 	
-	
+	/*
 	public void visualizarStock() {
 		System.out.print("Stock: " + getProductos());
 	}
+	*/
 	
+	
+	
+	//metodo de martina
+	public void visualizarStockProductos(Producto pr){
+		//boolean tieneStock=getNombre().contains(pr);//chequear
+		boolean tieneStock = getNombre().contains(pr);
+			if(tieneStock){
+				System.out.println(pr.getNombre());
+				System.out.println(pr.getStockDisponible());
+				JOptionPane.showMessageDialog(null,"Producto: " + pr.getNombre() + " tiene en stock " + pr.getStockDisponible() );
+			}else{
+				JOptionPane.showMessageDialog(null,"Sin stock disponible");
+				System.out.println("No hay stock");
+			}
+	}
 	
 	
 	public void mostrarVendedores() {
@@ -96,4 +122,3 @@ public class Vendedor extends Usuario {
 	}
 
 }
-
