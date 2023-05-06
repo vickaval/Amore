@@ -24,6 +24,16 @@ public class Test {
 		Producto p2=new Producto(1453, "Salsa Blanca", "Salsas", 425, 5);
 		op.cargarProductos(p1);
 		op.cargarProductos(p2);
+
+		p1.agregarProducto(p1);
+		p2.agregarProducto(p2);
+		
+		Cliente c=new Cliente();
+		//c.registrarCliente(c);//funciona
+		//c.iniciarSesion(c);//funciona
+		c.seleccionarProducto(p2, 2);
+		ArrayList<Producto> productosDelPedido = new ArrayList<>();
+		Pedido p = new Pedido(1, 54.50, 159, null, productosDelPedido, c);
 		
 		
 		
