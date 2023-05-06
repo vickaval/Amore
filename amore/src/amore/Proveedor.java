@@ -1,17 +1,26 @@
 package amore;
 
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 public class Proveedor {
 	
 	private String nombre;
 	private int cuit;
 	private String materialesQueProvee;
 	private double montoComprado;
+	private double deuda;
 	
-	public Proveedor(String nombre, String materialesQueProvee, int cuit, double montoComprado) {
+	ArrayList<Proveedor> provedoresDeben;
+	
+	public Proveedor(String nombre, String materialesQueProvee, int cuit, double montoComprado, double deuda) {
 		this.nombre = nombre;
     	this.cuit = cuit;
 		this.materialesQueProvee = materialesQueProvee;
 		this.montoComprado = montoComprado;
+		this.deuda = deuda;
+		this.provedoresDeben = new ArrayList<>();
 	
 	}
 	
@@ -46,26 +55,56 @@ public class Proveedor {
 		this.montoComprado = montoComprado;
 	}
 	
+
+	public double getDeuda() {
+		return deuda;
+	}
+	public void setDeuda(double deuda) {
+		this.deuda = deuda;
+	}
+
 	
+	public ArrayList<Proveedor> getProvedoresDeben() {
+		return provedoresDeben;
+	}
+	public void setProvedoresDeben(ArrayList<Proveedor> provedoresDeben) {
+		this.provedoresDeben = provedoresDeben;
+	}
+
+
+
 	//metodos	
-	public String deudaConProveedores(Proveedor p) {
-		return "deuda";
+	public void deudaConProveedores(Proveedor p) {
+		JOptionPane.showMessageDialog(null,"Deuda de " + getDeuda());
+		
 		
 	}
 	
 	
-	public String proveedoresQueDeben(Proveedor p){
-		return "deben";
+	public void proveedoresQueDeben(Proveedor p){
+		if (getDeuda() != 0) {
+			provedoresDeben.add(p);
+			JOptionPane.showMessageDialog(null,"Exite una deuda de " + getDeuda() + " de " + p);
+		}
 		
 	}
 	
 
 	//informacion completa
+	public void informacionProveedores() {
+		JOptionPane.showMessageDialog(null,"PROVEEDOR \nNombre: " +  getNombre() + "\nCuit: " + getCuit() + "\nProvee: " + getMaterialesQueProvee() + 
+				"\nDeuda: " + getDeuda());
+	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Proveedor [nombre=" + nombre + ", cuit=" + cuit + ", materialesQueProvee=" + materialesQueProvee
+		return "Proveedor [nombre=" + nombre + ", cuit: " + cuit + ", materialesQueProvee=" + materialesQueProvee
 				+ ", montoComprado=" + montoComprado + "]";
 	}
+	
+	
 	
 	
 	
