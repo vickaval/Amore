@@ -132,13 +132,14 @@ public class Produccion extends Operario{
 	
 	
 	public String infoProduccion(Produccion pr) { 
-		//chequear (de marti)
+		//chequear
 				boolean chequear = produccion.contains(pr);
 				if(chequear) {
 					for (int i = 0; i < produccion.size(); i++) {
 						System.out.println(i);
 						}
 				}else{
+					JOptionPane.showMessageDialog(null, "No existe esta produccion");
 					System.out.println("No existe esta produccion");
 				}
 		return "Produccion [idProduccion=" + idProduccion + ", fechaProduccion=" + fechaProduccion + ", prodElaborados=" + prodElaborados + ", totalProducido=" + totalProducido
@@ -148,7 +149,14 @@ public class Produccion extends Operario{
 	
 	
 	public void agregarProduccion (Produccion pr) {
-		//chequeear (de marti)
+		//chequeear
 		produccion.add(pr);
 	}
 	
+	
+	
+
+	
+
+
+}
