@@ -4,20 +4,31 @@ public abstract class Producto {
 	private int idProducto;
 	private String nombre;
 	private String tipo;
+	private int cantidad;
 	private double precio;
-	private int stockDisponible;
+
 	
-	public Producto(int idProducto, String nombre, String tipo, double precio, int stockDisponible) {
+	public Producto(int idProducto, String nombre, String tipo, double precio, int cantidad) {
 		super();
 		this.idProducto = idProducto;
 		this.nombre = nombre;
-		this.tipo = tipo;
+		this.tipo = tipo;		
 		this.precio = precio;
-		this.stockDisponible = stockDisponible;
+		this.cantidad = cantidad;
 	}
 	
 	public Producto() {
 	
+	}
+	
+	
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public int getIdProducto() {
@@ -44,14 +55,6 @@ public abstract class Producto {
 		this.precio = precio;
 	}
 
-	public int getStockDisponible() {
-		return stockDisponible;
-	}
-
-	public void setStockDisponible(int stockDisponible) {
-		this.stockDisponible = stockDisponible;
-	}
-
 	public String getTipo() {
 		return tipo;
 	}
@@ -63,7 +66,7 @@ public abstract class Producto {
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio
-				+ ", stockDisponible=" + stockDisponible + "]";
+				+ ", Cantidad=" + cantidad + "]";
 	}
 	
 	

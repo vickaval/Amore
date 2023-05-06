@@ -49,7 +49,7 @@ public class TestVisualizaStockProductos {
             String mensaje = "Listado de Productos: \n\n";
             for (Producto prod : productos) {
             	mensaje += "Código: " + prod.getIdProducto() + " - " + "Nombre: " + prod.getNombre() +  " - " 
-            + " tipo: " + prod.getTipo() + " - " + "Stock: " + prod.getStockDisponible() + "\n";
+            + " tipo: " + prod.getTipo() + " - " + "Stock: " + prod.getCantidad() + "\n";
             }
             JOptionPane.showMessageDialog(null, mensaje);
         }
