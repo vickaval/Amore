@@ -115,37 +115,5 @@ public class Deposito {
 	    JOptionPane.showMessageDialog(null, sb.toString(), "Almacenistas registrados: ", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public ArrayList<Producto> buscarProductos(ArrayList<Producto> buscados) {
-		
-		ArrayList<Producto> pedidoRearmado = new ArrayList<>();
-		
-		    // Iterar sobre los productos del depo
-		    for (Producto producto : this.productos) {
-		        // Iterar sobre los productos buscados en el pedido
-		        for (Producto buscado : buscados) {
-		           
-		            if (producto.getIdProducto() == buscado.getIdProducto()) {
-		                // Comparar si la cantidad del producto es igual o mayor a la cantidad buscada
-		                if (producto.getCantidad() >= buscado.getCantidad()) {
-		                	producto.setCantidad(producto.getCantidad() - buscado.getCantidad());
-		                	
-		                    pedidoRearmado.add(buscado);
-		                   
-		                    JOptionPane.showMessageDialog(null,"Se prepara producto: " + producto.getNombre());
-		                    JOptionPane.showMessageDialog(null," Del producto " + producto.getNombre() + " quedo en stock: " 
-		                    + producto.getCantidad() );
-		                    
-		                }else {
-		                	JOptionPane.showMessageDialog(null, "No hay sufiente cantidad del producto " + 
-		                producto.getNombre() + " y no se prepara");
-		                	
-		                }
-		            }
-		        }
-		    }
-			return pedidoRearmado;
-		
-	}
-
 
 }
