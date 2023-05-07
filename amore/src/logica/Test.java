@@ -10,7 +10,7 @@ public class Test {
 		
 		MateriaPrima mp=new MateriaPrima("tomate", "salta", 45, 100, 0012);
 		MateriaPrima mp2=new MateriaPrima("verdeo", "salta", 50, 100, 0013);
-		MateriaPrima mp3=new MateriaPrima("cebolla", "san juan", 60, 100, 0014);
+		MateriaPrima mp3=new MateriaPrima("cebolla", "san juan", 60, 10, 0014);
 		
 		op.ingresarMateriaPrima(mp);
 		op.ingresarMateriaPrima(mp2);
