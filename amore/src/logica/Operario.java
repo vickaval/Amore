@@ -46,9 +46,13 @@ public class Operario extends Usuario{
 	}
 
 	public void ingresarMateriaPrima(MateriaPrima mp) {//cheuqeado
-		boolean ingreso=mps.add(mp);
-		if(ingreso) {
+		//boolean ingreso=mps.add(mp);
+		boolean stock=mp.getStockDisponible()>=100;
+		if(stock) {
+			mps.add(mp);
 			System.out.println("materia prima ingresada correctamente");
+		}else {
+			System.out.println("stock insuficiente");
 		}
 	}
 	
