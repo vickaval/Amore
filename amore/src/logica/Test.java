@@ -21,25 +21,31 @@ public class Test {
 		op.buscarMateriaPrima(mp2);
 		
 		Producto p1=new Producto(1452, "Salsa Pomodoro", "Salsas", 425, 5);
-		Producto p2=new Producto(1453, "Salsa Blanca", "Salsas", 425, 5);
+		Producto p2=new Producto(1453, "Salsa Blanca", "Salsas", 500, 10);
+		Producto p3=new Producto(1453, "Salsa Roja", "Salsas", 300, 20);
+		Producto p4=new Producto(1453, "Queso Rayado La Serenisima", "Quesos", 800, 10);
 		op.cargarProductos(p1);
 		op.cargarProductos(p2);
-
+		op.cargarProductos(p3);
+		op.cargarProductos(p4);
 		p1.agregarProducto(p1);
 		p2.agregarProducto(p2);
+		p3.agregarProducto(p3);
+		p4.agregarProducto(p4);
 		
+		//testeo rol cliente
 		Cliente c=new Cliente();
-		//c.registrarCliente(c);//funciona
-		//c.iniciarSesion(c);//funciona
-		c.seleccionarProducto(p2, 2);
-		ArrayList<Producto> productosDelPedido = new ArrayList<>();
-		Pedido p = new Pedido(1, 54.50, 159, null, productosDelPedido, c);
+		c.registrarCliente(c);//funciona
+		c.iniciarSesion(c);//funciona
 		
-		
-		
-
-		
-		
+		 Deposito depo = new Deposito(1,"Depo");
+		 depo.agregarProducto(p2);
+		 depo.agregarProducto(p1);
+		 depo.agregarProducto(p3);
+		 depo.agregarProducto(p4);
+		 Pedido p = new Pedido(1, 54.50, 159, null, null, c);
+		 c.seleccionarProducto(depo.getProductos(),p);
+		 c.metodosDePago(p);
+	}
 
     }
-}
