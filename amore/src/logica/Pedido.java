@@ -13,6 +13,7 @@ public class Pedido {
 	Date fecha;
 	ArrayList <Producto> productos;
 	Cliente cliente;
+	
 
 		
 	public enum formaPago
@@ -88,6 +89,7 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Pedido [idPedido=" + idPedido + ", descuento=" + descuento + ", total=" + total + ", fecha=" + fecha
@@ -97,9 +99,4 @@ public class Pedido {
 
 	
 	
-}
-	
-	
-	
-
 }
