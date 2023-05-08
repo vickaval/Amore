@@ -1,12 +1,18 @@
 package amore;
 
-public class MateriaPrima {
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class MateriaPrima implements CharSequence {
 		
 		private int codigoMp;
 		private String nombre;
 		private String procedencia;
 		private double precio;
 		private int stockDisponible;
+		
+		ArrayList <MateriaPrima> materiasPrimas;
 		
 		
 		
@@ -23,10 +29,10 @@ public class MateriaPrima {
 			this.procedencia = procedencia;
 			this.precio = precio;
 			this.stockDisponible = stockDisponible;
+			this.materiasPrimas = new ArrayList<>();
 		}
 
 
-	//getters y setters
 		public String getNombre() {
 			return nombre;
 		}
@@ -65,6 +71,59 @@ public class MateriaPrima {
 
 		public void setCodigoMp(int codigoMp) {
 			this.codigoMp = codigoMp;
+		}
+		
+		
+		
+		public ArrayList<MateriaPrima> getMateriasPrimas() {
+			return materiasPrimas;
+		}
+		public void setMateriasPrimas(ArrayList<MateriaPrima> materiasPrimas) {
+			this.materiasPrimas = materiasPrimas;
+		}
+
+
+
+		public void visualizarStockMateriaPrima(MateriaPrima mp){
+			boolean tieneStock=nombre.contains(mp);//chequear
+				if(tieneStock){
+					System.out.println(mp.getNombre());
+					System.out.println(mp.getStockDisponible());
+					JOptionPane.showMessageDialog(null,"Materia Prima: " + mp.getNombre() + " tiene en stock " + mp.getStockDisponible() );
+				}else{
+					JOptionPane.showMessageDialog(null,"Sin stock disponible");
+					System.out.println("No hay stock");
+				}
+		}
+		
+		
+		public void agregarMateriaPrima (MateriaPrima mp) {
+			//chequeear
+			materiasPrimas.add(mp);
+		}
+
+
+
+		@Override
+		public int length() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+
+
+		@Override
+		public char charAt(int index) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+
+
+		@Override
+		public CharSequence subSequence(int start, int end) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 
