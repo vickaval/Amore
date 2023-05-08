@@ -73,6 +73,7 @@ public class Proveedor {
 
 
 
+	
 	//metodos	
 	public void deudaConProveedores(Proveedor p) {
 		JOptionPane.showMessageDialog(null,"Deuda de " + getDeuda());
@@ -97,7 +98,6 @@ public class Proveedor {
 	}
 	
 	
-	
 	@Override
 	public String toString() {
 		return "Proveedor [nombre=" + nombre + ", cuit: " + cuit + ", materialesQueProvee=" + materialesQueProvee
@@ -106,7 +106,7 @@ public class Proveedor {
 	
 	
 	
-	
+	//
 	
 	
 	
