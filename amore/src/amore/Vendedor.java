@@ -1,6 +1,7 @@
 package amore;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,18 +14,19 @@ public class Vendedor extends Usuario {
 	  ArrayList<Vendedor> vendedores;
 	  ArrayList<Producto> productos;
 	  
+	  ArrayList<Pedido> pedidos;
+	  
 	public Vendedor(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contraseña, double sueldo) {
 		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
-		this.vendedores = new ArrayList<>();
-		this.productos = new ArrayList<>();
+
 	}
 	
 	
 
 	//metodos
-	public double calcularGanacias(ArrayList<Pedido> pedidos) {
+	public double calcularGanacias() {
 	         double ventas2 = 0;
-	         
+  
 	         System.out.println("Número de pedidos " + pedidos.size());
 
 	             for(int i=1;i<= pedidos.size() ;i++) {
@@ -94,13 +96,26 @@ public class Vendedor extends Usuario {
 	}
 	
 	
+	/*
 	public void mostrarVendedores() {
+		
 	    StringBuilder sb = new StringBuilder();
 	    for (Vendedor vendedor : vendedores) {
 	        sb.append(vendedor.getUsuario()).append(" - ").append(vendedor.getNombreArea()).append("\n");
 	    }
-	    JOptionPane.showMessageDialog(null, sb.toString(), "Vendedores: ", JOptionPane.PLAIN_MESSAGE);
+	    JOptionPane.showMessageDialog(null,  "Vendedores: " + vendedores.containsAll(vendedores));
+	    
+	    //----
+	    for(int i = 0; i < vendedores.size(); i++) {
+	        System.out.println(vendedores.get(i));
+	    }
+	    JOptionPane.showMessageDialog(null,  "Vendedores: " + vendedores.toString());
 	}
+
+*/
+	
+
+
 
 	
 	
@@ -121,4 +136,33 @@ public class Vendedor extends Usuario {
 		this.productos = productos;
 	}
 
+
+
+	
+
+
+
+
+	
+
 }
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+	
+	
+	
+	
+
+
