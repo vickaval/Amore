@@ -9,22 +9,73 @@ public class Operario extends Usuario{
 	ArrayList<Operario> operarios;
 	private String turno;
 	private ArrayList<MateriaPrima> mps;
+	private ArrayList<Producto> infoProductos=new ArrayList<>();
 		
 		
 		public Operario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
-				String usuario, String contraseña, double sueldo, String turno, ArrayList<MateriaPrima> mps) {
+				String usuario, String contraseña, double sueldo, String turno) {
 			super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
 			this.setTurno(turno);
-			this.mps = mps;
+			
 		}
 		
 		//public Operario() {
 		//}
 
 		
+		public void ingresarMateriaPrima(MateriaPrima mp) {//cheuqeado
+			//boolean ingreso=mps.add(mp);
+			boolean stock=mp.getStockDisponible()>=100;
+			if(stock) {
+				mps.add(mp);
+				System.out.println("materia prima ingresada correctamente");
+			}else {
+				System.out.println("stock insuficiente");
+			}
+		}
 		
-		public void ingresarMateriaPrima(MateriaPrima mp) {
-			this.mps.add(mp);
+		public void cargarProductos(Producto p){
+			boolean ingreso=infoProductos.add(p);
+			if(ingreso) {
+				System.out.println("Producto ingresado correctamente");	
+			}
+
+		}
+		
+		
+		
+		public void buscarMateriaPrima(MateriaPrima mp){//chequeado
+			boolean buscar=mps.contains(mp);
+			if(buscar){
+				System.out.println(mp.toString());
+			}
+	}
+		
+		
+		public void producirMercaderia(Operario op, MateriaPrima mp, int cantidad){//chequeado
+			boolean producir=mps.contains(mp)&& mp.getStockDisponible()>=cantidad; 
+			if(producir){
+				System.out.println("produciendo con la materia prima "+mp.getNombre());	
+			}else{
+				System.out.println("Materia prima inexistente o stock insuficiente");	
+			}
+
+		}
+		
+		
+		public void infoMateriaPrima() {//chequeado
+			System.out.println(mps);
+		}
+		
+		
+		public void visualizarStockMateriaPrima (MateriaPrima mp){//chequeado
+			boolean tieneStock=mps.contains(mp);//chequear
+			if(tieneStock){
+				System.out.println("Nombre del producto: "+mp.getNombre());
+				System.out.println("Cantidad de stock disponible: "+mp.getStockDisponible());
+			}else{
+				System.out.println("No hay stock");
+			}
 		}
 
 		
