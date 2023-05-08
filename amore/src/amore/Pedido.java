@@ -111,13 +111,13 @@ public class Pedido extends Vendedor{
 
 
 	//metodos
-	public String agregarPedido (Pedido pedidos) {
+	public void agregarPedido (Cliente clientes) {
 
 		  total = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el total: "));
-		  pedidos.setTotal(total);
+		  pedidos.get(idPedido).setTotal(total);
 		  
 		  int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cuit del cliente: "));
-		  Pedido.this.setCliente(cuit);
+		  Pedido.this.setCliente(cliente);		
 		  
 		  java.util.Date hora = new Date();
 		  Pedido.this.setFecha(hora);
@@ -136,10 +136,15 @@ public class Pedido extends Vendedor{
 			      System.out.print("Enviando comprobante");
 			      JOptionPane.showMessageDialog(null, formaDePago + "Comprobante");
 			  }
+			  
+			  JOptionPane.showMessageDialog(null, "El pedido ha sido registrado");
+			  
+			  
 	}
 	
 	
 	public String editarPedido (Pedido p) {
+		return null;
 		
 	}
 	
