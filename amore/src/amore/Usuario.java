@@ -1,5 +1,7 @@
 package amore;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public abstract class Usuario {
@@ -111,6 +113,27 @@ public abstract class Usuario {
 	}
 	
 	
+	
+
+	
+	
+	private ArrayList<Usuario> usu;
+	
+	public void agregarUsuario(Usuario u) {
+		this.usu.add(u);
+	}
+	
+	
+
+	
+	//informacion completa
+		public void informacionUsuario() {
+			JOptionPane.showMessageDialog(null,"USUARIO \nNombre: " +  getNombre() + "\nApellido:" + getApellido() + ", \nid: " + getId() + ", \nNombre de Area:" + getNombreArea()
+					+ "\nAntiguedad: " + getAniosAntiguedad() + "\nTelefono: " + getTelefono() + "\nUsuario: " + getUsuario());
+										
+		}
+	
+	
 
 	//mostrar informacion
 		@Override
@@ -122,7 +145,7 @@ public abstract class Usuario {
 		
 		
 		//metodos
-		public boolean iniciarSesion(Usuario u) {
+		public boolean iniciarSesion() {
 			
 			String []usuario= {"Cliente" , "Administrador","Operario","Almacenista", "Vendedor"};
 	        int usu = JOptionPane.showOptionDialog(null, "Tipo de usuario", "Iniciar Sesion",JOptionPane.DEFAULT_OPTION,
