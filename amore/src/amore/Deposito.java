@@ -18,6 +18,7 @@ public class Deposito {
 		this.empleado = empleado;
 	}
 
+	//getters y setters
 	public String getNombre() {
 		return nombre;
 	}
