@@ -11,6 +11,8 @@ public class Main {
 				
 		Administrador administrador2 = new Administrador("Bruce", "Batman", "10", "documentacion", 6, 46468546, "administrador", "batiman", 255500);		
 		Almacenista almacenista2 = new Almacenista("Victor", "Villani", "6", "repositor", 2, 768468468, "almacenista", "vivi", 102500);
+		Operario operario2 = new Operario("Martin", "Martinez", "4", "produccion", 6, 54654654, "operario", "marmar", 115500, "Mañana");
+
 		
 	    //String nombre, String materialesQueProvee, int cuit, double montoComprado, deuda
         Proveedor proveedor2 = new Proveedor("Manolo", "Harina", 1233, 25000, 14000);
@@ -44,7 +46,7 @@ public class Main {
         if (administrador2.iniciarSesion()) {
         	     
         
-        String []opciones= {"Info usuario", "Añadir" ,"Eliminar","Editar", "Descuento", "Info proveedores", "Proveedores deudores", "Estadisticas"  };
+        String []opciones= {"Info usuario", "Añadir" ,"Eliminar","Editar", "Descuento", "Info proveedores", "Proveedores deudores", "Estadisticas"};
         int opc = JOptionPane.showOptionDialog(null, "Elija tipo de operacion", "ABM usuarios",JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
         
@@ -157,7 +159,7 @@ public class Main {
         	   //MOSTRAR VENDIDO MAS DE 100 VECES O NO
 		       almacenista2.estadisticas();
 		       
-        }
+        } 
         
         
         } else {
@@ -170,4 +172,5 @@ public class Main {
 		       
 		 	}
 
-}  
+}       
+		
