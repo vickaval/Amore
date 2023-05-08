@@ -94,9 +94,14 @@ public class test {
 	        
 	    	depo.iniciarSesionAlmacenista();
 	    	
+	    	
+	   
+    	
 	    	if (al.iniciarSesion(al.getUsuario(), al.getContraseña())) { // Si el inicio de sesión es exitoso
-	    	    Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos"};
-	    	    int eleccion = JOptionPane.showOptionDialog(null, "¿Qué acción desea realizar?", "Menú principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+	    		int eleccion;
+	    	 	do {
+	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
+	    	    eleccion = JOptionPane.showOptionDialog(null, "¿Qué acción desea realizar?", "Menú principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:	    	        		
 	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
@@ -123,15 +128,18 @@ public class test {
 	    	        	al.EnviarPedido();
 	    	        	JOptionPane.showMessageDialog(null, "Se envia el pedido ");
 	    	        	//System.out.println(p.getProductos());
-	    	    
+	    	            break;
+	    	        case 4:
+	    	        	JOptionPane.showMessageDialog(null, "Salimos del programa ");
 	    	            break;
 	    	        default:
 	    	            JOptionPane.showMessageDialog(null, "Opción no válida.");
 	    	            break;
 	    	    }
+	    	 	}while (eleccion !=4);
 	    	}
 
-	        
+	    
 	        	        
 	    } else if(seleccion == 1) {
 	        // Si desea registrarse, lo agregamos a la lista de usuarios registrados
@@ -139,6 +147,7 @@ public class test {
 	        depo.mostrarAlmacenistas();
 	    }
 		
+	 
 		
 		
 		//llamo a metodo de inicio de sesion en el depo
@@ -151,3 +160,4 @@ public class test {
 	}
 
 }
+

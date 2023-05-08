@@ -22,9 +22,5 @@ public class Vendedor extends Usuario {
 		this.pedidos = pedidos;
 	}
 	  
-	  
-	
-	
-
 
 }

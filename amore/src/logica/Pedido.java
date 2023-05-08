@@ -19,7 +19,6 @@ public class Pedido {
 	{
 	    EFECTVO, TRANSFERENCIA
 	}
-
 	
 	
 	public Pedido(int idPedido, double descuento, double total, Date fecha, ArrayList<Producto> productos,
