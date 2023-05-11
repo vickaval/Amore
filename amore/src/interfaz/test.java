@@ -24,7 +24,7 @@ public class test {
 		//ESTO ES PARA METODO PREPARARPEDIDO()
 		ArrayList<Producto> productosDelPedido = new ArrayList<>();
 		Pasta spaghetti2 = new Pasta(7, "Spaghetti", "Pasta", 2.50, 10);
-		Salsa salsaTomate2 = new Salsa(4, "Salsa de Tomate rojo", "Salsa", 1.50, 16);
+		Salsa salsaTomate2 = new Salsa(4, "Salsa de Tomate", "Salsa", 1.50, 16);
 		
 		productosDelPedido.add(spaghetti2);
 		productosDelPedido.add(salsaTomate2);
@@ -41,8 +41,8 @@ public class test {
 		
 		Produccion prod = new Produccion(1, null);
 		
-		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "Espaï¿½a", 1.50, 500);
-		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "Mï¿½xico", 0.75, 300);
+		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "España", 1.50, 500);
+		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "México", 0.75, 300);
 		MateriaPrima materia3 = new MateriaPrima(1003, "Ajo", "China", 2.20, 200);
 		MateriaPrima materia4 = new MateriaPrima(1004, "Aceite de oliva", "Italia", 4.50, 100);
 		MateriaPrima materia5 = new MateriaPrima(1005, "Sal", "Francia", 0.30, 1000);
@@ -59,7 +59,7 @@ public class test {
 		Queso quesoMozzarella = new Queso(3, "Queso Mozzarella", "Queso", 2.50, 12);
 		Salsa salsaTomate = new Salsa(4, "Salsa de Tomate", "Salsa", 1.50, 15);
 		Salsa salsaAlfredo = new Salsa(5, "Salsa Alfredo", "Salsa", 2.50, 12);
-		Salsa salsaBoloï¿½esa = new Salsa(6, "Salsa Boloï¿½esa", "Salsa", 3.50, 10);
+		Salsa salsaBoloñesa = new Salsa(6, "Salsa Boloñesa", "Salsa", 3.50, 10);
 		Pasta spaghetti = new Pasta(7, "Spaghetti", "Pasta", 2.50, 20);
 		Pasta fettuccine = new Pasta(8, "Fettuccine", "Pasta", 3.00, 18);
 		Pasta mostachol = new Pasta(9, "Mostachol", "Pasta", 2.00, 22);
@@ -69,7 +69,7 @@ public class test {
 		depo.agregarProducto(quesoMozzarella);
 		depo.agregarProducto(salsaTomate);
 		depo.agregarProducto(salsaAlfredo);
-		depo.agregarProducto(salsaBoloï¿½esa);
+		depo.agregarProducto(salsaBoloñesa);
 		depo.agregarProducto(spaghetti);
 		depo.agregarProducto(fettuccine);
 		depo.agregarProducto(mostachol);
@@ -78,10 +78,10 @@ public class test {
 
 		
 		
-		// Preguntamos al usuario si estï¿½ registrado o desea registrarse
+		// Preguntamos al usuario si está registrado o desea registrarse
 	    Object[] options = {"Ya estoy registrado", "Registrarme"};
 	    int seleccion = JOptionPane.showOptionDialog(null,
-	            "Bienvenido al sistema de depï¿½sitos. ï¿½Estï¿½ registrado o desea registrarse?",
+	            "Bienvenido al sistema de depósitos. ¿Está registrado o desea registrarse?",
 	            "Registro en el sistema",
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE,
@@ -90,24 +90,24 @@ public class test {
 	            options[0]);
 	    
 	    if(seleccion == 0) {
-	        // Si estï¿½ registrado, iniciamos sesiï¿½n
+	        // Si está registrado, iniciamos sesión
 	        
 	    	depo.iniciarSesionAlmacenista();
 	    	
 	    	
 	   
     	
-	    	if (al.iniciarSesion(al.getUsuario(), al.getContraseï¿½a())) { // Si el inicio de sesiï¿½n es exitoso
+	    	if (al.iniciarSesion(al.getUsuario(), al.getContraseña())) { // Si el inicio de sesión es exitoso
 	    		int eleccion;
 	    	 	do {
 	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
-	    	    eleccion = JOptionPane.showOptionDialog(null, "ï¿½Quï¿½ acciï¿½n desea realizar?", "Menï¿½ principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+	    	    eleccion = JOptionPane.showOptionDialog(null, "¿Qué acción desea realizar?", "Menú principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:	    	        		
 	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
 	    	             String mensaje = "Listado de Materias Primas: \n\n";
 	    	             for (MateriaPrima mp : materias) {
-	    	             	mensaje += "Cï¿½digo: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
+	    	             	mensaje += "Código: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
 	    	             }
 	    	             JOptionPane.showMessageDialog(null, mensaje);
 	    	            break;
@@ -115,7 +115,7 @@ public class test {
 	    	    		 ArrayList<Producto> productos = depo.getProductos();
 	    	             String mensaje1 = "Listado de Productos: \n\n";
 	    	             for (Producto produ : productos) {
-	    	             	mensaje1 += "Cï¿½digo: " + produ.getIdProducto() + " - " + "Nombre: " + produ.getNombre() +  " - " 
+	    	             	mensaje1 += "Código: " + produ.getIdProducto() + " - " + "Nombre: " + produ.getNombre() +  " - " 
 	    	             + " tipo: " + produ.getTipo() + " - " + "Stock: " + produ.getCantidad() + "\n";
 	    	             }
 	    	             JOptionPane.showMessageDialog(null, mensaje1);
@@ -133,7 +133,7 @@ public class test {
 	    	        	JOptionPane.showMessageDialog(null, "Fin de sesion ");
 	    	            break;
 	    	        default:
-	    	            JOptionPane.showMessageDialog(null, "Opciï¿½n no vï¿½lida.");
+	    	            JOptionPane.showMessageDialog(null, "Opción no válida.");
 	    	            break;
 	    	    }
 	    	 	}while (eleccion !=4);
