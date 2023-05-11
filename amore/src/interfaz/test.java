@@ -130,7 +130,7 @@ public class test {
 	    	        	//System.out.println(p.getProductos());
 	    	            break;
 	    	        case 4:
-	    	        	JOptionPane.showMessageDialog(null, "Salimos del programa ");
+	    	        	JOptionPane.showMessageDialog(null, "Fin de sesion ");
 	    	            break;
 	    	        default:
 	    	            JOptionPane.showMessageDialog(null, "Opci�n no v�lida.");
