@@ -65,12 +65,12 @@ public class Deposito {
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
 	        String nombreArea = "Almacenista";
-	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));
-	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su número de teléfono"));
+	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de aï¿½os de antigï¿½edad"));
+	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su nï¿½mero de telï¿½fono"));
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
-	        String contraseña = JOptionPane.showInputDialog(null, "Ingrese una contraseña");
+	        String contrasenia = JOptionPane.showInputDialog(null, "Ingrese una contraseï¿½a");
 	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
-	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contraseña, sueldo);
+	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasenia, sueldo);
 	        agregarAlmacenistas(nuevoAlmacenista);
 	        JOptionPane.showMessageDialog(null, "Registro exitoso.");
 	    } 
@@ -85,24 +85,24 @@ public class Deposito {
 	        if(usuario == null) {
 	            System.exit(0); // Si el usuario presiona cancelar, salimos del programa
 	        }
-	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contraseña");
+	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contrasenia");
 	        boolean inicioSesion = false;
 	        for(Almacenista almacenista : almacenistas) {
 	            if(almacenista.iniciarSesion(usuario, contrasena)) {
-	                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.");
+	                JOptionPane.showMessageDialog(null, "Inicio de sesiï¿½n exitoso.");
 	                inicioSesion = true;
 	                break;
 	            }
 	        }
 	        if(inicioSesion) {
-	            break; // Si inició sesión, salimos del while
+	            break; // Si iniciï¿½ sesiï¿½n, salimos del while
 	        }
 	        intentos--;
 	        if(intentos == 0) {
-	            JOptionPane.showMessageDialog(null, "Ha excedido el número máximo de intentos. Saliendo del programa.");
+	            JOptionPane.showMessageDialog(null, "Ha excedido el numero mï¿½ximo de intentos. Saliendo del programa.");
 	            System.exit(0);
 	        }
-	        JOptionPane.showMessageDialog(null, "Inicio de sesión fallido. Por favor verifique su usuario, contraseña y permiso. Intentos restantes: " + intentos);
+	        JOptionPane.showMessageDialog(null, "Inicio de sesion fallido. Por favor verifique su usuario, contrasenia y permiso. Intentos restantes: " + intentos);
 	    }
 		return false;
 	}
