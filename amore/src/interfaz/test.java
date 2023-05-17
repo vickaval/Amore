@@ -81,7 +81,7 @@ public class test {
 		// Preguntamos al usuario si est� registrado o desea registrarse
 	    Object[] options = {"Ya estoy registrado", "Registrarme"};
 	    int seleccion = JOptionPane.showOptionDialog(null,
-	            "Bienvenido al sistema de dep�sitos. ¿Esta registrado o desea registrarse?",
+	            "Bienvenido al sistema de dep�sitos. ¿Esta registradooooooo o desea registrarse?",
 	            "Registro en el sistema",
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE,
