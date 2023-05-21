@@ -41,8 +41,8 @@ public class test {
 		
 		Produccion prod = new Produccion(1, null);
 		
-		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "Espaï¿½a", 1.50, 500);
-		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "Mï¿½xico", 0.75, 300);
+		MateriaPrima materia1 = new MateriaPrima(1001, "Tomate", "Espania", 1.50, 500);
+		MateriaPrima materia2 = new MateriaPrima(1002, "Cebolla", "Mexico", 0.75, 300);
 		MateriaPrima materia3 = new MateriaPrima(1003, "Ajo", "China", 2.20, 200);
 		MateriaPrima materia4 = new MateriaPrima(1004, "Aceite de oliva", "Italia", 4.50, 100);
 		MateriaPrima materia5 = new MateriaPrima(1005, "Sal", "Francia", 0.30, 1000);
@@ -59,7 +59,7 @@ public class test {
 		Queso quesoMozzarella = new Queso(3, "Queso Mozzarella", "Queso", 2.50, 12);
 		Salsa salsaTomate = new Salsa(4, "Salsa de Tomate", "Salsa", 1.50, 15);
 		Salsa salsaAlfredo = new Salsa(5, "Salsa Alfredo", "Salsa", 2.50, 12);
-		Salsa salsaBoloniesa = new Salsa(6, "Salsa Boloï¿½esa", "Salsa", 3.50, 10);
+		Salsa salsaBoloniesa = new Salsa(6, "Salsa Boloniesa", "Salsa", 3.50, 10);
 		Pasta spaghetti = new Pasta(7, "Spaghetti", "Pasta", 2.50, 20);
 		Pasta fettuccine = new Pasta(8, "Fettuccine", "Pasta", 3.00, 18);
 		Pasta mostachol = new Pasta(9, "Mostachol", "Pasta", 2.00, 22);
@@ -81,7 +81,7 @@ public class test {
 		// Preguntamos al usuario si estï¿½ registrado o desea registrarse
 	    Object[] options = {"Ya estoy registrado", "Registrarme"};
 	    int seleccion = JOptionPane.showOptionDialog(null,
-	            "Bienvenido al sistema de depï¿½sitos. Â¿Esta registradooooooo o desea registrarse?",
+	            "Bienvenido al sistema de depositos. ¿Esta registrado o desea registrarse?",
 	            "Registro en el sistema",
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE,
@@ -101,13 +101,13 @@ public class test {
 	    		int eleccion;
 	    	 	do {
 	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
-	    	    eleccion = JOptionPane.showOptionDialog(null, "ï¿½Quï¿½ acciï¿½n desea realizar?", "Menï¿½ principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+	    	    eleccion = JOptionPane.showOptionDialog(null, "¿Que accion desea realizar?", "Menu principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:	    	        		
 	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
 	    	             String mensaje = "Listado de Materias Primas: \n\n";
 	    	             for (MateriaPrima mp : materias) {
-	    	             	mensaje += "Cï¿½digo: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
+	    	             	mensaje += "Codigo: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
 	    	             }
 	    	             JOptionPane.showMessageDialog(null, mensaje);
 	    	            break;

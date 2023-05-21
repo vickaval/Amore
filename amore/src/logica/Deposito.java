@@ -64,23 +64,13 @@ public class Deposito {
 	        String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
-<<<<<<< HEAD
-	        String nombreArea = JOptionPane.showInputDialog(null, "Ingrese el nombre del �rea en la que trabaja");
-	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
-	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
-	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
-	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
-	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
-	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
-=======
 	        String nombreArea = "Almacenista";
-	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
-	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
+	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de anios de antiguedad"));
+	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de telefono"));
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
-	        String contrasenia = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
+	        String contrasenia = JOptionPane.showInputDialog(null, "Ingrese una contrasenia");
 	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
 	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasenia, sueldo);
->>>>>>> SebaLopez
 	        agregarAlmacenistas(nuevoAlmacenista);
 	        JOptionPane.showMessageDialog(null, "Registro exitoso.");
 	    } 
@@ -95,15 +85,11 @@ public class Deposito {
 	        if(usuario == null) {
 	            System.exit(0); // Si el usuario presiona cancelar, salimos del programa
 	        }
-<<<<<<< HEAD
-	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contrase�a");
-=======
 	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contrasenia");
->>>>>>> SebaLopez
 	        boolean inicioSesion = false;
 	        for(Almacenista almacenista : almacenistas) {
 	            if(almacenista.iniciarSesion(usuario, contrasena)) {
-	                JOptionPane.showMessageDialog(null, "Inicio de sesi�n exitoso.");
+	                JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso.");
 	                inicioSesion = true;
 	                break;
 	            }
@@ -113,17 +99,10 @@ public class Deposito {
 	        }
 	        intentos--;
 	        if(intentos == 0) {
-<<<<<<< HEAD
-	            JOptionPane.showMessageDialog(null, "Ha excedido el n�mero m�ximo de intentos. Saliendo del programa.");
-	            System.exit(0);
-	        }
-	        JOptionPane.showMessageDialog(null, "Inicio de sesi�n fallido. Por favor verifique su usuario, contrase�a y permiso. Intentos restantes: " + intentos);
-=======
-	            JOptionPane.showMessageDialog(null, "Ha excedido el numero m�ximo de intentos. Saliendo del programa.");
+	            JOptionPane.showMessageDialog(null, "Ha excedido el numero maximo de intentos. Saliendo del programa.");
 	            System.exit(0);
 	        }
 	        JOptionPane.showMessageDialog(null, "Inicio de sesion fallido. Por favor verifique su usuario, contrasenia y permiso. Intentos restantes: " + intentos);
->>>>>>> SebaLopez
 	    }
 		return false;
 	}
