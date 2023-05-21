@@ -24,7 +24,7 @@ public class test {
 		//ESTO ES PARA METODO PREPARARPEDIDO()
 		ArrayList<Producto> productosDelPedido = new ArrayList<>();
 		Pasta spaghetti2 = new Pasta(7, "Spaghetti", "Pasta", 2.50, 10);
-		Salsa salsaTomate2 = new Salsa(4, "Salsa de Tomate", "Salsa", 1.50, 16);
+		Salsa salsaTomate2 = new Salsa(4, "Salsaa de Tomate", "Salsa", 1.50, 16);
 		
 		productosDelPedido.add(spaghetti2);
 		productosDelPedido.add(salsaTomate2);
