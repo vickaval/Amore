@@ -1,4 +1,4 @@
-package amore.Logica;
+package Logica;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

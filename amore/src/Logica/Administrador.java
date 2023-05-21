@@ -1,4 +1,4 @@
-package amore.Logica;
+package Logica;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

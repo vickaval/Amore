@@ -1,4 +1,4 @@
-package ejemplo;
+package Logica;
 
 	public class Almacenista extends Usuario {
 

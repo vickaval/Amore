@@ -1,11 +1,11 @@
-package ejemplo;
+package UI;
 
 import javax.swing.JOptionPane;
 
-import amore.Logica.Administrador;
-import amore.Logica.Cliente;
-import amore.Logica.Proveedor;
-import amore.Logica.Vendedor;
+import Logica.Administrador;
+import Logica.Cliente;
+import Logica.Proveedor;
+import Logica.Vendedor;
 
 //falta borrar en la base de datos las fk de almacenista-deposito y proveedor-administrador
 //falta completar iniciar sesion y registrarse, que el abm vaya directo cuando se inicia administrador
