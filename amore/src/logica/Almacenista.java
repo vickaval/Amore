@@ -56,8 +56,7 @@ public void EnviarPedido() {
 	JOptionPane.showMessageDialog(null, this.preparados.toString());
 	
 	//p.setIdPedido(this.pedido.getCliente().getId());
-	
-	
+		
 }
 
 
