@@ -34,7 +34,7 @@ public boolean iniciarSesion(String usuario, String contrasenia) {
         //System.out.println("Inicio de sesi�n exitoso.");
         return true;
     } else {
-        System.out.println("Inicio de sesi�n fallidoooo. Por favor verifique su usuario, contrase�a y permiso.");
+        System.out.println("Inicio de sesionn fallido. Por favor verifique su usuario, contrasenia y permiso.");
         return false;
     }
 }
