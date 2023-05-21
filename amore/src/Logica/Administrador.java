@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-
+/*martina puso un comentario*/ 
 public class Administrador extends Usuario { 
 
 	Administrador controlador = new Administrador("", "", "", "", 0, "");
