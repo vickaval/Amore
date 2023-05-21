@@ -8,7 +8,6 @@ public class Almacenista extends Usuario {
 	private ArrayList<Pedido> preparados;	
 
 	
-
 public Almacenista(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono,
 			String usuario, String contrasenia, double sueldo) {
 		super(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasenia, sueldo);
@@ -41,7 +40,7 @@ public boolean iniciarSesion(String usuario, String contrasenia) {
 }
 
 public ArrayList<Producto> prepararPedido(Deposito depo,Pedido p) {
-	ArrayList<Producto> pedidoRearmado = new ArrayList<>();
+	//ArrayList<Producto> pedidoRearmado = new ArrayList<>();
 	p.setProductos(paraEntregar = depo.buscarProductos(p.productos));
 	//System.out.println(p.toString());
 	//System.out.println(paraEntregar);
