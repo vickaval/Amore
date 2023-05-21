@@ -7,15 +7,17 @@ import javax.swing.JOptionPane;
 public class Deposito {
     private int idDepo;
     private String nombre;
-    ArrayList<Categoria> categorias;
+    ArrayList<Producto> productos;
     ArrayList<Almacenista> almacenistas;
-        
+    
+  
     public Deposito(int idDepo, String nombre) {
         super();
         this.idDepo = idDepo;
         this.nombre = nombre;
-        this.categorias = new ArrayList<>();
+        this.productos = new ArrayList<>();
         this.almacenistas = new ArrayList<>();
+        
     }
 
 	public Deposito(){
@@ -38,8 +40,8 @@ public class Deposito {
 		this.nombre = nombre;
 	}
 	
-	public void agregarCategorias(Categoria c) {
-		this.categorias.add(c);
+	public void agregarProducto(Producto p) {
+		this.productos.add(p);
 	}
 	
 	public void agregarAlmacenistas(Almacenista a) {
@@ -50,14 +52,19 @@ public class Deposito {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+		
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+
 	public void registroAlmacenista() {
 			JOptionPane.showMessageDialog(null, "Vamos a dar de alta un nuevo almacenista");
 	    
 	        String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre");
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
+<<<<<<< HEAD
 	        String nombreArea = JOptionPane.showInputDialog(null, "Ingrese el nombre del �rea en la que trabaja");
 	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
 	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
@@ -65,6 +72,15 @@ public class Deposito {
 	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
 	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
 	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasena, sueldo);
+=======
+	        String nombreArea = "Almacenista";
+	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
+	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
+	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
+	        String contrasenia = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
+	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
+	        Almacenista nuevoAlmacenista = new Almacenista(nombre, apellido, id, nombreArea, aniosAntiguedad, telefono, usuario, contrasenia, sueldo);
+>>>>>>> SebaLopez
 	        agregarAlmacenistas(nuevoAlmacenista);
 	        JOptionPane.showMessageDialog(null, "Registro exitoso.");
 	    } 
@@ -72,14 +88,18 @@ public class Deposito {
 	
 	
 	
-	public void iniciarSesionAlmacenista() {
+	public boolean iniciarSesionAlmacenista() {
 	    int intentos = 3;
 	    while(intentos > 0) {
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese su usuario");
 	        if(usuario == null) {
 	            System.exit(0); // Si el usuario presiona cancelar, salimos del programa
 	        }
+<<<<<<< HEAD
 	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contrase�a");
+=======
+	        String contrasena = JOptionPane.showInputDialog(null, "Ingrese su contrasenia");
+>>>>>>> SebaLopez
 	        boolean inicioSesion = false;
 	        for(Almacenista almacenista : almacenistas) {
 	            if(almacenista.iniciarSesion(usuario, contrasena)) {
@@ -93,11 +113,19 @@ public class Deposito {
 	        }
 	        intentos--;
 	        if(intentos == 0) {
+<<<<<<< HEAD
 	            JOptionPane.showMessageDialog(null, "Ha excedido el n�mero m�ximo de intentos. Saliendo del programa.");
 	            System.exit(0);
 	        }
 	        JOptionPane.showMessageDialog(null, "Inicio de sesi�n fallido. Por favor verifique su usuario, contrase�a y permiso. Intentos restantes: " + intentos);
+=======
+	            JOptionPane.showMessageDialog(null, "Ha excedido el numero m�ximo de intentos. Saliendo del programa.");
+	            System.exit(0);
+	        }
+	        JOptionPane.showMessageDialog(null, "Inicio de sesion fallido. Por favor verifique su usuario, contrasenia y permiso. Intentos restantes: " + intentos);
+>>>>>>> SebaLopez
 	    }
+		return false;
 	}
 
 	public void mostrarAlmacenistas() {
@@ -108,10 +136,37 @@ public class Deposito {
 	    JOptionPane.showMessageDialog(null, sb.toString(), "Almacenistas registrados: ", JOptionPane.PLAIN_MESSAGE);
 	}
 
+	public ArrayList<Producto> buscarProductos(ArrayList<Producto> buscados) {
+		
+		ArrayList<Producto> pedidoRearmado = new ArrayList<>();
+		
+		    // Iterar sobre los productos del depo
+		    for (Producto producto : this.productos) {
+		        // Iterar sobre los productos buscados en el pedido
+		        for (Producto buscado : buscados) {
+		           
+		            if (producto.getIdProducto() == buscado.getIdProducto()) {
+		                // Comparar si la cantidad del producto es igual o mayor a la cantidad buscada
+		                if (producto.getCantidad() >= buscado.getCantidad()) {
+		                	producto.setCantidad(producto.getCantidad() - buscado.getCantidad());
+		                	
+		                    pedidoRearmado.add(buscado);
+		                   
+		                    JOptionPane.showMessageDialog(null,"Se prepara producto: " + producto.getNombre());
+		                    JOptionPane.showMessageDialog(null," Del producto " + producto.getNombre() + " quedo en stock: " 
+		                    + producto.getCantidad() );
+		                    
+		                }else {
+		                	JOptionPane.showMessageDialog(null, "No hay sufiente cantidad del producto " + 
+		                producto.getNombre() + " y no se prepara");
+		                	
+		                }
+		            }
+		        }
+		    }
+			return pedidoRearmado;
+		
+	}
 
-
-
-	
-	
 
 }

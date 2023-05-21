@@ -11,12 +11,20 @@ public abstract class Usuario {
 		private int aniosAntiguedad;
 		private int telefono;
 		private String usuario;
-		private String contrasena;
+<<<<<<< HEAD
+		private String contrasenia;
+=======
+		private String contrasenia;
+>>>>>>> SebaLopez
 		private double sueldo;
 
 
 
-		public Usuario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contrasena, double sueldo) {
+<<<<<<< HEAD
+		public Usuario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contrasenia, double sueldo) {
+=======
+		public Usuario(String nombre, String apellido, String id, String nombreArea, int aniosAntiguedad, int telefono, String usuario, String contrasenia, double sueldo) {
+>>>>>>> SebaLopez
 			this.nombre = nombre;
 			this.apellido = apellido;
 			this.id = id;
@@ -24,7 +32,11 @@ public abstract class Usuario {
 			this.aniosAntiguedad = aniosAntiguedad;
 			this.telefono = telefono;
 			this.usuario = usuario;
-			this.contrasena = contrasena;
+<<<<<<< HEAD
+			this.contrasena = contrasenia;
+=======
+			this.contrasenia = contrasenia;
+>>>>>>> SebaLopez
 			this.sueldo = sueldo;
 		}
 
@@ -110,11 +122,19 @@ public abstract class Usuario {
 
 
 
+<<<<<<< HEAD
 		public String getContrasena() {
 			return contrasena;
 		}
 		public void setContrasena(String contrasena) {
 			this.contrasena = contrasena;
+=======
+		public String getContrasenia() {
+			return contrasenia;
+		}
+		public void setContrasenia(String contrasenia) {
+			this.contrasenia = contrasenia;
+>>>>>>> SebaLopez
 		}
 
 
@@ -135,6 +155,7 @@ public abstract class Usuario {
 		    boolean claveCorrecta = false;
 			boolean usuarioCorrecto=false;
 		    do {
+<<<<<<< HEAD
 				nombreUsuario=JOptionPane.showInputDialog(null, "Ingrese su usuario: ");
 		        pass = JOptionPane.showInputDialog(null, "Ingrese su contrase�a: ");
 		        if (pass.equals(getContrasena())&& nombreUsuario.equals(getUsuario())) {
@@ -150,6 +171,16 @@ public abstract class Usuario {
 				}
 		    } while (!claveCorrecta || !usuarioCorrecto);
 
+=======
+		        pass = JOptionPane.showInputDialog(null, "Ingrese su contrase�a: ");
+		        if (pass.equals(getContrasenia())) {
+		            claveCorrecta = true;
+		        } else {
+		            JOptionPane.showMessageDialog(null, "La clave ingresada es incorrecta. Por favor, int�ntelo de nuevo.");
+		        }
+		    } while (!claveCorrecta);
+
+>>>>>>> SebaLopez
 		    // mensaje de confirmaci�n por tipo de usuario
 		    if (usu == 0) {
 		       
@@ -178,7 +209,11 @@ public abstract class Usuario {
 		public String toString() {
 			return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", nombreArea=" + nombreArea
 					+ ", aniosAntiguedad=" + aniosAntiguedad + ", telefono=" + telefono + ", usuario=" + usuario
+<<<<<<< HEAD
 					+ ", contrase�a=" + contrasena + ", sueldo=" + sueldo + "]";
+=======
+					+ ", contrase�a=" + contrasenia + ", sueldo=" + sueldo + "]";
+>>>>>>> SebaLopez
 			}
 
 		}

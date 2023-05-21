@@ -2,26 +2,25 @@ package logica;
 
 public class MateriaPrima {
 	
+	private int codigoMp;
 	private String nombre;
 	private String procedencia;
 	private double precio;
 	private int stockDisponible;
-	private int codigoMp;
-	
-	
+		
 	MateriaPrima(){
 		
 	}
 
-	public MateriaPrima(String nombre, String procedencia, double precio, int stockDisponible, int codigoMp) {
-		
+	public MateriaPrima(int codigoMp, String nombre, String procedencia, double precio, int stockDisponible) {
+		super();
+		this.codigoMp = codigoMp;
 		this.nombre = nombre;
 		this.procedencia = procedencia;
 		this.precio = precio;
 		this.stockDisponible = stockDisponible;
-		this.codigoMp = codigoMp;
-	
 	}
+
 
 	public String getNombre() {
 		return nombre;
