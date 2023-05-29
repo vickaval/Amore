@@ -65,8 +65,8 @@ public class Deposito {
 	        String apellido = JOptionPane.showInputDialog(null, "Ingrese su apellido");
 	        String id = JOptionPane.showInputDialog(null, "Ingrese su ID");
 	        String nombreArea = "Almacenista";
-	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antig�edad"));
-	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su n�mero de tel�fono"));
+	        int aniosAntiguedad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de a�os de antiguedad"));
+	        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su numero de telefono"));
 	        String usuario = JOptionPane.showInputDialog(null, "Ingrese un nombre de usuario");
 	        String contrasenia = JOptionPane.showInputDialog(null, "Ingrese una contrase�a");
 	        double sueldo = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese su sueldo"));
@@ -89,7 +89,7 @@ public class Deposito {
 	        boolean inicioSesion = false;
 	        for(Almacenista almacenista : almacenistas) {
 	            if(almacenista.iniciarSesion(usuario, contrasena)) {
-	                JOptionPane.showMessageDialog(null, "Inicio de sesi�n exitoso.");
+	                JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso.");
 	                inicioSesion = true;
 	                break;
 	            }
@@ -99,7 +99,7 @@ public class Deposito {
 	        }
 	        intentos--;
 	        if(intentos == 0) {
-	            JOptionPane.showMessageDialog(null, "Ha excedido el numero m�ximo de intentos. Saliendo del programa.");
+	            JOptionPane.showMessageDialog(null, "Ha excedido el numero maximo de intentos. Saliendo del programa.");
 	            System.exit(0);
 	        }
 	        JOptionPane.showMessageDialog(null, "Inicio de sesion fallido. Por favor verifique su usuario, contrasenia y permiso. Intentos restantes: " + intentos);
