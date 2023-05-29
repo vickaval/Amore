@@ -81,7 +81,7 @@ public class test {
 		// Preguntamos al usuario si estï¿½ registrado o desea registrarse
 	    Object[] options = {"Ya estoy registrado", "Registrarme"};
 	    int seleccion = JOptionPane.showOptionDialog(null,
-	            "Bienvenido al sistema de depï¿½sitos. Â¿Esta registradooooooo o desea registrarse?",
+	            "Bienvenido al sistema de depositos. ¿Esta registrado o desea registrarse?",
 	            "Registro en el sistema",
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE,
@@ -101,13 +101,13 @@ public class test {
 	    		int eleccion;
 	    	 	do {
 	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
-	    	    eleccion = JOptionPane.showOptionDialog(null, "ï¿½Quï¿½ acciï¿½n desea realizar?", "Menï¿½ principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+	    	    eleccion = JOptionPane.showOptionDialog(null, "¿Que accion desea realizar?", "Menu principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:	    	        		
 	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
 	    	             String mensaje = "Listado de Materias Primas: \n\n";
 	    	             for (MateriaPrima mp : materias) {
-	    	             	mensaje += "Cï¿½digo: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
+	    	             	mensaje += "Codigo: " + mp.getCodigoMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
 	    	             }
 	    	             JOptionPane.showMessageDialog(null, mensaje);
 	    	            break;
