@@ -1,0 +1,20 @@
+package Datos;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
+public class Conexion {
+    
+    Connection con;
+    public Conexion conectar(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mibase","root","");
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "error al conectarse" + e.getMessage());
+        }
+
+        return con;//cambiar a java 18
+    }
+}
