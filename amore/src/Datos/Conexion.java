@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     
     Connection con;
-    public Conexion conectar(){
+    public Connection conectar(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -15,6 +15,6 @@ public class Conexion {
             JOptionPane.showMessageDialog(null, "error al conectarse" + e.getMessage());
         }
 
-        return con;//cambiar a java 18
+        return con;
     }
 }
