@@ -9,7 +9,7 @@ public class Conexion {
         try{
             Class.forName("com.mysql.jdbc.Driver");
 
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mibase","root","");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/amore","root","");
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "error al conectarse" + e.getMessage());
