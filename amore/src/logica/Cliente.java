@@ -1,4 +1,5 @@
 package logica;
+import javax.swing.JOptionPane;
 
 public class Cliente extends Usuario{
 //hecho por mi
