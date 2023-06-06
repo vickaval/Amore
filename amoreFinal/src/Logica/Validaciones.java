@@ -2,32 +2,73 @@ package Logica;
 
 import javax.swing.JOptionPane;
 
+import Datos.Administrador;
+import Datos.Usuario;
+
 public class Validaciones {
 	
+	
+	Administrador nuevoControlador = new Administrador("", "", "", "", 0, "");
+	
+	
+	//verificar para mostrar
+    public boolean verificarMostrarCliente(){
+		return nuevoControlador.verCliente();
+			
+		
+	}
+	
+
+  //verificar para eliminar
+    public boolean EliminarCliente(int id) {
+		if(id > 0) {
+			return nuevoControlador.eliminarCliente(id);
+		}else {
+			return false;
+		}
+	}
+    
+    
+  //verificar para editar
+    public boolean EditarCliente(int id) {
+		if(id > 0) {
+			//nuevoControlador = ;
+			return nuevoControlador.editarCliente();
+		}else {
+			return false;
+		}
+	}
+    
+
 	//VERIFICAR EMPLEADO (almacenista y vendedor)
-		public boolean verificar(String nombre,String apellido,String contraseña, int telefono) {
-			int flag = 0 ;	
-			String telefono2 = telefono+"";
+		public boolean verificar(String nombre,String apellido,String contraseña, int telefono, int cuit) {
+			int flag = 0 ;				
 			do {
 			if (nombre.length()>=3 && nombre.length()<=15 ) {
 				if (apellido.length()>=3 && apellido.length()<=15 ) {
-					//verifica largo de la contraseña mayor o = a 8
+					
 					if (contraseña.length() >= 8) {
 						
-						if(telefono2.length() == 11) {
+						if(String.valueOf(telefono).length() == 11) {
+							
+						
+							if(String.valueOf(cuit).length() ==  5) {
 						//agregar cuit, crear verificarOperario → verificar turno (mañana, tarde o noche)
-							// telefono2 = "";      
-						    //int telefono3 = Integer.parseInt(telefono2);
+							
 						this.setNombre(nombre);
 						this.setApellido(apellido);
 						this.setContraseña(contraseña);
 						
 						
 						return true;
+							}else {
+								cuit = Integer.parseInt(JOptionPane.showInputDialog("Error el cuit debe tener 5 caracteres \n Ingrese cuit: "));
+								this.setCuit(cuit);
+							}
 						} else {
 							telefono = Integer.parseInt(JOptionPane.showInputDialog("Error el telefono debe tener 11 caracteres \n Ingrese telefono: "));
-							this.setTelefono(telefono); 
-						}
+							this.setTelefono(telefono); 							
+						}						
 					}else{
 						contraseña = JOptionPane.showInputDialog("Error la contraseña debe tener 8 caracteres \n Ingrese contraseña: "); 
 					}
@@ -40,16 +81,10 @@ public class Validaciones {
 			}
 			}while(flag==0);
 			return true;
-				
-		}
-		
-		
-		// Validación del DNI
-        if (String.valueOf(dni).length() != 8) {
-            JOptionPane.showMessageDialog(null, "El DNI debe tener 8 caracteres");
-            dni = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el numero de dni"));
-            continue; // Vuelve al inicio del bucle
+						
         }
-		
+        
 
+        
+ 
 }
