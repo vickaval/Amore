@@ -1,6 +1,11 @@
 package Logica;
 
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+
+import Datos.Conexion;
+import Datos.Usuario;
 
 public class Almacenista extends Usuario {
 
@@ -11,12 +16,12 @@ public class Almacenista extends Usuario {
 		/*
 		ArrayList<Producto> productos;
 		ArrayList<Almacenista> almacenistas;
-		*/
+		
 
 
 		private ArrayList<Producto> paraEntregar;
 		private ArrayList<Pedido> preparados;
-		
+		*/
 
 		// clase hecha por Sebastian
 
@@ -65,16 +70,15 @@ public class Almacenista extends Usuario {
 		}
 		
 		
-		public ArrayList<Producto> getParaEntregar() {
-			return paraEntregar;
-		}
-
-		public void setParaEntregar(ArrayList<Producto> paraEntregar) {
-			this.paraEntregar = paraEntregar;
-		}
+	
 		
 
-
+ 
+		Conexion con =  new Conexion();;
+		
+		Connection conexion = con.conectar();
+		
+		PreparedStatement stmt;
 
 		//metodos
 		public boolean agregarAlmacenista() {    
@@ -103,61 +107,9 @@ public class Almacenista extends Usuario {
 		}
 		
 		
-		//sebas
-		public ArrayList<Producto> prepararPedido(Deposito depo,Pedido p) {
-			//ArrayList<Producto> pedidoRearmado = new ArrayList<>();
-			p.setProductos(paraEntregar = depo.buscarProductos(p.productos));
-			//System.out.println(p.toString());
-			//System.out.println(paraEntregar);
-			this.preparados.add(p);
-			EnviarPedido(); // ESTE LO PUSE ACA PARA COMPROBAR QUE LA LISTA DE PREPARADOS CONTIENE ELEMENTOS
-			//System.out.println(p.getProductos());
-			return paraEntregar;
-			//return pedidoRearmado = depo.buscarProductos(p.productos);
-			
-		}
-
-		public void EnviarPedido() {
-			JOptionPane.showMessageDialog(null, this.preparados.toString());
-			
-			//p.setIdPedido(this.pedido.getCliente().getId());
-				
-		}
-
-
 		
 		
-		/*
-		public void estadisticas (){
-			int cont = 0;
-		
-			for (int i=1; i<= this.paraEntregar.size(); i++){
-				if(paraEntregar.equals(getParaEntregar())) {
-					cont = cont + 1;
-				}		
-			}
-			if(cont >= 100) {
-				JOptionPane.showMessageDialog(null, "Producto vendido mas de 100 veces " + getParaEntregar() );
-				System.out.println("Producto vendido mas de 100 veces " + getParaEntregar());
-			} else {
-				JOptionPane.showMessageDialog(null, "El producto fue vendido menos de 100 veces " + getParaEntregar() );
-				System.out.println("El producto fue vendido menos de 100 veces " + getParaEntregar());
-			}
-						
-		}		
-
-		public void visualizarStockProductos(Producto p) {
-			boolean tieneStock = productos.contains(p);// chequear
-			if (tieneStock) {
-				System.out.println(p.getNombre());
-				System.out.println(p.getIdProducto());
-				System.out.println(p.getStockDisponible());
-			} else {
-				System.out.println("No hay stock");
-			}
-		}
-		
-		*/
+	
 
 
 }
