@@ -1,22 +1,20 @@
-
 package UI;
 
 import javax.swing.JOptionPane;
 
-//falta borrar en la base de datos las fk de almacenista-deposito y proveedor-administrador
-//falta completar iniciar sesion y registrarse, que el abm vaya directo cuando se inicia administrador
-//mensajes guardados con string
+import Datos.Administrador;
+import Logica.Almacenista;
+import Logica.Cliente;
+import Logica.Operario;
+import Logica.Proveedor;
+import Logica.Vendedor;
+
 
 public class Main {
 	public static void main(String[] args) {
 		
-		//Administrador administrador = new Administrador("Bruce", "Batman", "10", "administrador", 46468546, "batiman");
-	
 		Administrador controlador = new Administrador("", "", "", "", 0, "");
-		//Proveedor proveedor = new Proveedor("", "", 0, 0, 0);
-		//Persona controlador = new Persona("","","");
-		
-		
+				
 		/*
 		String []is= {"Registrarse" , "Iniciar Sesion"};
         int ini = JOptionPane.showOptionDialog(null, "Bienvenido a Amore Pastas", "LOGIN",JOptionPane.DEFAULT_OPTION,
@@ -25,19 +23,12 @@ public class Main {
 		if(ini == 1) {
 			
 		}
-		*/
-		
-		
-		
-		//FALTA VALIDACIONES CUIT DE AGREGAR PROVEEDOR, TELEFONO, CUIT CLIENTE, EDITAR USUARIOS, ESTADISTICAS
-		
-		
-		
+		*/		
+	
 		String []opciones = {"Ver usuario","Agregar usuario", "Editar usuario", "Eliminar usuario", "Agregar proveedor", "Ver proveedores", "Proveedores deudores", "Descuento", "Salir"};		
 		String opcion;
 		do {
-			
-	
+				
 		opcion = (String)JOptionPane.showInputDialog(null,"Elija accion a realizar","ABM de usuarios",JOptionPane.DEFAULT_OPTION,null, opciones,opciones);
 		
 		switch (opcion) {
@@ -102,7 +93,7 @@ public class Main {
 		        String razonSocial = (String)JOptionPane.showInputDialog(null, "Ingrese razonSocial de cliente");
 		        String condicionIva = (String)JOptionPane.showInputDialog(null, "Ingrese condicionIva del cliente");
 
-		        if (controlador.verificar(nombre, apellido, contraseña, telefono)) {	
+		        if (controlador.verificar(nombre, apellido, contraseña, telefono, cuit)) {	
 		        	
 		              
 		  		  
@@ -137,9 +128,10 @@ public class Main {
 		        String turno = (String)JOptionPane.showInputDialog(null, "Ingrese el turno del operario");
 		        double sueldoO = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo del operario"));
 				
-		        Operario nuevoOp = new Operario(nombreO, apellidoO, "0", nombreAreaO, aniosAntiguedadO, telefonoO, usuarioO, contraseñaO, sueldoO, turno);
+		       
+		        Operario nuevoOp = new Operario(nombreO, apellidoO, "0",usuarioO, telefonoO, contraseñaO, turno, nombreAreaO, aniosAntiguedadO, sueldoO);
 		        
-		        if (controlador.verificar(nombreO, apellidoO, contraseñaO, telefonoO)) {
+		       // if (controlador.verificar(nombreO, apellidoO, contraseñaO, telefonoO)) {
 		        if(turno.equalsIgnoreCase("mañana") || turno.equalsIgnoreCase("tarde") || turno.equalsIgnoreCase("noche")) {
 		        	
 		       
@@ -156,7 +148,7 @@ public class Main {
 		        	nuevoOp.getTurno().replaceAll(null, turno);
 		         }
 		        
-			  }
+			  //}
 		      
 		        nuevoOp.agregarOperario();
 		        JOptionPane.showMessageDialog(null, "El operario se guardo correctamente");
@@ -175,7 +167,8 @@ public class Main {
 		        int aniosAntiguedadV = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));
 		        double sueldoV = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo del vendedor"));
 		        
-		        Vendedor nuevoVe = new Vendedor(nombreV, apellidoV, idV, usuarioV, telefonoV, contraseñaV, nombreAreaV, aniosAntiguedadV, sueldoV);
+		       		  
+		        Vendedor nuevoVe = new Vendedor(nombreV, apellidoV, "0", usuarioV, telefonoV, contraseñaV, nombreAreaV, aniosAntiguedadV, sueldoV);
 		        
 		        if (nuevoVe.agregarVendedor()) {					
 					JOptionPane.showMessageDialog(null, "El vendedor se guardo correctamente");
@@ -197,8 +190,8 @@ public class Main {
 		        double sueldoA = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo"));
 		        int idDepo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese id de deposito"));
 		       
-		        
-		        Almacenista nuevoAl = new Almacenista(nombreA, apellidoA, idA, usuarioA, telefonoA, contraseñaA, nombreAreaA, aniosAntiguedadA, sueldoA, idDepo);
+		        		
+		        Almacenista nuevoAl = new Almacenista(nombreA, apellidoA, "0", usuarioA, telefonoA, contraseñaA, nombreAreaA, aniosAntiguedadA, sueldoA, idDepo);
 		        
 		        if (nuevoAl.agregarAlmacenista()) {					
 					JOptionPane.showMessageDialog(null, "El almacenista se guardo correctamente");
@@ -350,6 +343,7 @@ public class Main {
 			
 		case"Proveedores deudores":
 			controlador.deudaConProveedores();
+			//controlador.proveedoresDeuda();
 			break;
 			
 		case "Descuento":		    
