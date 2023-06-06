@@ -74,13 +74,14 @@ public class Almacenista extends Usuario {
 		
 
  
+	        //metodos
 		Conexion con =  new Conexion();;
 		
 		Connection conexion = con.conectar();
 		
 		PreparedStatement stmt;
 
-		//metodos
+		
 		public boolean agregarAlmacenista() {    
 			String sql ="INSERT INTO `almacenista`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`usuario`, `idDepo`) VALUES (?,?,?,?,?,?,?,?, ?,?) ";
 			
