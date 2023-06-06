@@ -2,10 +2,15 @@ package Datos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
 
-import ejemplo.Proveedor;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+
+import Datos.Usuario;
+import Datos.Conexion;
+
 
 public class Administrador extends Usuario { 
 
@@ -16,49 +21,17 @@ public class Administrador extends Usuario {
 
 	}
 	
-	//VERIFICAR EMPLEADO (almacenista y vendedor)
-	public boolean verificar(String nombre,String apellido,String contraseña, int telefono) {
-		int flag = 0 ;	
-		String telefono2 = telefono+"";
-		do {
-		if (nombre.length()>=3 && nombre.length()<=15 ) {
-			if (apellido.length()>=3 && apellido.length()<=15 ) {
-				//verifica largo de la contraseña mayor o = a 8
-				if (contraseña.length() >= 8) {
-					
-					if(telefono2.length() == 11) {
-					//agregar cuit, crear verificarOperario → verificar turno (mañana, tarde o noche)
-						// telefono2 = "";      
-					    //int telefono3 = Integer.parseInt(telefono2);
-					this.setNombre(nombre);
-					this.setApellido(apellido);
-					this.setContraseña(contraseña);
-					
-					
-					return true;
-					} else {
-						telefono = Integer.parseInt(JOptionPane.showInputDialog("Error el telefono debe tener 11 caracteres \n Ingrese telefono: "));
-						this.setTelefono(telefono); 
-					}
-				}else{
-					contraseña = JOptionPane.showInputDialog("Error la contraseña debe tener 8 caracteres \n Ingrese contraseña: "); 
-				}
-			}else {
-				apellido = JOptionPane.showInputDialog("Error apellido  debe tener entre 3 y 15 letras   \n Ingrese apellido: ");
-			}
-			
-		}else {
-			nombre = JOptionPane.showInputDialog("Error el nombre debe tener entre 3 y 15 letras \n Ingrese nombre: ");
-		}
-		}while(flag==0);
-		return true;
-			
+
+	
+	public boolean verificar(String nombre,String apellido,String contraseña, int telefono, int cuit) {
+		return false;
+		
 	}
 	
 	
 
 	//METODOS DE MOSTRAR USUARIOS POR ROLES
-	public void verCliente() {
+	public boolean verCliente() {
         try {     	
            String sql ="SELECT * FROM `cliente`";
 		   stmt = conexion.prepareStatement(sql);
@@ -73,7 +46,8 @@ public class Administrador extends Usuario {
             conexion.close();        
         } catch (SQLException ex) {
         	System.out.println("Error en la conexion");
-        }     
+        }
+		return false;     
 	}
 	
 	
@@ -136,7 +110,7 @@ public class Administrador extends Usuario {
 	
 	public void verProveedor() {
         try {     	
-        	String sql ="SELECT * FROM `proveedor`";
+           String sql ="SELECT * FROM `proveedor`";
 		   stmt = conexion.prepareStatement(sql);
 		   ResultSet result = stmt.executeQuery();
                        
@@ -235,6 +209,46 @@ public class Administrador extends Usuario {
     
     
     
+  //EDITAR CLIENTE
+    public boolean editarCliente(int id) {
+    	
+    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?"
+    			+ "WHERE id = ?";
+    	
+    	try {
+    		stmt = conexion.prepareStatement(sql);
+    		stmt.setString(1, this.getId());
+			stmt.setString(2, this.getNombre());
+			stmt.setString(3, this.getApellido());
+			stmt.setString(4, this.getUsuario());
+			stmt.setLong(5, this.getTelefono());
+			stmt.setString(6, this.getContraseña());											
+			stmt.executeUpdate();
+			conexion.close();
+    		return true;
+    		
+    	} catch (Exception e) {
+    		System.out.println("Hubo un error"+e.getMessage());
+    		return false;
+    	}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //APLICAR DESCUENTO
     public double aplicarDescuento() {
     	// Clientes grandes: 10% si compra $10000 o + 		
@@ -267,19 +281,20 @@ public class Administrador extends Usuario {
     
     
 	
-	public void deudaConProveedores() {
-		
-		
+	public void deudaConProveedores() {	
 		 try {     	
 	        	String sql ="SELECT * FROM `proveedor`";
 			   stmt = conexion.prepareStatement(sql);
 			   ResultSet result = stmt.executeQuery();
 	                       
 	            while (result.next()) {
-	                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE DEUDA DE LA TABLA PROVEEDOR:\n" + " \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit")+ " \nDEUDA: " + result.getInt("deuda")  + "\n"); 
-	                System.out.println("\nTODOS LOS REGISTROS DE LA TABLA OPERARIO:\n");
+	            	if(!result.getString("deuda").equalsIgnoreCase("0")) {
+	            		         	
+	                JOptionPane.showMessageDialog(null, "\nTODOS LOS PROVEEDORES CON DEUDA:\n" + " \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit")+ " \nDEUDA: " + result.getInt("deuda")  + "\n"); 
+	                System.out.println("\nTODOS LOS PROVEEDORES CON DEUDA:\n");
 	                System.out.println(" \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit")+ " \nDEUDA: " + result.getInt("deuda")  + "\n"); 
 	                conexion.close();
+	                }
 	            }
 	        } catch (SQLException ex) {
 	        	System.out.println("Error en la conexion");
@@ -289,28 +304,6 @@ public class Administrador extends Usuario {
 	
 		
 	}
-   
-    
-    
-    
-    
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	
 
 }
