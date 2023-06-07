@@ -90,7 +90,7 @@ public class MateriaPrima  {
 		
 		PreparedStatement stmt;
 		
-		public boolean agregarMateriaPrima() {
+		public boolean agregarMateriaPrima() {//CHEUQEAR Y HECHO EN OPERARIO
 			String sql ="INSERT INTO `materiaprima`(`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES (?,?,?,?,?,?) ";
 			
 			try {

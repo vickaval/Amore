@@ -2,9 +2,12 @@ package Logica;
 
 import Datos.Usuario;
 import Datos.Conexion;
+import Logica.MateriaPrima;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
+import javax.swing.JOptionPane;
 
 public class Operario extends Usuario{
 
@@ -13,6 +16,12 @@ public class Operario extends Usuario{
 	private int aniosAntiguedad;
 	private double sueldo;
 	
+	
+	Conexion con =  new Conexion();
+		
+	Connection conexion = con.conectar();
+	
+	PreparedStatement stmt;
 	
 	public Operario(String nombre, String apellido, int id, String usuario, int telefono, String contraseña,
 			String turno, String nombreArea, int aniosAntiguedad, double sueldo) {
@@ -53,13 +62,6 @@ public class Operario extends Usuario{
 		this.sueldo = sueldo;
 	}
 
-
-
-	Conexion con =  new Conexion();
-	
-	Connection conexion = con.conectar();
-	
-	PreparedStatement stmt;
 	
 	//metodos
     public boolean agregarOperario() {         	
@@ -85,6 +87,34 @@ public class Operario extends Usuario{
 			System.out.println("Hubo un error"+e.getMessage());
 			return false;
 		}
+	}
+
+	public void ingresarMateriaPrima(MateriaPrima mp) {//error en metodo
+
+		if(mp.getStockDisponible()>=100){
+			String sql ="INSERT INTO `materiaprima`(`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES (?,?,?,?,?,?) ";
+			
+			try {
+				stmt = conexion.prepareStatement(sql);
+				stmt.setInt(1, this.getIdMp());
+				stmt.setString(2, this.getNombre());
+				stmt.setString(3, this.getProcedencia());
+				stmt.setDouble(4, this.getPrecio());
+				stmt.setInt(5, this.getStockDisponible());
+				stmt.setInt(6, this.getIdDepo());
+				stmt.executeUpdate();
+				conexion.close();
+				return true;
+				
+			} catch (Exception e) {
+				System.out.println("Hubo un error"+e.getMessage());
+				return false;
+			}
+
+		}else{
+			JOptionPane.showMessageDialog(null, "stock insuficiente, debe ser mayor a 100");
+		}
+		
 	}
 	
 
