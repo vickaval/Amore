@@ -14,9 +14,9 @@ public class Cliente extends Usuario{
 	    private String condicionIva;
 	    
 	    
-			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
+			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contrasenia, int cuit, String razonSocial,
 				String condicionIva) {
-			super(nombre, apellido, id, usuario, telefono, contraseña);
+			super(nombre, apellido, id, usuario, telefono, contrasenia);
 			this.cuit = cuit;
 			this.razonSocial = razonSocial;
 			this.condicionIva = condicionIva;
@@ -60,13 +60,13 @@ public class Cliente extends Usuario{
 			public boolean agregarCliente() {
 		    	
 				System.out.println("agregar usuario");
-				String sql ="INSERT INTO `cliente`(`nombre`, `apellido`, `contraseña`, `telefono`,`cuit`, `razonSocial`, `condicionIVA`, `usuario`) VALUES (?,?,?,?,?,?,?,?) ";
+				String sql ="INSERT INTO `cliente`(`nombre`, `apellido`, `contrasenia`, `telefono`,`cuit`, `razonSocial`, `condicionIVA`, `usuario`) VALUES (?,?,?,?,?,?,?,?) ";
 				
 				try {
 					stmt = conexion.prepareStatement(sql);
 					stmt.setString(1, this.getNombre());
 					stmt.setString(2, this.getApellido());
-					stmt.setString(3, this.getContraseña());
+					stmt.setString(3, this.contrasenia());
 					stmt.setLong(4, this.getTelefono());
 					stmt.setInt(5, this.getCuit());
 					stmt.setString(6, this.getRazonSocial());
@@ -96,7 +96,7 @@ public class Cliente extends Usuario{
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getUsuario());
 					stmt.setLong(5, this.getTelefono());
-					stmt.setString(6, this.getContraseña());				
+					stmt.setString(6, this.getcontrasenia());				
 					stmt.setInt(7, this.getCuit());
 					stmt.setString(8, this.getRazonSocial());
 					stmt.setString(9, this.getCondicionIva());							

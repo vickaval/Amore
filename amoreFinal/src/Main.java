@@ -86,21 +86,21 @@ public class Main {
 				//String id = (String)JOptionPane.showInputDialog(null, "Ingrese id");
 			    String nombre = (String)JOptionPane.showInputDialog(null, "Ingrese nombre");		 
 		        String apellido = (String)JOptionPane.showInputDialog(null, "Ingrese apellido ");	      	        	       
-		        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nÃºmero de telÃ©fono"));   	          
+		        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese número de teléfono"));   	          
 		        String usuario = (String)JOptionPane.showInputDialog(null, "Ingrese tipo de usuario");
-		        String contraseÃ±a = (String)JOptionPane.showInputDialog(null, "Ingrese contraseÃ±a");
+		        String contraseña = (String)JOptionPane.showInputDialog(null, "Ingrese contraseña");
 		        int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el cuit del cliente")); 
 		        String razonSocial = (String)JOptionPane.showInputDialog(null, "Ingrese razonSocial de cliente");
 		        String condicionIva = (String)JOptionPane.showInputDialog(null, "Ingrese condicionIva del cliente");
 
-		        if (controlador.verificar(nombre, apellido, contraseÃ±a, telefono, cuit)) {	
+		        if (controlador.verificar(nombre, apellido, contraseña, telefono, cuit)) {	
 		        	
 		              
 		  		  
 		  		if(Integer.toString(cuit).length() == 11) {
 		  			
 	
-		        Cliente nuevoCl = new Cliente(nombre, apellido, "0", usuario, telefono, contraseÃ±a, cuit,razonSocial, condicionIva);	
+		        Cliente nuevoCl = new Cliente(nombre, apellido, "0", usuario, telefono, contraseña, cuit,razonSocial, condicionIva);	
 		        
 				if (nuevoCl.agregarCliente()) {				
 					JOptionPane.showMessageDialog(null, "El cliente se guardo correctamente");
@@ -120,19 +120,19 @@ public class Main {
 				//String idO = (String)JOptionPane.showInputDialog(null, "Ingrese id");
 			    String nombreO = (String)JOptionPane.showInputDialog(null, "Ingrese nombre");		 
 		        String apellidoO = (String)JOptionPane.showInputDialog(null, "Ingrese apellido ");	      	        	       
-		        int telefonoO = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nÃºmero de telÃ©fono"));   	          
+		        int telefonoO = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese número de teléfono"));   	          
 		        String usuarioO = (String)JOptionPane.showInputDialog(null, "Ingrese tipo de usuario");
-		        String contraseÃ±aO = (String)JOptionPane.showInputDialog(null, "Ingrese contraseÃ±a");
-		        String nombreAreaO = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del Ã¡rea");	       
-		        int aniosAntiguedadO = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de aÃ±os de antigÃ¼edad"));		        
+		        String contraseñaO = (String)JOptionPane.showInputDialog(null, "Ingrese contraseña");
+		        String nombreAreaO = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del área");	       
+		        int aniosAntiguedadO = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));		        
 		        String turno = (String)JOptionPane.showInputDialog(null, "Ingrese el turno del operario");
 		        double sueldoO = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo del operario"));
 				
 		       
-		        Operario nuevoOp = new Operario(nombreO, apellidoO, "0",usuarioO, telefonoO, contraseÃ±aO, turno, nombreAreaO, aniosAntiguedadO, sueldoO);
+		        Operario nuevoOp = new Operario(nombreO, apellidoO, "0",usuarioO, telefonoO, contraseñaO, turno, nombreAreaO, aniosAntiguedadO, sueldoO);
 		        
-		       // if (controlador.verificar(nombreO, apellidoO, contraseÃ±aO, telefonoO)) {
-		        if(turno.equalsIgnoreCase("maÃ±ana") || turno.equalsIgnoreCase("tarde") || turno.equalsIgnoreCase("noche")) {
+		       // if (controlador.verificar(nombreO, apellidoO, contraseñaO, telefonoO)) {
+		        if(turno.equalsIgnoreCase("mañana") || turno.equalsIgnoreCase("tarde") || turno.equalsIgnoreCase("noche")) {
 		        	
 		       
 		        
@@ -144,7 +144,7 @@ public class Main {
 
 				}
 		         } else {
-		        	 turno = JOptionPane.showInputDialog("Error el turno debe ser maÃ±ana, tarde o noche \n Ingrese turno: "); 
+		        	 turno = JOptionPane.showInputDialog("Error el turno debe ser mañana, tarde o noche \n Ingrese turno: "); 
 		        	nuevoOp.getTurno().replaceAll(null, turno);
 		         }
 		        
@@ -160,15 +160,15 @@ public class Main {
 				String idV = (String)JOptionPane.showInputDialog(null, "Ingrese id");
 			    String nombreV = (String)JOptionPane.showInputDialog(null, "Ingrese nombre");		 
 		        String apellidoV = (String)JOptionPane.showInputDialog(null, "Ingrese apellido ");	      	        	       
-		        int telefonoV = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nÃºmero de telÃ©fono"));   	          
+		        int telefonoV = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese número de teléfono"));   	          
 		        String usuarioV = (String)JOptionPane.showInputDialog(null, "Ingrese tipo de usuario");
-		        String contraseÃ±aV = (String)JOptionPane.showInputDialog(null, "Ingrese contraseÃ±a");
-		        String nombreAreaV = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del Ã¡rea");	       
-		        int aniosAntiguedadV = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de aÃ±os de antigÃ¼edad"));
+		        String contraseñaV = (String)JOptionPane.showInputDialog(null, "Ingrese contraseña");
+		        String nombreAreaV = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del área");	       
+		        int aniosAntiguedadV = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));
 		        double sueldoV = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo del vendedor"));
 		        
 		       		  
-		        Vendedor nuevoVe = new Vendedor(nombreV, apellidoV, "0", usuarioV, telefonoV, contraseÃ±aV, nombreAreaV, aniosAntiguedadV, sueldoV);
+		        Vendedor nuevoVe = new Vendedor(nombreV, apellidoV, "0", usuarioV, telefonoV, contraseñaV, nombreAreaV, aniosAntiguedadV, sueldoV);
 		        
 		        if (nuevoVe.agregarVendedor()) {					
 					JOptionPane.showMessageDialog(null, "El vendedor se guardo correctamente");
@@ -182,16 +182,16 @@ public class Main {
 				String idA = (String)JOptionPane.showInputDialog(null, "Ingrese id");
 			    String nombreA = (String)JOptionPane.showInputDialog(null, "Ingrese nombre");		 
 		        String apellidoA = (String)JOptionPane.showInputDialog(null, "Ingrese apellido ");	      	        	       
-		        int telefonoA = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nÃºmero de telÃ©fono"));   	          
+		        int telefonoA = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese número de teléfono"));   	          
 		        String usuarioA = (String)JOptionPane.showInputDialog(null, "Ingrese tipo de usuario");
-		        String contraseÃ±aA = (String)JOptionPane.showInputDialog(null, "Ingrese contraseÃ±a");
-		        String nombreAreaA = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del Ã¡rea");	       
-		        int aniosAntiguedadA = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de aÃ±os de antigÃ¼edad"));
+		        String contraseñaA = (String)JOptionPane.showInputDialog(null, "Ingrese contraseña");
+		        String nombreAreaA = (String)JOptionPane.showInputDialog(null, "Ingrese el nombre del área");	       
+		        int aniosAntiguedadA = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de años de antigüedad"));
 		        double sueldoA = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese sueldo"));
 		        int idDepo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese id de deposito"));
 		       
 		        		
-		        Almacenista nuevoAl = new Almacenista(nombreA, apellidoA, "0", usuarioA, telefonoA, contraseÃ±aA, nombreAreaA, aniosAntiguedadA, sueldoA, idDepo);
+		        Almacenista nuevoAl = new Almacenista(nombreA, apellidoA, "0", usuarioA, telefonoA, contraseñaA, nombreAreaA, aniosAntiguedadA, sueldoA, idDepo);
 		        
 		        if (nuevoAl.agregarAlmacenista()) {					
 					JOptionPane.showMessageDialog(null, "El almacenista se guardo correctamente");
@@ -221,19 +221,19 @@ public class Main {
 				
 				String nombre = (String)JOptionPane.showInputDialog(null, "Ingrese nuevo nombre");		 
 		        String apellido = (String)JOptionPane.showInputDialog(null, "Ingrese nuevo apellido ");	      	        	       
-		        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nuevo nÃºmero de telÃ©fono"));   	          
+		        int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nuevo número de teléfono"));   	          
 		        String usuario = (String)JOptionPane.showInputDialog(null, "Ingrese nuevo tipo de usuario");
-		        String contraseÃ±a = (String)JOptionPane.showInputDialog(null, "Ingrese nueva contraseÃ±a");
+		        String contraseña = (String)JOptionPane.showInputDialog(null, "Ingrese nueva contraseña");
 		        int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nuevo cuit del cliente")); 
 		        String razonSocial = (String)JOptionPane.showInputDialog(null, "Ingrese nueva razon Social de cliente");
 		        String condicionIva = (String)JOptionPane.showInputDialog(null, "Ingrese nueva condicion Iva del cliente");
 
-		      //  if (controlador.verificar(nombre, apellido, contraseÃ±a, telefono)) {	
+		      //  if (controlador.verificar(nombre, apellido, contraseña, telefono)) {	
 		        	
 		              
 		  
 	
-		        Cliente nuevoCl = new Cliente(nombre, apellido, "0", usuario, telefono, contraseÃ±a, cuit,razonSocial, condicionIva);	
+		        Cliente nuevoCl = new Cliente(nombre, apellido, "0", usuario, telefono, contraseña, cuit,razonSocial, condicionIva);	
 		        
 				if (nuevoCl.editarCliente(id)) {				
 					JOptionPane.showMessageDialog(null, "El cliente se edito correctamente");

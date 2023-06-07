@@ -16,14 +16,14 @@ public class Administrador extends Usuario {
 
 	//Administrador controlador = new Administrador("", "", "", "", 0, "");
 	
-	public Administrador(String nombre, String apellido, String id, String usuario, int telefono, String contraseña) {
-		super(nombre, apellido, id, usuario, telefono, contraseña);
+	public Administrador(String nombre, String apellido, String id, String usuario, int telefono, String contrasenia) {
+		super(nombre, apellido, id, usuario, telefono, contrasenia);
 
 	}
 	
 
 	
-	public boolean verificar(String nombre,String apellido,String contraseña, int telefono, int cuit) {
+	public boolean verificar(String nombre,String apellido,String contrasenia, int telefono, int cuit) {
 		return false;
 		
 	}
@@ -222,7 +222,7 @@ public class Administrador extends Usuario {
 			stmt.setString(3, this.getApellido());
 			stmt.setString(4, this.getUsuario());
 			stmt.setLong(5, this.getTelefono());
-			stmt.setString(6, this.getContraseña());											
+			stmt.setString(6, this.contrasenia());											
 			stmt.executeUpdate();
 			conexion.close();
     		return true;
