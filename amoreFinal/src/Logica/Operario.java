@@ -156,7 +156,9 @@ public class Operario extends Usuario{
 		String sql ="INSERT INTO `produccion`(`idProduccion`, `fechaProduccion`, `totalProducido`, `idOperario`) VALUES (?,?,?,?) ";
 		stmt = conexion.prepareStatement(sql);
 		stmt.setInt(1, idProduccion);
-		stmt.
+		stmt.setDate(2, f);
+		stmt.setDouble(3, total);
+		stmt.setInt(4, idOperario);
 
 
 
