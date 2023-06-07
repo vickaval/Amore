@@ -9,7 +9,7 @@ public abstract class Usuario {
 		
 		private String nombre;
 		private String apellido;
-		private String id;
+		private int id;
 		private String usuario;
 		private int telefono;
 		private String contraseña;
@@ -32,7 +32,7 @@ public abstract class Usuario {
 		
 		PreparedStatement stmt;
 		
-		public Usuario(String nombre, String apellido, String id, String usuario, int telefono, String contraseña) {
+		public Usuario(String nombre, String apellido, int id, String usuario, int telefono, String contraseña) {
 			this.nombre = nombre;
 			this.apellido = apellido;
 			this.id = id;
@@ -67,10 +67,10 @@ public abstract class Usuario {
 			this.apellido = apellido;
 		}
 
-		public String getId() {
+		public int getId() {
 			return id;
 		}
-		public void setId(String id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 
