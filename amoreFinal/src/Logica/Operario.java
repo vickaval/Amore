@@ -4,8 +4,13 @@ import Datos.Usuario;
 import Datos.Conexion;
 import Logica.MateriaPrima;
 
+import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
 
 import javax.swing.JOptionPane;
 
@@ -63,7 +68,7 @@ public class Operario extends Usuario{
 	}
 
 	
-	//metodos
+	//metodos. cheuqear
     public boolean agregarOperario() {         	
 		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`,`contraseña`, `sueldo`,`turno`) VALUES (?,?,?,?,?,?,?,?,?,?) ";
 		
@@ -116,6 +121,47 @@ public class Operario extends Usuario{
 		}
 		
 	}
+
+	public void visualizarInfoMateriaPrima (){//metodo orignal materia prima VERIFICAR
+		try {     	
+			   String sql ="SELECT * FROM `materiaprima`";
+			   stmt = conexion.prepareStatement(sql);
+			   ResultSet result = stmt.executeQuery();
+					
+				while (result.next()) {
+					JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA materia prima:\n" + "\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n"); 
+					System.out.println("\n TODOS LOS REGISTROS DE LA TABLA materia prima:\n");
+					System.out.println("\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n");
+	  
+				} 
+				conexion.close();        
+			} catch (SQLException ex) {
+				System.out.println("Error en la conexion");
+			}  
+	}
+
+	public void producirMercaderia(){//chequer. cambie la estructura en totalproducido por double y no olvidarse de las validaciones
+		int idProduccion, idOperario=0;
+		double total=0;
+		String fechaProduccion=null;
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String f = sdf.format(fechaProduccion);//elimine una columna en produccion que estaba de mas
+
+		idProduccion=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id de la produccion"));
+		idOperario=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del operario "));
+		total=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el total de lo producido "));
+		fechaProduccion=JOptionPane.showInputDialog(null, "Ingrese la fecha de la produccion: ");
+
+		String sql ="INSERT INTO `produccion`(`idProduccion`, `fechaProduccion`, `totalProducido`, `idOperario`) VALUES (?,?,?,?) ";
+		stmt = conexion.prepareStatement(sql);
+		stmt.setInt(1, idProduccion);
+		stmt.
+
+
+
+	}
+	
 	
 
 
