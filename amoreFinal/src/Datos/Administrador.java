@@ -16,16 +16,17 @@ public class Administrador extends Usuario {
 
 	//Administrador controlador = new Administrador("", "", "", "", 0, "");
 	
-	public Administrador(String nombre, String apellido, String id, String usuario, int telefono, String contraseña) {
+	public Administrador(String nombre, String apellido, int id, String usuario, int telefono, String contraseña) {
 		super(nombre, apellido, id, usuario, telefono, contraseña);
 
 	}
 	
 
-	public boolean verificarId(String id) {
+	public boolean verificarId(int id) {
 		int flag = 0 ;				
 		//do {
-		if(!id.equalsIgnoreCase("0")) {
+		if(id!=0) {
+			//this.setId(id);
 			this.setId(id);
 		}else {
         	id = JOptionPane.showInputDialog(null, "El id debe ser >= 1 \nIngrese id del cliente a editar: ");	
