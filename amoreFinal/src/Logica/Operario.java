@@ -159,9 +159,11 @@ public class Operario extends Usuario{
 		stmt.setDate(2, f);
 		stmt.setDouble(3, total);
 		stmt.setInt(4, idOperario);
+	}
 
-
-
+	public void buscarMateriaPrima(String nombreMP){//chequear
+		String sql= "SELECT * FROM materiaprima WHERE nombre=nombreMP";
+		JOptionPane.showMessageDialog(null,sql);
 	}
 	
 	

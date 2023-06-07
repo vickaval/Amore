@@ -15,7 +15,7 @@ public class Cliente extends Usuario{
 	    private String condicionIva;
 	    
 	    
-			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
+			public Cliente(String nombre, String apellido, int id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
 				String condicionIva) {
 			super(nombre, apellido, id, usuario, telefono, contraseña);
 			this.cuit = cuit;
@@ -65,7 +65,7 @@ public class Cliente extends Usuario{
 				
 				try {
 					stmt = conexion.prepareStatement(sql);
-					stmt.setString(1, this.getId());
+					stmt.setInt(1, this.getId());
 					stmt.setString(2, this.getNombre());
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getContraseña());
@@ -94,7 +94,7 @@ public class Cliente extends Usuario{
 		    	
 		    	try {
 		    		stmt = conexion.prepareStatement(sql);
-		    		stmt.setString(1, this.getId());
+		    		stmt.setInt(1, this.getId());
 					stmt.setString(2, this.getNombre());
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getUsuario());
@@ -112,23 +112,7 @@ public class Cliente extends Usuario{
 		    		return false;
 		    	}
 		    }
-		    
-			
-		    
-		
-		
-				
-			
-			
-			
-	
-			
-			
-			
-		
-			
-			
-			
+					
 			
 		    public void realizarPedido(){
 		        //faltan clases para hacer correctamente el metodo como Pedido
