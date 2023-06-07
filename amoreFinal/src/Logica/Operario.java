@@ -14,7 +14,7 @@ public class Operario extends Usuario{
 	private double sueldo;
 	
 	
-	public Operario(String nombre, String apellido, String id, String usuario, int telefono, String contraseña,
+	public Operario(String nombre, String apellido, int id, String usuario, int telefono, String contraseña,
 			String turno, String nombreArea, int aniosAntiguedad, double sueldo) {
 		super(nombre, apellido, id, usuario, telefono, contraseña);
 		this.turno = turno;
@@ -67,14 +67,14 @@ public class Operario extends Usuario{
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
-			stmt.setString(1, this.getId());
+			stmt.setInt(1, this.getId());
 			stmt.setString(2, this.getNombre());
 			stmt.setString(3, this.getApellido());
 			stmt.setString(4, this.getNombreArea());
 			stmt.setInt(5, this.getAniosAntiguedad());
 			stmt.setInt(6, this.getTelefono());
 			stmt.setString(7, this.getContraseña());					
-			stmt.setDouble(8, this.getSueldo());
+			stmt.setDouble(8, this.getSueldo());// es double
 			stmt.setString(9, this.getTurno());		
 			stmt.setString(10, this.getUsuario());	
 			stmt.executeUpdate();
