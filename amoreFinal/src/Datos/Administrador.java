@@ -15,13 +15,13 @@ import Datos.Conexion;
 public class Administrador extends Usuario { 
 
 	//Administrador controlador = new Administrador("", "", "", "", 0, "");
-	
+
 	public Administrador(String nombre, String apellido, int id, String usuario, int telefono, String contraseña) {
 		super(nombre, apellido, id, usuario, telefono, contraseña);
 
 	}
 	
-
+	//CHEQUEAR PORQUE CAMBIE LINEA 32 POR LA 33
 	public boolean verificarId(int id) {
 		int flag = 0 ;				
 		//do {
@@ -29,7 +29,8 @@ public class Administrador extends Usuario {
 			//this.setId(id);
 			this.setId(id);
 		}else {
-        	id = JOptionPane.showInputDialog(null, "El id debe ser >= 1 \nIngrese id del cliente a editar: ");	
+        	//id = JOptionPane.showInputDialog(null, "El id debe ser >= 1 \nIngrese id del cliente a editar: ");	
+			JOptionPane.showInputDialog(null, "El id debe ser >= 1 \nIngrese id del cliente a editar: ");
 		}
 		//}while(flag==0);
 		return true;
@@ -269,7 +270,7 @@ public class Administrador extends Usuario {
     	
     	try {
     		stmt = conexion.prepareStatement(sql);
-    		stmt.setString(1, this.getId());
+    		stmt.setInt(1, this.getId());
 			stmt.setString(2, this.getNombre());
 			stmt.setString(3, this.getApellido());
 			stmt.setString(4, this.getUsuario());
@@ -284,20 +285,6 @@ public class Administrador extends Usuario {
     		return false;
     	}
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
