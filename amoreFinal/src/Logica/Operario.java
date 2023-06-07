@@ -55,7 +55,7 @@ public class Operario extends Usuario{
 
 
 
-	Conexion con =  new Conexion();;
+	Conexion con =  new Conexion();
 	
 	Connection conexion = con.conectar();
 	
@@ -63,7 +63,7 @@ public class Operario extends Usuario{
 	
 	//metodos
     public boolean agregarOperario() {         	
-		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`turno`, `usuario`) VALUES (?,?,?,?,?,?,?,?,?, ?) ";
+		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`,`contraseña`, `sueldo`,`turno`) VALUES (?,?,?,?,?,?,?,?,?,?) ";
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
