@@ -1,4 +1,4 @@
-package Logica;
+package nuevo.Logica;
 
 public class Deposito {
 	

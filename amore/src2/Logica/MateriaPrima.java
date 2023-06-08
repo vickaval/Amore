@@ -1,4 +1,4 @@
-package Logica;
+package nuevo.Logica;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

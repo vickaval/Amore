@@ -1,4 +1,4 @@
-package Datos;
+package nuevo.Datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
