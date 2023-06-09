@@ -81,7 +81,7 @@ public class test {
 		// Preguntamos al usuario si estï¿½ registrado o desea registrarse
 	    Object[] options = {"Ya estoy registrado", "Registrarme"};
 	    int seleccion = JOptionPane.showOptionDialog(null,
-	            "Bienvenido al sistema de depositos. ¿Esta registrado o desea registrarse?",
+	            "Bienvenido al sistema de depositos. ï¿½Esta registrado o desea registrarse?",
 	            "Registro en el sistema",
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE,
@@ -101,7 +101,7 @@ public class test {
 	    		int eleccion;
 	    	 	do {
 	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
-	    	    eleccion = JOptionPane.showOptionDialog(null, "¿Que accion desea realizar?", "Menu principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+	    	    eleccion = JOptionPane.showOptionDialog(null, "ï¿½Que accion desea realizar?", "Menu principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 	    	    switch (eleccion) {
 	    	        case 0:	    	        		
 	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
