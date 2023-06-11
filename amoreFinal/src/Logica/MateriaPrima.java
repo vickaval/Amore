@@ -132,6 +132,7 @@ public class MateriaPrima  {
 		
 		
 
+		/*
 		public void buscarMateriaPrima(int idMp){
 				boolean buscar=mps.contains(mp);
 				
@@ -139,6 +140,7 @@ public class MateriaPrima  {
 					System.out.println(mp.toString());
 				}
 		}
+		*/
 
 
 	
