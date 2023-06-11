@@ -16,7 +16,7 @@ public class Conexion {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/amore","root","");
-				JOptionPane.showMessageDialog(null, "se conecto");
+				//JOptionPane.showMessageDialog(null, "se conecto");
 		} catch (Exception e) {
 	
 			JOptionPane.showMessageDialog(null, "error al conectarse" + e.getMessage());
