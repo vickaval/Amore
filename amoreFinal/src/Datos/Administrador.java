@@ -2,6 +2,8 @@ package Datos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import java.sql.Connection;
@@ -9,6 +11,7 @@ import java.sql.PreparedStatement;
 
 
 import Datos.Usuario;
+import Logica.Almacenista;
 import Datos.Conexion;
 
 
@@ -16,17 +19,118 @@ public class Administrador extends Usuario {
 
 	//Administrador controlador = new Administrador("", "", "", "", 0, "");
 	
-	public Administrador(String nombre, String apellido, String id, String usuario, int telefono, String contrasenia) {
-		super(nombre, apellido, id, usuario, telefono, contrasenia);
+	public Administrador(String nombre, String apellido, String id, String usuario, int telefono, String contraseña) {
+		super(nombre, apellido, id, usuario, telefono, contraseña);
 
 	}
 	
 
+	ArrayList<Administrador> administradores;
+
 	
-	public boolean verificar(String nombre,String apellido,String contrasenia, int telefono, int cuit) {
+	public void agregarAdministrador(Administrador a) {
+		this.administradores.add(a);
+	}
+	
+	//metodos
+	public boolean iniciarSesion(String contraseñaLogin, String nombreLogin) {
+	    // Verificar si el usuario y la contrase�a son v�lidos
+					   
+			   if (nombreLogin.equals(getNombre()) && contraseñaLogin.equals(getContraseña())) {
+			        //System.out.println("Inicio de sesi�n exitoso.");
+			    	
+			        return true;
+			    } else {
+			    	JOptionPane.showMessageDialog(null, "Amore Pastas\nBienvenido al ABM de Usuarios");
+			       //System.out.println("Inicio de sesion fallo. \nPor favor verifique su contrasenia y permiso.");
+			        return false;
+			   
+	        }
+	}
+	
+	
+	public boolean loginAdministrador() {
+	    int intentos = 3;
+	    while(intentos > 0) {		      
+	        String contraseñaLogin = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+	        String nombreLogin = JOptionPane.showInputDialog(null, "Ingrese su nombre: ");
+	        boolean inicioSesion = false;
+	        Administrador administrador = new Administrador("victoria", "valerio", "1", "administrador", 1234567891, "12345678");
+	            if(administrador.iniciarSesion(contraseñaLogin, nombreLogin)) {
+	                JOptionPane.showMessageDialog(null, "Se inicio sesion\n Bienvenid@ " + nombreLogin);
+	                inicioSesion = true;
+	                break;
+	            }
+	        
+	        if(inicioSesion) {
+	            break; // Si inici� sesi�n, salimos del while
+	        }
+	        intentos--;
+	        if(intentos == 0) {
+	            JOptionPane.showMessageDialog(null, "Ha excedido el numero maximo de intentos. Saliendo del programa.");
+	            System.exit(0);
+	        }
+	        //JOptionPane.showMessageDialog(null, "Inicio de sesion fallido. Por favor verifique su usuario, contrasenia y permiso. Intentos restantes: " + intentos);
+	    }
 		return false;
+	}
+
+			   
+
+	public boolean verificarId(String id) {
+		int flag = 0 ;				
+		//do {
+		if(!id.equalsIgnoreCase("0")) {
+			this.setId(id);
+		}else {
+        	id = JOptionPane.showInputDialog(null, "El id debe ser >= 1 \nIngrese id del cliente a editar: ");	
+		}
+		//}while(flag==0);
+		return true;
 		
 	}
+	
+	//VERIFICAR AGREGAR USUARIO
+	public boolean verificar(String nombre,String apellido,String contraseña) {
+		int flag = 0 ;				
+		do {
+		if (nombre.length()>=3 && nombre.length()<=15 ) {
+			if (apellido.length()>=3 && apellido.length()<=15 ) {
+				
+				if (contraseña.length() >= 8) {
+					
+					//if(String.valueOf(telefono).length() >= 10) {											
+					//agregar cuit, crear verificarOperario → verificar turno (mañana, tarde o noche)
+						
+					this.setNombre(nombre);
+					this.setApellido(apellido);
+					//this.setTelefono(telefono); 
+					this.setContraseña(contraseña);
+						
+					return true;
+						
+					//} else {
+						
+						// tel = JOptionPane.showInputDialog("Error el telefono debe tener 11 caracteres \n Ingrese telefono: ");  
+								
+					//}						
+				}else{
+					contraseña = JOptionPane.showInputDialog("Error la contraseña debe tener 8 caracteres \n Ingrese contraseña: "); 
+					this.setContraseña(contraseña);
+				}
+			}else {
+				apellido = JOptionPane.showInputDialog("Error apellido  debe tener entre 3 y 15 letras   \n Ingrese apellido: ");
+				this.setApellido(apellido);
+			}
+			
+		}else {
+			nombre = JOptionPane.showInputDialog("Error el nombre debe tener entre 3 y 15 letras \n Ingrese nombre: ");
+			this.setNombre(nombre);
+		}
+		}while(flag==0);
+		return true;
+					
+    }
 	
 	
 
@@ -116,9 +220,9 @@ public class Administrador extends Usuario {
                        
             while (result.next()) {
             	
-                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA PROVEEDOR:\n" + "\nID: " + " \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit") + " \nPROVEE: " + result.getString("materialesQueProvee")+ " \nMONTO COMPRADO: " + result.getInt("montoComprado") +  " \nDEUDA: " + result.getString("deuda") + "\n"); 
+                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA PROVEEDOR:\n" +  " \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit") + " \nPROVEE: " + result.getString("materialesQueProvee")+ " \nMONTO COMPRADO: " + result.getInt("montoComprado") +  " \nDEUDA: " + result.getString("deuda") + "\n"); 
                 System.out.println("\n TODOS LOS REGISTROS DE LA TABLA PROVEEDOR:\n");
-                System.out.println("\nID: " + " \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit") + " \nPROVEE: " + result.getString("materialesQueProvee")+ " \nMONTO COMPRADO: " + result.getInt("montoComprado") +  " \nDEUDA: " + result.getString("deuda") + "\n");
+                System.out.println(" \nNOMBRE: " + result.getString("nombre") + " \nCUIT: " + result.getString("cuit") + " \nPROVEE: " + result.getString("materialesQueProvee")+ " \nMONTO COMPRADO: " + result.getInt("montoComprado") +  " \nDEUDA: " + result.getString("deuda") + "\n");
                 conexion.close();
             }
         } catch (SQLException ex) {
@@ -222,7 +326,7 @@ public class Administrador extends Usuario {
 			stmt.setString(3, this.getApellido());
 			stmt.setString(4, this.getUsuario());
 			stmt.setLong(5, this.getTelefono());
-			stmt.setString(6, this.contrasenia());											
+			stmt.setString(6, this.getContraseña());											
 			stmt.executeUpdate();
 			conexion.close();
     		return true;
@@ -304,6 +408,10 @@ public class Administrador extends Usuario {
 	
 		
 	}
+	
+    
+	
+	
 	
 
 }
