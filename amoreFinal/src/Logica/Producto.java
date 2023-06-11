@@ -17,10 +17,12 @@ public class Producto {
 	private double precio;
 	private int idDepo;
 	private int idProduccion;
-	private int idCategoria;
+	private String tipo;
 
 	
-	public Producto(int idProducto, String nombre, double precio, int cantidad, int idDepo, int idProduccion, int idCategoria) {
+
+	
+	public Producto(int idProducto, String nombre, double precio, int cantidad, int idDepo, int idProduccion, String tipo) {
 		super();
 		this.idProducto = idProducto;
 		this.nombre = nombre;		
@@ -28,7 +30,8 @@ public class Producto {
 		this.cantidad = cantidad;
 		this.idDepo = idDepo;
 		this.idProduccion = idProduccion;
-		this.idCategoria = idCategoria;
+		this.tipo = tipo;
+
 	}
 	
 	public Producto() {
@@ -86,16 +89,18 @@ public class Producto {
 	public void setIdProduccion(int idProduccion) {
 		this.idProduccion = idProduccion;
 	}
-
-	public int getIdCategoria() {
-		return idCategoria;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
-	
-	
+
+
+
+
+
 	Conexion con =  new Conexion();
 	
 	Connection conexion = con.conectar();
@@ -104,7 +109,7 @@ public class Producto {
 	
 
 	public boolean agregarProducto() {
-		String sql ="INSERT INTO `producto`(`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`, `idCategoria`) VALUES (?,?,?,?,?,?,?) ";
+		String sql ="INSERT INTO `producto`(`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`) VALUES (?,?,?,?,?,?) ";
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
@@ -114,7 +119,6 @@ public class Producto {
 			stmt.setDouble(4, this.getCantidad());
 			stmt.setInt(5, this.getIdDepo());
 			stmt.setInt(6, this.getIdProduccion());
-			stmt.setInt(7, this.getIdCategoria());
 			stmt.executeUpdate();
 			conexion.close();
 			return true;
@@ -134,9 +138,9 @@ public class Producto {
 			   ResultSet result = stmt.executeQuery();
 	                
 	            while (result.next()) {
-	                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA producto:\n" + "\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nPRECIO: " + result.getString("precio")+ " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + " \nidProduccion: " + result.getString("idProduccion") + " \nidCategoria: " + result.getString("idCategoria") + "\n"); 
+	                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA producto:\n" + "\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nPRECIO: " + result.getString("precio")+ " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + " \nidProduccion: " + result.getString("idProduccion") +"\n"); 
 	                System.out.println("\n TODOS LOS REGISTROS DE LA TABLA producto:\n");
-	                System.out.println("\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nPRECIO: " + result.getDouble("precio")+  " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + " \nidProduccion: " + result.getString("idProduccion") + " \nidCategoria: " + result.getString("idCategoria") + "\n"); 
+	                System.out.println("\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nPRECIO: " + result.getDouble("precio")+  " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + " \nidProduccion: " + result.getString("idProduccion")  + "\n"); 
 	  
 	            } 
 	            conexion.close();        
@@ -144,36 +148,19 @@ public class Producto {
 	        	System.out.println("Error en la conexion");
 	        }  
 	}
-	
-	
-	/*
-	public void producirMercaderia(int idProducto, int cantidad){
-		boolean producir=mps.contains(mp)&& mp.getStockDisponible()>=cantidad; 
-		
-		try {  
-			String sql ="SELECT stockDisponible FROM `materiaprima` WHERE 'id = 1'";
-			   stmt = conexion.prepareStatement(sql);
-			   ResultSet result = stmt.executeQuery();
-	                
-		
-		if(producir){
-			System.out.println("produciendo con la materia prima "+ getNombre());	
-		}else{
-			System.out.println("Materia prima inexistente o stock insuficiente");	
-		}
-		
-	}
-	*/
-	
-
-
 
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio="
-				+ precio + ", idDepo=" + idDepo + ", idProduccion=" + idProduccion + ", idCategoria=" + idCategoria
-				+ "]";
+				+ precio + ", idDepo=" + idDepo + ", idProduccion=" + idProduccion + ", tipo=" + tipo + "]";
 	}
+	
+	
+	
+
+
+
+	
 
 
 	
