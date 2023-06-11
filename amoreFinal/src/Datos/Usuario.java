@@ -2,8 +2,12 @@ package Datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+
+import Logica.Almacenista;
 
 public abstract class Usuario {
 		
@@ -106,18 +110,24 @@ public abstract class Usuario {
 
 		
 		//metodos
-		public boolean iniciarSesion() {
-					
-			        String pass = (String)JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
-			        //numero maximo de caracteres de contraseña = 8
-			        if(pass.length() <= 8) {
-			        		    
-					if(pass.equals(getContraseña())) {
-						
-					}
-			    }
-			   return false;
+		public boolean iniciarSesion(String contraseñaLogin, String nombreLogin) {
+		    // Verificar si el usuario y la contrase�a son v�lidos
+			    			   
+				   if (nombreLogin.equals(getNombre()) && contraseñaLogin.equals(getContraseña())) {
+				        //System.out.println("Inicio de sesi�n exitoso.");
+				    	
+				        return true;
+				    } else {
+				    	JOptionPane.showMessageDialog(null, "Amore Pastas\nBienvenido al ABM de Usuarios");
+				       //System.out.println("Inicio de sesion fallo. \nPor favor verifique su contrasenia y permiso.");
+				        return false;
+				   
+		        }
 		}
+		
+	
+			  
+		   
 		
 
 	
