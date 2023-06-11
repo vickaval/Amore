@@ -85,7 +85,35 @@ public class Operario extends Usuario{
 			System.out.println("Hubo un error"+e.getMessage());
 			return false;
 		}
+		
 	}
+    
+
+	//EDITAR OPERARIO
+    public boolean editarOperario(String id) {   	
+    	String sql ="UPDATE `operario` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?,`turno`=?, `nombreArea`=?,`aniosAntiguedad`=?,`sueldo`=?"
+    			+ "WHERE id = ?";	
+    	try {
+    		stmt = conexion.prepareStatement(sql);
+    		stmt.setString(1, this.getId());
+			stmt.setString(2, this.getNombre());
+			stmt.setString(3, this.getApellido());
+			stmt.setString(4, this.getUsuario());
+			stmt.setLong(5, this.getTelefono());
+			stmt.setString(6, this.getContraseña());				
+			stmt.setString(7, this.getTurno());
+			stmt.setString(8, this.getNombreArea());
+			stmt.setInt(9, this.getAniosAntiguedad());
+			stmt.setDouble(10, this.getSueldo());
+			stmt.executeUpdate();
+			conexion.close();
+    		return true;
+    		
+    	} catch (Exception e) {
+    		System.out.println("Hubo un error"+e.getMessage());
+    		return false;
+    	}
+    }
 	
 
 
