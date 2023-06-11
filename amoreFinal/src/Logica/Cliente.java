@@ -3,6 +3,7 @@ package Logica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import javax.swing.JOptionPane;
 
 import Datos.Usuario;
 import Datos.Conexion;
@@ -14,9 +15,9 @@ public class Cliente extends Usuario{
 	    private String condicionIva;
 	    
 	    
-			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contrasenia, int cuit, String razonSocial,
+			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
 				String condicionIva) {
-			super(nombre, apellido, id, usuario, telefono, contrasenia);
+			super(nombre, apellido, id, usuario, telefono, contraseña);
 			this.cuit = cuit;
 			this.razonSocial = razonSocial;
 			this.condicionIva = condicionIva;
@@ -58,20 +59,21 @@ public class Cliente extends Usuario{
 			
 			//metodos		
 			public boolean agregarCliente() {
+				
 		    	
-				System.out.println("agregar usuario");
-				String sql ="INSERT INTO `cliente`(`nombre`, `apellido`, `contrasenia`, `telefono`,`cuit`, `razonSocial`, `condicionIVA`, `usuario`) VALUES (?,?,?,?,?,?,?,?) ";
+				String sql ="INSERT INTO `cliente`(`id`, `nombre`, `apellido`, `contraseña`, `telefono`,`cuit`, `razonSocial`, `condicionIVA`, `usuario`) VALUES (?,?,?,?,?,?,?,?,?) ";
 				
 				try {
 					stmt = conexion.prepareStatement(sql);
-					stmt.setString(1, this.getNombre());
-					stmt.setString(2, this.getApellido());
-					stmt.setString(3, this.contrasenia());
-					stmt.setLong(4, this.getTelefono());
-					stmt.setInt(5, this.getCuit());
-					stmt.setString(6, this.getRazonSocial());
-					stmt.setString(7, this.getCondicionIva());	
-					stmt.setString(8, this.getUsuario());	
+					stmt.setString(1, this.getId());
+					stmt.setString(2, this.getNombre());
+					stmt.setString(3, this.getApellido());
+					stmt.setString(4, this.getContraseña());
+					stmt.setLong(5, this.getTelefono());
+					stmt.setInt(6, this.getCuit());
+					stmt.setString(7, this.getRazonSocial());
+					stmt.setString(8, this.getCondicionIva());	
+					stmt.setString(9, this.getUsuario());	
 					stmt.executeUpdate();
 					conexion.close();
 					return true;
@@ -84,11 +86,9 @@ public class Cliente extends Usuario{
 			}
 			
 			//EDITAR CLIENTE
-		    public boolean editarCliente(int id) {
-		    	
+		    public boolean editarCliente(String id) {   	
 		    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?,`cuit`=?, `razonSocial`=?,`condicionIva`=?"
-		    			+ "WHERE id = ?";
-		    	
+		    			+ "WHERE `id` = ?";	
 		    	try {
 		    		stmt = conexion.prepareStatement(sql);
 		    		stmt.setString(1, this.getId());
@@ -96,7 +96,7 @@ public class Cliente extends Usuario{
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getUsuario());
 					stmt.setLong(5, this.getTelefono());
-					stmt.setString(6, this.getcontrasenia());				
+					stmt.setString(6, this.getContraseña());				
 					stmt.setInt(7, this.getCuit());
 					stmt.setString(8, this.getRazonSocial());
 					stmt.setString(9, this.getCondicionIva());							
@@ -111,12 +111,10 @@ public class Cliente extends Usuario{
 		    }
 		    
 			
-			
+		    
 		
-				
-			
-			
 		
+
 			
 		    public void realizarPedido(){
 		        //faltan clases para hacer correctamente el metodo como Pedido
