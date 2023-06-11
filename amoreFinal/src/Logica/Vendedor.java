@@ -2,8 +2,10 @@ package Logica;
 
 	import java.sql.Connection;
     import java.sql.PreparedStatement;
-	
-	import Datos.Usuario;
+
+import javax.swing.JOptionPane;
+
+import Datos.Usuario;
 	import Datos.Conexion;
 
 	public class Vendedor extends Usuario {
@@ -13,7 +15,11 @@ package Logica;
 		private int aniosAntiguedad;
 		private double sueldo;
 		
-		 
+		  /*
+		  ArrayList<Vendedor> vendedores;
+		  ArrayList<Producto> productos;		  
+		  ArrayList<Pedido> pedidos;
+		  */
 			public Vendedor(String nombre, String apellido, String id, String usuario, int telefono, String contraseña,
 				String nombreArea, int aniosAntiguedad, double sueldo) {
 			super(nombre, apellido, id, usuario, telefono, contraseña);
@@ -64,19 +70,18 @@ package Logica;
 
 		//metodos	
 		public boolean agregarVendedor() {    
-			String sql ="INSERT INTO `vendedor`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`usuario`) VALUES (?,?,?,?,?,?,?,?,?) ";
+			String sql ="INSERT INTO `vendedor`(`nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`usuario`) VALUES (?,?,?,?,?,?,?,?) ";
 			
 			try {
-				stmt = conexion.prepareStatement(sql);
-				stmt.setString(1, this.getId());
-				stmt.setString(2, this.getNombre());
-				stmt.setString(3, this.getApellido());
-				stmt.setString(4, this.getNombreArea());
-				stmt.setLong(5, this.getAniosAntiguedad());
-				stmt.setLong(6, this.getTelefono());
-				stmt.setString(7, this.getContraseña());					
-				stmt.setDouble(8, this.getSueldo());	
-				stmt.setString(9, this.getUsuario());
+				stmt = conexion.prepareStatement(sql);			
+				stmt.setString(1, this.getNombre());
+				stmt.setString(2, this.getApellido());
+				stmt.setString(3, this.getNombreArea());
+				stmt.setLong(4, this.getAniosAntiguedad());
+				stmt.setLong(5, this.getTelefono());
+				stmt.setString(6, this.getContraseña());					
+				stmt.setDouble(7, this.getSueldo());	
+				stmt.setString(8, this.getUsuario());
 				stmt.executeUpdate();
 				conexion.close();
 				return true;
@@ -86,9 +91,41 @@ package Logica;
 				return false;
 			}
 		}
+		
+		
+		
+		//EDITAR VENDEDOR
+	    public boolean editarVendedor(String id) { 	    	
+	    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?, `id`=?,`usuario`=?, `telefono`=?,`contraseña`=?, `nombreArea`=?,`aniosAntiguedad`=?,`sueldo`=?"
+	    			+ "WHERE `id` = ?";	
+	    	try {
+	    		stmt = conexion.prepareStatement(sql);
+	    		stmt.setString(1, this.getId());
+				stmt.setString(2, this.getNombre());
+				stmt.setString(3, this.getApellido());
+				stmt.setString(4, this.getUsuario());
+				stmt.setLong(5, this.getTelefono());
+				stmt.setString(6, this.getContraseña());				
+				stmt.setString(7, this.getNombreArea());
+				stmt.setInt(8, this.getAniosAntiguedad());
+				stmt.setInt(9, this.getTelefono());
+				stmt.setString(10, this.getContraseña());					
+				stmt.setDouble(11, this.getSueldo());							
+				stmt.executeUpdate();
+				conexion.close();
+	    		return true;
+	    		
+	    		
+	    	} catch (Exception e) {
+	    		System.out.println("Hubo un error"+e.getMessage());
+	    		return false;
+	    	}
+	    	
+	    	
+	    }
 	
 		
-	
+
 
 
 		
