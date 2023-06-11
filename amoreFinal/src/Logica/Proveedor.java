@@ -19,6 +19,7 @@ import Datos.Conexion;
 		private double montoComprado;
 		private double deuda;
 		
+		//ArrayList<Proveedor> provedoresDeben;
 		
 		public Proveedor(String nombre, String materialesQueProvee, int cuit, double montoComprado, double deuda) {
 			this.nombre = nombre;
@@ -95,7 +96,12 @@ import Datos.Conexion;
 			}
 		}
 		
-			
+		
+		
+		
+	
+		
+		
 
 		//informacion completa
 		public void informacionProveedores() {
