@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2023 a las 01:36:45
+-- Tiempo de generación: 12-06-2023 a las 05:37:54
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -84,6 +84,13 @@ CREATE TABLE `categoriaproducto` (
   `nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `categoriaproducto`
+--
+
+INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`) VALUES
+(8, 'salsas');
+
 -- --------------------------------------------------------
 
 --
@@ -93,7 +100,7 @@ CREATE TABLE `categoriaproducto` (
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
   `razonSocial` varchar(45) DEFAULT NULL,
-  `condicionIVA` varchar(11) DEFAULT NULL,
+  `condicionIVA` varchar(30) DEFAULT NULL,
   `cuit` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
@@ -107,7 +114,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `razonSocial`, `condicionIVA`, `cuit`, `nombre`, `apellido`, `telefono`, `usuario`, `contraseña`) VALUES
-(4, 'estrella srl', 'exento', 45123658, 'marcela', 'flores', 11235689, 'cliente', 'florsita');
+(4, 'estrella srl', 'exento', 45123658, 'marcela', 'flores', 11235689, 'cliente', 'florsita'),
+(12, 'miriamsa', 'responsable inscripto', 74102365, 'miriam', 'quiroga', 41023654, 'cliente', 'miriam1234');
 
 -- --------------------------------------------------------
 
@@ -134,6 +142,13 @@ CREATE TABLE `materiaprima` (
   `stockDisponible` int(11) DEFAULT NULL,
   `idDepo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `materiaprima`
+--
+
+INSERT INTO `materiaprima` (`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES
+(5, 'oregano', 'san luis', 450, 120, 2);
 
 -- --------------------------------------------------------
 
@@ -217,12 +232,11 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`, `idCategoria`) VALUES
 (1, 'Espaguetis', 6, 50, 1, 1, 1),
-(2, 'Fusilli', 5, 40, 1, 1, 1),
 (3, 'Salsa de tomate', 3, 100, 2, 1, 2),
 (4, 'Salsa Alfredo', 4, 80, 2, 1, 2),
 (5, 'Queso Parmesano', 8, 30, 3, 1, 3),
 (6, 'Queso Mozzarella', 7, 35, 3, 1, 3),
-(7, '', 0, 0, 0, 0, 1);
+(12, 'queso cremolatti', 4562, 123, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -388,13 +402,13 @@ ALTER TABLE `almacenista`
 -- AUTO_INCREMENT de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `deposito`
@@ -424,7 +438,7 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `vendedor`
