@@ -2,6 +2,8 @@ package Logica;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -85,6 +87,40 @@ public class Cliente extends Usuario{
 				
 			}
 			
+			 public boolean iniciarSesion() {
+			    	boolean validarContrasena = false;
+			        do {
+			         int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su cuit: "));
+			         String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+
+			            String sql = "SELECT * FROM `cliente` WHERE cuit = ? AND contraseña = ?";
+			            
+			            PreparedStatement stmt = null;
+			            ResultSet resultSet = null;
+
+			            try {
+			                stmt = conexion.prepareStatement(sql);
+			                stmt.setInt(1, cuit);
+			                stmt.setString(2, contra);
+			                resultSet = stmt.executeQuery();
+			                if (resultSet.next()) {
+			                    JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
+			                    validarContrasena = true;
+			                    resultSet.close();
+			                    stmt.close();
+			                } else {
+			                    JOptionPane.showMessageDialog(null, "Cuit o contraseña incorrectos");
+			                }
+			            } catch (Exception e) {
+			                JOptionPane.showMessageDialog(null, "Hubo un error: " + e.getMessage());
+			           }           
+			        } while (!validarContrasena);
+
+			        return validarContrasena;
+				      
+					
+			    }
+			
 			//EDITAR CLIENTE
 		    public boolean editarCliente(String id) {   	
 		    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?,`cuit`=?, `razonSocial`=?,`condicionIva`=?"
@@ -108,6 +144,24 @@ public class Cliente extends Usuario{
 		    		System.out.println("Hubo un error"+e.getMessage());
 		    		return false;
 		    	}
+		    }
+		    
+		    public void verCategorias() {
+		    	try {     	
+			           String sql ="SELECT * FROM `categoriaproducto`";
+			           PreparedStatement stmt = conexion.prepareStatement(sql);
+					   //stmt = conexion.prepareStatement(sql);
+					   ResultSet result = stmt.executeQuery();
+			                
+			            while (result.next()) {
+			                JOptionPane.showMessageDialog(null, "\nLas categorias son: "+result.getString("nombre"));
+			  
+			            } 
+			            conexion.close();   
+			            //JOptionPane.showMessageDialog(null, "no hay nada");
+			        } catch (SQLException ex) {
+			        	System.out.println("Error en la conexion");
+			        }  
 		    }
 		    
 			
