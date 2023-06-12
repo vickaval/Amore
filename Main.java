@@ -1,86 +1,107 @@
-import java.sql.Date;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import Datos.Administrador;
-import Logica.Almacenista;
-import Logica.Cliente;
-import Logica.Deposito;
-import Logica.MateriaPrima;
-import Logica.Operario;
-import Logica.Pastas;
-import Logica.Pedido;
-import Logica.Produccion;
-import Logica.Producto;
-import Logica.Proveedor;
-import Logica.Queso;
-import Logica.Salsa;
-import Logica.Vendedor;
-
-
-
+import Logica.*;
 
 public class Main {
 	public static void main(String[] args) {
 		
-		
-		String []is= {"Almacen", "Login Admin"};
+		String []is= {"Almacen", "Login Admin", "Cliente"};
         int ini = JOptionPane.showOptionDialog(null, "Bienvenido a Amore Pastas", "LOGIN",JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, is, is[0]);
         
-        /*SEBAS
-        if(ini == 0) {
-        	depo.loginAlmacenista();
-        	
-        	int eleccion;
-        	do {
-	    		Object[] opciones = {"Visualizar stock de materias primas", "Visualizar stock de productos", "Preparar pedidos", "Enviar pedidos", "Salir del programa"};
-	    	    eleccion = JOptionPane.showOptionDialog(null, "�Que accion desea realizar?", "Menu principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-	    	    switch (eleccion) {
-	    	        case 0:	    	        		
-	    	    		 ArrayList<MateriaPrima> materias = prod.getListaMPs();
-	    	             String mensaje = "Listado de Materias Primas: \n\n";
-	    	             for (MateriaPrima mp : materias) {
-	    	             	mensaje += "Codigo: " + mp.getIdMp() + " - " + "Nombre: " + mp.getNombre() +  " - " + "Stock: " + mp.getStockDisponible() + "\n";
-	    	             }
-	    	             JOptionPane.showMessageDialog(null, mensaje);
-	    	            break;
-	    	        case 1:    	    		
-	    	    		 ArrayList<Producto> productos = depo.getProductos();
-	    	             String mensaje1 = "Listado de Productos: \n\n";
-	    	             for (Producto produ : productos) {
-	    	             	mensaje1 += "Codigo: " + produ.getIdProducto() + " - " + "Nombre: " + produ.getNombre() +  " - " 
-	    	             + " tipo: " + produ.getTipo() + " - " + "Stock: " + produ.getCantidad() + "\n";
-	    	             }
-	    	             JOptionPane.showMessageDialog(null, mensaje1);
-	    	            break;
-	    	        case 2:
-	    	        	al.prepararPedido(depo,p);
-	    	        	JOptionPane.showMessageDialog(null, "Se preparo el pedido ");
-	    	            break;
-	    	        case 3:
-	    	        	al.EnviarPedido();
-	    	        	JOptionPane.showMessageDialog(null, "Se envia el pedido ");
-	    	        	//System.out.println(p.getProductos());
-	    	            break;
-	    	        case 4:
-	    	        	JOptionPane.showMessageDialog(null, "Fin de sesion ");
-	    	            break;
-	    	        default:
-	    	            JOptionPane.showMessageDialog(null, "Opcion no valida.");
-	    	            break;
-	    	    }
-	    	 	}while (eleccion !=4);
-	    	
-        	 	
-        	
-        	
-        	
-		} 
-        
-        */
-        if(ini == 1) {
+        if(ini==0) {
+        	String []roles = {"Operario","Almacenista"};
+			String opciones;
+			Operario o = new Operario("", "", "", "", 0, "","","",0,0);
+			MateriaPrima mp = new MateriaPrima(0,"","",0,0,0);
+			Producto p=new Producto(0,"",0,0,0,0,0);
+			Categoria c=new Categoria(0,"");
+			opciones= (String)JOptionPane.showInputDialog(null,"Tipo de usuario","Agregar usuario",JOptionPane.DEFAULT_OPTION,null, roles,roles);
+			
+			switch(opciones) {
+			   case "Operario":
+			    if(o.iniciarSesion()) {
+			     String []ope= {"Ingresar materia prima", "Eliminar materia prima", "Visualizar info materia prima",
+			       "Ingresar producto", "Eliminar producto", "Visualizar info productos", "Ingresar Categoria","Eliminar Categoria","Salir"}; 
+			     String seleccion;
+			     do {
+			      seleccion= (String) JOptionPane.showInputDialog(null,"Seleccione una opcion","Panel Operario",JOptionPane.DEFAULT_OPTION,null, ope,ope);
+			     
+			      switch(seleccion) {
+			      case "Ingresar materia prima":
+			       
+			      int idM=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id de la materia prima a ingresar: "));
+			         String nombreM=JOptionPane.showInputDialog(null, "ingrese el nombre de la materia prima: ");
+			         String procedencia=JOptionPane.showInputDialog(null, "indique la procedencia: ");
+			         double costo=Double.parseDouble(JOptionPane.showInputDialog(null, "ingrese el costo unitario de la materia prima a ingresar: "));
+			         int stock=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el stock disponible de la materia prima a ingresar: "));
+			         if(stock<=100) {
+			          do {
+			          stock=Integer.parseInt(JOptionPane.showInputDialog(null, "el stock debe ser superior a 100. Ingresele nuevamente: "));
+			          }while(stock<=100);
+			         }
+			         int idDepo=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id del deposito donde va a estar la materia prima: "));
+			         mp.setIdMp(idM);
+			         mp.setNombre(nombreM);
+			         mp.setProcedencia(procedencia);
+			         mp.setPrecio(costo);
+			         mp.setStockDisponible(stock);
+			         mp.setIdDepo(idDepo);
+			         mp.ingresarMateriaPrima();
+			      break;
+			      
+			      case "Eliminar materia prima":
+			       o.eliminarMateriaPrima();
+			       break;
+			      case "Visualizar info materia prima"://anda
+			       mp.visualizarStockMateriaPrima();
+			       break;
+			      case "Ingresar producto":
+			       
+			          String nombreP=JOptionPane.showInputDialog(null, "ingrese el nombre del producto: ");
+			          double precio=Double.parseDouble(JOptionPane.showInputDialog(null, "ingrese el precio final del producto ingresar: "));
+			          int cantidad=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el stock disponible del producto a ingresar: "));
+			          int idDepo2=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id del deposito donde va a estar el producto "));
+			          int producc=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id de producción donde va a estar el producto "));
+			          int idCate=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id de la categoria donde va a estar el producto "));
+			          
+			          p.setNombre(nombreP);
+			          p.setPrecio(precio);
+			          p.setCantidad(cantidad);
+			          p.setIdDepo(idDepo2);
+			          p.setIdProduccion(producc);
+			          p.setIdCategoria(idCate);
+			          
+			       p.agregarProducto();//setea todo 0 menos id y idcategoria
+			       
+			       break;
+			      case "Eliminar producto"://anda
+			       p.eliminarProducto();
+			       break;
+			      case "Visualizar info productos"://anda
+			       p.visualizarProductos();
+			       break;
+			      case "Ingresar Categoria"://anda
+			       String nombreC=JOptionPane.showInputDialog(null, "ingrese el nombre de la categoria nueva: ");
+			       c.setNombre(nombreC);
+			       
+			       c.agregarCategoria();
+			       break;
+			      case "Eliminar Categoria"://anda
+			       c.eliminarCategoria();
+			       break;
+			      case "Salir":
+			       JOptionPane.showMessageDialog(null, "Saliendo del sistema Amore Pastas \n¡Gracias por elegirnos!");
+			       break;
+			      default:
+			       break;
+			     }
+			     }while(!seleccion.equals("Salir"));
+			    }
+			    break;
+			   }
+				
+			}else if(ini==1) {
 			Administrador controlador = new Administrador("", "", "", "", 0, "");			
 		
 			controlador.loginAdministrador();
@@ -153,7 +174,7 @@ public class Main {
 		        String razonSocial = (String)JOptionPane.showInputDialog(null, "Ingrese razonSocial de cliente");
 		        String condicionIva = (String)JOptionPane.showInputDialog(null, "Ingrese condicionIva del cliente");
 
-		        
+		       
 		       if (controlador.verificar(nombre, apellido, contraseña)) {	
 		 
 		        Cliente nuevoCl = new Cliente(nombre, apellido, "0", "cliente", telefono, contraseña, cuit,razonSocial, condicionIva);	
@@ -535,6 +556,19 @@ public class Main {
 		
 		
 		}while(!opcion.equals("Salir"));
+	}else {
+        	Cliente c=new Cliente("", "", "", "", 0, "", 0, "", "");
+        	if(c.iniciarSesion()) {
+        		String []ope= {"Ver categorias de productos"};	
+				String seleccion;
+				seleccion= (String)JOptionPane.showInputDialog(null,"Cliente","Seleccione una opcion",JOptionPane.DEFAULT_OPTION,null, ope,ope);
+				switch(seleccion) {
+				case "Ver categorias de productos":
+					c.verCategorias();
+					break;
+				}
+        	}
+			
 	}
 
 	}
