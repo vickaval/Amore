@@ -88,33 +88,37 @@ public class MateriaPrima  {
 		
 		Connection conexion = con.conectar();
 		
-		PreparedStatement stmt;
-		
-		public boolean agregarMateriaPrima() {
-			String sql ="INSERT INTO `materiaprima`(`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES (?,?,?,?,?,?) ";
-			
-			try {
-				stmt = conexion.prepareStatement(sql);
-				stmt.setInt(1, this.getIdMp());
-				stmt.setString(2, this.getNombre());
-				stmt.setString(3, this.getProcedencia());
-				stmt.setDouble(4, this.getPrecio());
-				stmt.setInt(5, this.getStockDisponible());
-				stmt.setInt(6, this.getIdDepo());
-				stmt.executeUpdate();
-				conexion.close();
-				return true;
-				
-			} catch (Exception e) {
-				System.out.println("Hubo un error"+e.getMessage());
-				return false;
-			}
-		}
+		//PreparedStatement stmt;
+		 public boolean ingresarMateriaPrima() {
+		    	
+			 String sql ="INSERT INTO `materiaprima`( `idMp`,`nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`)"
+			 		+ "VALUES(?,?,?,?,?,?)";
+		    	try {
+		    		PreparedStatement stmt = conexion.prepareStatement(sql);
+		    		
+					stmt.setInt(1, this.getIdMp());
+					stmt.setString(2, this.getNombre());
+					stmt.setString(3, this.getProcedencia());
+					stmt.setDouble(4, this.getPrecio());
+					stmt.setInt(5, this.getStockDisponible());
+					stmt.setInt(6, this.getIdDepo());
+					stmt.executeUpdate();
+					stmt.close();
+					conexion.close();
+					JOptionPane.showMessageDialog(null, this.getNombre()+" ingresada correctamente");
+		    		return true;
+		    		
+		    	} catch (Exception e) {
+		    		System.out.println("Hubo un error"+e.getMessage());
+		    		return false;
+		    	}
+		 }
 		
 		public void visualizarStockMateriaPrima (){
 			try {     	
 		           String sql ="SELECT * FROM `materiaprima`";
-				   stmt = conexion.prepareStatement(sql);
+		           PreparedStatement stmt = conexion.prepareStatement(sql);
+				   //stmt = conexion.prepareStatement(sql);
 				   ResultSet result = stmt.executeQuery();
 		                
 		            while (result.next()) {
@@ -123,24 +127,12 @@ public class MateriaPrima  {
 		                System.out.println("\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n");
 		  
 		            } 
-		            conexion.close();        
+		            conexion.close();   
+		            //JOptionPane.showMessageDialog(null, "no hay nada");
 		        } catch (SQLException ex) {
 		        	System.out.println("Error en la conexion");
 		        }  
 		}
-		
-		
-		
-
-		/*
-		public void buscarMateriaPrima(int idMp){
-				boolean buscar=mps.contains(mp);
-				
-				if(buscar){
-					System.out.println(mp.toString());
-				}
-		}
-		*/
 
 
 	
