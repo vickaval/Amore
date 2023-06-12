@@ -17,12 +17,12 @@ public class Producto {
 	private double precio;
 	private int idDepo;
 	private int idProduccion;
-	private String tipo;
+	private int idCategoria;
 
 	
 
 	
-	public Producto(int idProducto, String nombre, double precio, int cantidad, int idDepo, int idProduccion, String tipo) {
+	public Producto(int idProducto, String nombre, double precio, int cantidad, int idDepo, int idProduccion, int idCategoria) {
 		super();
 		this.idProducto = idProducto;
 		this.nombre = nombre;		
@@ -30,7 +30,7 @@ public class Producto {
 		this.cantidad = cantidad;
 		this.idDepo = idDepo;
 		this.idProduccion = idProduccion;
-		this.tipo = tipo;
+		this.idCategoria = idCategoria;
 
 	}
 	
@@ -89,12 +89,12 @@ public class Producto {
 	public void setIdProduccion(int idProduccion) {
 		this.idProduccion = idProduccion;
 	}
-	public String getTipo() {
-		return tipo;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 
@@ -109,18 +109,20 @@ public class Producto {
 	
 
 	public boolean agregarProducto() {
-		String sql ="INSERT INTO `producto`(`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`) VALUES (?,?,?,?,?,?) ";
+		String sql ="INSERT INTO `producto`( `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`, `idCategoria`) VALUES (?,?,?,?,?,?) ";
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
-			stmt.setInt(1, this.getIdProducto());
-			stmt.setString(2, this.getNombre());
-			stmt.setDouble(3, this.getPrecio());
-			stmt.setDouble(4, this.getCantidad());
-			stmt.setInt(5, this.getIdDepo());
-			stmt.setInt(6, this.getIdProduccion());
+			
+			stmt.setString(1, this.getNombre());
+			stmt.setDouble(2, this.getPrecio());
+			stmt.setDouble(3, this.getCantidad());
+			stmt.setInt(4, this.getIdDepo());
+			stmt.setInt(5, this.getIdProduccion());
+			stmt.setInt(6, this.getIdCategoria());
 			stmt.executeUpdate();
 			conexion.close();
+			JOptionPane.showMessageDialog(null, this.getNombre()+" agregado correctamente");
 			return true;
 			
 		} catch (Exception e) {
@@ -148,11 +150,46 @@ public class Producto {
 	        	System.out.println("Error en la conexion");
 	        }  
 	}
+	
+	public boolean eliminarProducto() {
+	     int indice=Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el id del producto a eliminar"));
+	     String sql="DELETE FROM `producto` WHERE idProducto= ?";
+	     try {
+	      stmt = conexion.prepareStatement(sql);
+	      stmt.setInt(1, indice);
+	      stmt.executeUpdate();
+	      stmt.close();
+	      JOptionPane.showMessageDialog(null, this.getNombre()+" eliminado correctamente");
+	      return true;
+	     }catch (Exception e) {
+	      System.out.println("Hubo un error"+e.getMessage());
+	   return false;
+	  }
+	    }
+	
+	public void visualizarStockProducto (){
+		try {     	
+	           String sql ="SELECT * FROM `producto`";
+			   stmt = conexion.prepareStatement(sql);
+			   ResultSet result = stmt.executeQuery();
+	                
+	            while (result.next()) {
+	                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA productos:\n" + "\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nid de la categoria: " + result.getString("idCategoria")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + "\n"); 
+	                System.out.println("\n TODOS LOS REGISTROS DE LA TABLA materia prima:\n");
+	                System.out.println("\nID: " + result.getInt("idProducto") + " \nNOMBRE: " + result.getString("nombre") + " \nid de la categoria: " + result.getString("idCategoria")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("cantidad") + " \nidDepo: " + result.getString("idDepo") + "\n");
+	  
+	            } 
+	            conexion.close();   
+	            //JOptionPane.showMessageDialog(null, "no hay nada");
+	        } catch (SQLException ex) {
+	        	System.out.println("Error en la conexion");
+	        }  
+	}
 
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio="
-				+ precio + ", idDepo=" + idDepo + ", idProduccion=" + idProduccion + ", tipo=" + tipo + "]";
+				+ precio + ", idDepo=" + idDepo + ", idProduccion=" + idProduccion + ", categoria=" + idCategoria + "]";
 	}
 	
 	
