@@ -1,10 +1,16 @@
 package Logica;
 
 import Datos.Usuario;
+import Datos.Administrador;
 import Datos.Conexion;
+import Logica.MateriaPrima;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 public class Operario extends Usuario{
 
@@ -63,7 +69,8 @@ public class Operario extends Usuario{
 	
 	//metodos
     public boolean agregarOperario() {         	
-		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`turno`, `usuario`) VALUES (?,?,?,?,?,?,?,?,?, ?) ";
+		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, "
+				+ "`contraseña`, `sueldo`,`turno`, `usuario`) VALUES (?,?,?,?,?,?,?,?,?, ?) ";
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
@@ -79,6 +86,7 @@ public class Operario extends Usuario{
 			stmt.setString(10, this.getUsuario());	
 			stmt.executeUpdate();
 			conexion.close();
+			JOptionPane.showMessageDialog(null, this.getNombre()+" agregado correctamente");
 			return true;
 			
 		} catch (Exception e) {
@@ -114,9 +122,67 @@ public class Operario extends Usuario{
     		return false;
     	}
     }
+    
+    public boolean iniciarSesion() {
+    	boolean validarContrasena = false;
+        do {
+         String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre: ");
+         String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+
+            String sql = "SELECT * FROM `operario` WHERE nombre = ? AND contraseña = ?";
+            
+            PreparedStatement stmt = null;
+            ResultSet resultSet = null;
+
+            try {
+                stmt = conexion.prepareStatement(sql);
+                stmt.setString(1, nombre);
+                stmt.setString(2, contra);
+                resultSet = stmt.executeQuery();
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
+                    validarContrasena = true;
+                    resultSet.close();
+                    stmt.close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Hubo un error: " + e.getMessage());
+           }           
+        } while (!validarContrasena);
+
+        return validarContrasena;
+	      
+		
+    }
+    
+    public boolean eliminarMateriaPrima() {
+        int indice = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la materia prima a eliminar"));
+        String sql = "DELETE FROM `materiaprima` WHERE idMp = ?";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conexion.prepareStatement(sql);
+            stmt.setInt(1, indice);
+            stmt.executeUpdate();
+            stmt.close();
+            JOptionPane.showMessageDialog(null, this.getNombre()+" eliminada correctamente");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Hubo un error: " + e.getMessage());
+            return false;
+        }
+    }
+    
+   
+    	
+    	
+    	
+    }
 	
 
 
 
 
-}
+
