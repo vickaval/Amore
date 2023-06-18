@@ -90,7 +90,55 @@ public class MateriaPrima  {
 		
 		PreparedStatement stmt;
 		
-		public boolean agregarMateriaPrima() {//CHEUQEAR Y HECHO EN OPERARIO
+		 public boolean ingresarMateriaPrima() {
+		    	
+			 String sql ="INSERT INTO `materiaprima`( `idMp`,`nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`)"
+			 		+ "VALUES(?,?,?,?,?,?)";
+		    	try {
+		    		PreparedStatement stmt = conexion.prepareStatement(sql);
+		    		
+					stmt.setInt(1, this.getIdMp());
+					stmt.setString(2, this.getNombre());
+					stmt.setString(3, this.getProcedencia());
+					stmt.setDouble(4, this.getPrecio());
+					stmt.setInt(5, this.getStockDisponible());
+					stmt.setInt(6, this.getIdDepo());
+					stmt.executeUpdate();
+					stmt.close();
+					conexion.close();
+					JOptionPane.showMessageDialog(null, this.getNombre()+" ingresada correctamente");
+		    		return true;
+		    		
+		    	} catch (Exception e) {
+		    		System.out.println("Hubo un error"+e.getMessage());
+		    		return false;
+		    	}
+		 }
+		
+		public void visualizarStockMateriaPrima (){
+			try {     	
+		           String sql ="SELECT * FROM `materiaprima`";
+		           PreparedStatement stmt = conexion.prepareStatement(sql);
+				   //stmt = conexion.prepareStatement(sql);
+				   ResultSet result = stmt.executeQuery();
+		                
+		            while (result.next()) {
+		                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA materia prima:\n" + "\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n"); 
+		                System.out.println("\n TODOS LOS REGISTROS DE LA TABLA materia prima:\n");
+		                System.out.println("\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n");
+		  
+		            } 
+		            conexion.close();   
+		            //JOptionPane.showMessageDialog(null, "no hay nada");
+		        } catch (SQLException ex) {
+		        	System.out.println("Error en la conexion");
+		        }  
+		}
+		
+		
+		
+		
+		public boolean agregarMateriaPrima() {
 			String sql ="INSERT INTO `materiaprima`(`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES (?,?,?,?,?,?) ";
 			
 			try {
@@ -111,23 +159,7 @@ public class MateriaPrima  {
 			}
 		}
 		
-		public void visualizarStockMateriaPrima (){
-			try {     	
-		           String sql ="SELECT * FROM `materiaprima`";
-				   stmt = conexion.prepareStatement(sql);
-				   ResultSet result = stmt.executeQuery();
-		                
-		            while (result.next()) {
-		                JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA materia prima:\n" + "\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n"); 
-		                System.out.println("\n TODOS LOS REGISTROS DE LA TABLA materia prima:\n");
-		                System.out.println("\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n");
-		  
-		            } 
-		            conexion.close();        
-		        } catch (SQLException ex) {
-		        	System.out.println("Error en la conexion");
-		        }  
-		}
+		
 		
 		
 		
