@@ -2,15 +2,10 @@ package Logica;
 
 import Datos.Usuario;
 import Datos.Conexion;
-import Logica.MateriaPrima;
 
-import java.sql.ResultSet;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-
+import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
@@ -22,13 +17,7 @@ public class Operario extends Usuario{
 	private double sueldo;
 	
 	
-	Conexion con =  new Conexion();
-		
-	Connection conexion = con.conectar();
-	
-	PreparedStatement stmt;
-	
-	public Operario(String nombre, String apellido, int id, String usuario, int telefono, String contraseña,
+	public Operario(String nombre, String apellido, String id, String usuario, int telefono, String contraseña,
 			String turno, String nombreArea, int aniosAntiguedad, double sueldo) {
 		super(nombre, apellido, id, usuario, telefono, contraseña);
 		this.turno = turno;
@@ -67,21 +56,63 @@ public class Operario extends Usuario{
 		this.sueldo = sueldo;
 	}
 
+
+
+	Conexion con =  new Conexion();;
 	
-	//metodos. cheuqear
+	Connection conexion = con.conectar();
+	
+	PreparedStatement stmt;
+	
+	//metodos
+	 public boolean iniciarSesion() {
+	    	boolean validarContrasena = false;
+	        do {
+	         String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre: ");
+	         String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+
+	            String sql = "SELECT * FROM `operario` WHERE nombre = ? AND contraseña = ?";
+	            
+	            PreparedStatement stmt = null;
+	            ResultSet resultSet = null;
+
+	            try {
+	                stmt = conexion.prepareStatement(sql);
+	                stmt.setString(1, nombre);
+	                stmt.setString(2, contra);
+	                resultSet = stmt.executeQuery();
+	                if (resultSet.next()) {
+	                    JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
+	                    validarContrasena = true;
+	                    resultSet.close();
+	                    stmt.close();
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+	                }
+	            } catch (Exception e) {
+	                JOptionPane.showMessageDialog(null, "Hubo un error: " + e.getMessage());
+	           }           
+	        } while (!validarContrasena);
+
+	        return validarContrasena;
+		      
+			
+	    }
+	 
+	 
     public boolean agregarOperario() {         	
-		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`,`contraseña`, `sueldo`,`turno`) VALUES (?,?,?,?,?,?,?,?,?,?) ";
+		String sql ="INSERT INTO `operario`(`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `contraseña`, `sueldo`,`turno`, `usuario`) VALUES (?,?,?,?,?,?,?,?,?, ?) ";
 		
 		try {
 			stmt = conexion.prepareStatement(sql);
-			stmt.setInt(1, this.getId());
+			stmt.setString(1, this.getId());
 			stmt.setString(2, this.getNombre());
 			stmt.setString(3, this.getApellido());
 			stmt.setString(4, this.getNombreArea());
 			stmt.setInt(5, this.getAniosAntiguedad());
 			stmt.setInt(6, this.getTelefono());
 			stmt.setString(7, this.getContraseña());					
-			stmt.setDouble(8, this.getSueldo());// es double
+			stmt.setDouble(8, this.getSueldo());
 			stmt.setString(9, this.getTurno());		
 			stmt.setString(10, this.getUsuario());	
 			stmt.executeUpdate();
@@ -92,80 +123,54 @@ public class Operario extends Usuario{
 			System.out.println("Hubo un error"+e.getMessage());
 			return false;
 		}
-	}
-
-	public void ingresarMateriaPrima(MateriaPrima mp) {//error en metodo
-
-		if(mp.getStockDisponible()>=100){
-			String sql ="INSERT INTO `materiaprima`(`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES (?,?,?,?,?,?) ";
-			
-			try {
-				stmt = conexion.prepareStatement(sql);
-				stmt.setInt(1, this.getIdMp());
-				stmt.setString(2, this.getNombre());
-				stmt.setString(3, this.getProcedencia());
-				stmt.setDouble(4, this.getPrecio());
-				stmt.setInt(5, this.getStockDisponible());
-				stmt.setInt(6, this.getIdDepo());
-				stmt.executeUpdate();
-				conexion.close();
-				return true;
-				
-			} catch (Exception e) {
-				System.out.println("Hubo un error"+e.getMessage());
-				return false;
-			}
-
-		}else{
-			JOptionPane.showMessageDialog(null, "stock insuficiente, debe ser mayor a 100");
-		}
 		
 	}
+    
 
-	public void visualizarInfoMateriaPrima (){//metodo orignal materia prima VERIFICAR
-		try {     	
-			   String sql ="SELECT * FROM `materiaprima`";
-			   stmt = conexion.prepareStatement(sql);
-			   ResultSet result = stmt.executeQuery();
-					
-				while (result.next()) {
-					JOptionPane.showMessageDialog(null, "\nTODOS LOS REGISTROS DE LA TABLA materia prima:\n" + "\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n"); 
-					System.out.println("\n TODOS LOS REGISTROS DE LA TABLA materia prima:\n");
-					System.out.println("\nID: " + result.getInt("idMp") + " \nNOMBRE: " + result.getString("nombre") + " \nPROCEDENCIA: " + result.getString("procedencia")+ " \nPRECIO: " + result.getDouble("precio") + " \nstockDisponible: " + result.getString("stockDisponible") + " \nidDepo: " + result.getString("idDepo") + "\n");
-	  
-				} 
-				conexion.close();        
-			} catch (SQLException ex) {
-				System.out.println("Error en la conexion");
-			}  
-	}
+	//EDITAR OPERARIO
+    public boolean editarOperario(String id) {   	
+    	String sql ="UPDATE `operario` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?,`turno`=?, `nombreArea`=?,`aniosAntiguedad`=?,`sueldo`=?"
+    			+ "WHERE id = ?";	
+    	try {
+    		stmt = conexion.prepareStatement(sql);
+    		stmt.setString(1, this.getId());
+			stmt.setString(2, this.getNombre());
+			stmt.setString(3, this.getApellido());
+			stmt.setString(4, this.getUsuario());
+			stmt.setLong(5, this.getTelefono());
+			stmt.setString(6, this.getContraseña());				
+			stmt.setString(7, this.getTurno());
+			stmt.setString(8, this.getNombreArea());
+			stmt.setInt(9, this.getAniosAntiguedad());
+			stmt.setDouble(10, this.getSueldo());
+			stmt.executeUpdate();
+			conexion.close();
+    		return true;
+    		
+    	} catch (Exception e) {
+    		System.out.println("Hubo un error"+e.getMessage());
+    		return false;
+    	}
+    }
+    
+    
+    public boolean eliminarMateriaPrima() {
+        int indice = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la materia prima a eliminar"));
+        String sql = "DELETE FROM `materiaprima` WHERE idMp = ?";
+        PreparedStatement stmt = null;
 
-	public void producirMercaderia(){//chequer. cambie la estructura en totalproducido por double y no olvidarse de las validaciones
-		int idProduccion, idOperario=0;
-		double total=0;
-		String fechaProduccion=null;
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String f = sdf.format(fechaProduccion);//elimine una columna en produccion que estaba de mas
-
-		idProduccion=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id de la produccion"));
-		idOperario=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del operario "));
-		total=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el total de lo producido "));
-		fechaProduccion=JOptionPane.showInputDialog(null, "Ingrese la fecha de la produccion: ");
-
-		String sql ="INSERT INTO `produccion`(`idProduccion`, `fechaProduccion`, `totalProducido`, `idOperario`) VALUES (?,?,?,?) ";
-		stmt = conexion.prepareStatement(sql);
-		stmt.setInt(1, idProduccion);
-		stmt.setDate(2, f);
-		stmt.setDouble(3, total);
-		stmt.setInt(4, idOperario);
-	}
-
-	public void buscarMateriaPrima(String nombreMP){//chequear
-		String sql= "SELECT * FROM materiaprima WHERE nombre=nombreMP";
-		JOptionPane.showMessageDialog(null,sql);
-	}
-	
+        try {
+            stmt = conexion.prepareStatement(sql);
+            stmt.setInt(1, indice);
+            stmt.executeUpdate();
+            stmt.close();
+            JOptionPane.showMessageDialog(null, this.getNombre()+" eliminada correctamente");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Hubo un error: " + e.getMessage());
+            return false;
+        }
+    }
 	
 
 
