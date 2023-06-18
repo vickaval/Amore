@@ -2,6 +2,8 @@ package Logica;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -15,7 +17,7 @@ public class Cliente extends Usuario{
 	    private String condicionIva;
 	    
 	    
-			public Cliente(String nombre, String apellido, int id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
+			public Cliente(String nombre, String apellido, String id, String usuario, int telefono, String contraseña, int cuit, String razonSocial,
 				String condicionIva) {
 			super(nombre, apellido, id, usuario, telefono, contraseña);
 			this.cuit = cuit;
@@ -65,7 +67,7 @@ public class Cliente extends Usuario{
 				
 				try {
 					stmt = conexion.prepareStatement(sql);
-					stmt.setInt(1, this.getId());
+					stmt.setString(1, this.getId());
 					stmt.setString(2, this.getNombre());
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getContraseña());
@@ -86,15 +88,12 @@ public class Cliente extends Usuario{
 			}
 			
 			//EDITAR CLIENTE
-		    public boolean editarCliente(String id) {
-		    	
-		    	
+		    public boolean editarCliente(String id) {   	
 		    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?,`usuario`=?, `telefono`=?,`contraseña`=?,`cuit`=?, `razonSocial`=?,`condicionIva`=?"
-		    			+ "WHERE id = ?";
-		    	
+		    			+ "WHERE `id` = ?";	
 		    	try {
 		    		stmt = conexion.prepareStatement(sql);
-		    		stmt.setInt(1, this.getId());
+		    		stmt.setString(1, this.getId());
 					stmt.setString(2, this.getNombre());
 					stmt.setString(3, this.getApellido());
 					stmt.setString(4, this.getUsuario());
@@ -112,13 +111,67 @@ public class Cliente extends Usuario{
 		    		return false;
 		    	}
 		    }
-					
+		    
 			
-		    public void realizarPedido(){
-		        //faltan clases para hacer correctamente el metodo como Pedido
-		        System.out.println("Bienvenido " + getNombre() +  " seleccione lo que va a pedir y la cantidad: ");
-		        
+		    
+		    public boolean iniciarSesion() {
+		    	boolean validarContrasena = false;
+		        do {
+		         int cuit = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su cuit: "));
+		         String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+
+		            String sql = "SELECT * FROM `cliente` WHERE cuit = ? AND contraseña = ?";
+		            
+		            PreparedStatement stmt = null;
+		            ResultSet resultSet = null;
+
+		            try {
+		                stmt = conexion.prepareStatement(sql);
+		                stmt.setInt(1, cuit);
+		                stmt.setString(2, contra);
+		                resultSet = stmt.executeQuery();
+		                if (resultSet.next()) {
+		                    JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
+		                    validarContrasena = true;
+		                    resultSet.close();
+		                    stmt.close();
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "Cuit o contraseña incorrectos");
+		                }
+		            } catch (Exception e) {
+		                JOptionPane.showMessageDialog(null, "Hubo un error: " + e.getMessage());
+		           }           
+		        } while (!validarContrasena);
+
+		        return validarContrasena;
+			      
+				
 		    }
+		    
+		    
+		    
+		    public void verCategorias() {
+		    	try {     	
+			           String sql ="SELECT * FROM `categoriaproducto`";
+			           PreparedStatement stmt = conexion.prepareStatement(sql);
+					   //stmt = conexion.prepareStatement(sql);
+					   ResultSet result = stmt.executeQuery();
+			                
+			            while (result.next()) {
+			                JOptionPane.showMessageDialog(null, "\nLas categorias son: "+result.getString("nombre"));
+			  
+			            } 
+			            conexion.close();   
+			            //JOptionPane.showMessageDialog(null, "no hay nada");
+			        } catch (SQLException ex) {
+			        	System.out.println("Error en la conexion");
+			        }  
+		    }
+		    
+			
+		
+
+		
 		    
 		    
 		
