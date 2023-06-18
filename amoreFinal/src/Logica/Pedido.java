@@ -1,6 +1,7 @@
 package Logica;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Pedido {
 	
@@ -10,20 +11,24 @@ public class Pedido {
 	Date fecha;
 	int idCliente;
 	int idVendedor;
-	int estado;	
+	
 	String formaPago;
 	
+
+	ArrayList <Producto> productos;
+
 	
+
 	
-	public Pedido(int idPedido, double descuento, double total, Date fecha, int idCliente, int idVendedor, int estado, String formaPago) {
+	public Pedido(int idPedido, double descuento, double total, Date fecha, int idCliente, int idVendedor, String formaPago, ArrayList<Producto> productos) {
 		this.idPedido = idPedido;
 		this.descuento = descuento;
 		this.total = total;
 		this.fecha = fecha;
 		this.idCliente = idCliente;
 		this.idVendedor = idVendedor;
-		this.estado = estado;
 		this.formaPago = formaPago;
+		this.productos = productos;
 	}
 	
 	public Pedido() {
@@ -85,14 +90,6 @@ public class Pedido {
 		this.idVendedor = idVendedor;
 	}
 
-	public int getEstado() {
-		return estado;
-	}
-
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
-
 	public String getFormaPago() {
 		return formaPago;
 	}
@@ -100,13 +97,20 @@ public class Pedido {
 	public void setFormaPago(String formaPago) {
 		this.formaPago = formaPago;
 	}
+	
 
-	
-	
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
+	}
+
 	@Override
 	public String toString() {
 		return "Pedido [idPedido=" + idPedido + ", descuento=" + descuento + ", total=" + total + ", fecha=" + fecha
-				+ ", idCliente=" + idCliente + ", idVendedor=" + idVendedor + ", estado=" + estado + ", formaPago="
+				+ ", idCliente=" + idCliente + ", idVendedor=" + idVendedor + ", formaPago="
 				+ formaPago + "]";
 	}
 
