@@ -1,8 +1,12 @@
 package UI;
 
+import java.awt.EventQueue;
+
 import javax.swing.JOptionPane;
 
 import Datos.Administrador;
+import JFrame.Admin;
+import JFrame.Menu;
 import Logica.Almacenista;
 import Logica.Categoria;
 import Logica.Cliente;
@@ -14,10 +18,33 @@ import Logica.Vendedor;
 
 
 
-public class Main {
+
+public class Main extends Menu{
+	
+	
+	public void run() {
+			try {
+				Main frame = new Main();
+				frame.setVisible(true);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	public static void main(String[] args) {
 		
-	
+
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Main frame = new Main();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+
 		
 		Administrador controlador = new Administrador("", "", "", "", 0, ""); 
 	     
@@ -165,7 +192,7 @@ public class Main {
 				        System.exit(0);
 				    }
 				    break;
-			}
+			
 
 
         	
@@ -174,10 +201,10 @@ public class Main {
 		
 		
 		
+			}
 		
 		
-		
-        if(ini == 1) {
+			}else if(ini == 1) {
 		
 			
 			
@@ -648,7 +675,7 @@ public class Main {
 		
 		
 		}while(!opcion.equals("Salir"));
-	}
+	
 
         
         
@@ -656,7 +683,7 @@ public class Main {
         
         
         //CLIENTE
-        if(ini == 2) {
+	}else  if(ini == 2) {
         	Cliente cl=new Cliente("", "", "", "", 0, "", 0, "", "");
         	if(cl.iniciarSesion()) {
         		String []ope= {"Ver categorias de productos"};	
@@ -678,8 +705,9 @@ public class Main {
 
 
 
+			
         
-	}
+	
 	
 	}
 	
