@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 public class metodosOperario extends JFrame {
     private JComboBox<String>[] comboBoxes;
 
-    public visualizarMateriaPrima() {
-        setTitle("Opciones");
+    public metodosOperario() {
+        setTitle("Funcionalidades Operario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -38,6 +38,20 @@ public class metodosOperario extends JFrame {
         comboBox.addItem("Ingresar categoria");
         comboBox.addItem("Eliminar categoria");
         comboBox.addItem("Editar categoria");
+        
+        JButton btnNewButton = new JButton("Confirmar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	int opcion=comboBox.getSelectedIndex();
+        	switch(opcion) {
+        	case 1:
+        		JOptionPane.showMessageDialog(btnNewButton, "opcion eliminar");
+        		break;
+        	}
+        	}
+        });
+        btnNewButton.setBounds(256, 227, 118, 23);
+        panel.add(btnNewButton);
 
         // Display the frame
         setVisible(true);
