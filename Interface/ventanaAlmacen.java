@@ -1,4 +1,5 @@
 package Interface;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -52,10 +53,10 @@ public class VentanaAlmacen extends JFrame {
 	 */
 	public VentanaAlmacen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 256);
 		setTitle("Almacen");
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground(new Color(192, 192, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -65,17 +66,19 @@ public class VentanaAlmacen extends JFrame {
 		txtpnSeleccioneUnRol.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtpnSeleccioneUnRol.setBackground(Color.LIGHT_GRAY);
 		txtpnSeleccioneUnRol.setText("Seleccione un rol");
-		txtpnSeleccioneUnRol.setBounds(172, 11, 128, 36);
+		txtpnSeleccioneUnRol.setBounds(155, 42, 128, 36);
 		contentPane.add(txtpnSeleccioneUnRol);
 		
 		JButton btnNewButton = new JButton("Almacenista");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ventanaAlmacenista va = new ventanaAlmacenista();
+				va.setVisible(true);
 			}
 		});
 		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(52, 77, 145, 36);
+		btnNewButton.setBounds(44, 112, 145, 36);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Operario");
@@ -88,9 +91,8 @@ public class VentanaAlmacen extends JFrame {
 		});
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(251, 77, 148, 36);
+		btnNewButton_1.setBounds(251, 112, 148, 36);
 		contentPane.add(btnNewButton_1);;
 		
 	}
 }
-

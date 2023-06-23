@@ -1,8 +1,6 @@
 package Interface;
-import javax.swing.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
+import javax.swing.*;
 
 import Datos.Conexion;
 
@@ -16,7 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class VentanaAdministrador extends JFrame {//no anda
+public class ventanaAlmacenista extends JFrame {
     private JTextField textField1;
     private JTextField textField2;
     
@@ -25,10 +23,10 @@ Conexion con =  new Conexion();;
 	Connection conexion = con.conectar();
 	
 
-    public VentanaAdministrador() {
+    public ventanaAlmacenista() {
         setTitle("Inicio de sesion");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 172);
+        setSize(300, 168);
         setLocationRelativeTo(null);
 
         // Create the text fields
@@ -39,15 +37,20 @@ Conexion con =  new Conexion();;
 
         // Create the sign up button
         JButton signUpButton = new JButton("Iniciar sesion");
-        signUpButton.setBounds(123, 84, 126, 23);
+        signUpButton.setBounds(123, 88, 126, 23);
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text1 = textField1.getText();
                 String text2 = textField2.getText();
+               // saveTextToFile(text1, text2);
+                //JOptionPane.showMessageDialog(VentanaOperario.this, "Text saved to file!");
                 boolean validarContrasena = false;
                 do {
-                    String sql = "SELECT * FROM `administrador` WHERE nombre = ? AND contraseña = ?";
+                // String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre: ");
+                // String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
+
+                    String sql = "SELECT * FROM `almacenista` WHERE nombre = ? AND contraseña = ?";
                     
                     PreparedStatement stmt = null;
                     ResultSet resultSet = null;
@@ -58,9 +61,10 @@ Conexion con =  new Conexion();;
                         stmt.setString(2, text2);
                         resultSet = stmt.executeQuery();
                         if (resultSet.next()) {
-                            JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
-                            metodosAdministrador ma = new metodosAdministrador();
-                            ma.setVisible(true);
+                            //JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
+                        	metodosAlmacenista mo = new metodosAlmacenista();
+                        	//visualizarMateriaPrima vmp=new visualizarMateriaPrima();
+                        	mo.setVisible(true);
                             validarContrasena = true;
                             resultSet.close();
                             stmt.close();
@@ -82,13 +86,13 @@ Conexion con =  new Conexion();;
         JPanel panel = new JPanel();
         panel.setLayout(null);
         JLabel lblNombre = new JLabel("Nombre");
-        lblNombre.setBounds(25, 23, 64, 14);
+        lblNombre.setBounds(20, 23, 64, 14);
         lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
         panel.add(lblNombre);
         panel.add(textField1);
         JLabel lblContrasea = new JLabel("Contrase\u00F1a");
         lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblContrasea.setBounds(25, 54, 103, 14);
+        lblContrasea.setBounds(20, 54, 103, 14);
         panel.add(lblContrasea);
         panel.add(textField2);
         panel.add(signUpButton);
@@ -105,10 +109,8 @@ Conexion con =  new Conexion();;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new VentanaOperario();
-                //new VentanaAdministrador();
+                new ventanaAlmacenista();
             }
         });
     }
 }
-

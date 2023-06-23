@@ -81,4 +81,3 @@ public class metodosOperario extends JFrame {
         });
     }
 }
-

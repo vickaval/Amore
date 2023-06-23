@@ -44,7 +44,7 @@ Conexion con =  new Conexion();;
                 String text2 = textField2.getText();
                 boolean validarContrasena = false;
                 do {
-                    String sql = "SELECT * FROM `cliente` WHERE razonSocial = ? AND contraseña = ?";
+                    String sql = "SELECT * FROM `cliente` WHERE nombre = ? AND contraseña = ?";
                     
                     PreparedStatement stmt = null;
                     ResultSet resultSet = null;
@@ -76,7 +76,7 @@ Conexion con =  new Conexion();;
         // Create a panel to hold the components
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        JLabel lblNombre = new JLabel("Cuit:");
+        JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(10, 8, 64, 14);
         lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
         panel.add(lblNombre);
@@ -105,5 +105,4 @@ Conexion con =  new Conexion();;
         });
     }
 }
-
 

@@ -35,6 +35,7 @@ Conexion con =  new Conexion();;
         textField2.setBounds(123, 53, 126, 20);
 
         // Create the sign up button
+       
         JButton signUpButton = new JButton("Iniciar sesion");
         signUpButton.setBounds(173, 88, 111, 23);
         signUpButton.addActionListener(new ActionListener() {
@@ -42,13 +43,8 @@ Conexion con =  new Conexion();;
             public void actionPerformed(ActionEvent e) {
                 String text1 = textField1.getText();
                 String text2 = textField2.getText();
-               // saveTextToFile(text1, text2);
-                //JOptionPane.showMessageDialog(VentanaOperario.this, "Text saved to file!");
                 boolean validarContrasena = false;
                 do {
-                // String nombre = JOptionPane.showInputDialog(null, "Ingrese su nombre: ");
-                // String contra = JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
-
                     String sql = "SELECT * FROM `operario` WHERE nombre = ? AND contraseña = ?";
                     
                     PreparedStatement stmt = null;
@@ -61,7 +57,7 @@ Conexion con =  new Conexion();;
                         resultSet = stmt.executeQuery();
                         if (resultSet.next()) {
                             //JOptionPane.showMessageDialog(null, "Se inició correctamente la sesión");
-                        	visualizarMateriaPrima vmp=new visualizarMateriaPrima();
+                        	metodosOperario vmp=new metodosOperario();
                         	vmp.setVisible(true);
                             validarContrasena = true;
                             resultSet.close();
@@ -112,5 +108,4 @@ Conexion con =  new Conexion();;
         });
     }
 }
-
 
