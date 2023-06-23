@@ -67,6 +67,10 @@ public class metodosOperario extends JFrame {
         		visualizarInfoProductos vip=new visualizarInfoProductos();
         		vip.setVisible(true);
         		break;
+            case 6:
+        		ingresarC ic=new ingresarC();
+        		ic.setVisible(true);
+        		break;
         	}
         	}
         });
