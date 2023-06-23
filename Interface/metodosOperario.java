@@ -44,9 +44,25 @@ public class metodosOperario extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	int opcion=comboBox.getSelectedIndex();
         	switch(opcion) {
-        	case 1:
-        		JOptionPane.showMessageDialog(btnNewButton, "opcion eliminar");
+        	case 0:
+        		ingresarMateriaPrima imp=new ingresarMateriaPrima();
+        		imp.setVisible(true);
         		break;
+        	case 1:
+        		eliminarMateriaPrima emp=new eliminarMateriaPrima();
+        		emp.setVisible(true);
+        		break;
+        	case 2:
+        		visualizarInfoMP vim=new visualizarInfoMP();//no se visualiza bien
+        		vim.setVisible(true);
+        		break;
+        	case 3:
+        		ingresarProducto ip=new ingresarProducto();
+        		ip.setVisible(true);
+        		break;
+        	case 4:
+        		
+        	
         	}
         	}
         });
