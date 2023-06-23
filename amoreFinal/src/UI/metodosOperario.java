@@ -60,7 +60,9 @@ public class metodosOperario extends JFrame {
         		ip.setVisible(true);
         		break;
         	case 4:
-        		
+        		eliminarProducto ep=new eliminarProducto();
+        		ep.setVisible(true);
+        		break;
         	
         	}
         	}
