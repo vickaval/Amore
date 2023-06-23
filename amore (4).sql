@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2023 a las 19:03:52
+-- Tiempo de generación: 17-06-2023 a las 01:07:08
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -39,6 +39,13 @@ CREATE TABLE `administrador` (
   `sueldo` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`, `contraseña`, `sueldo`) VALUES
+(1, 'victoria', 'valerio', 'administrador', 7, 1234567891, 'administrador', '12345678', '302578');
+
 -- --------------------------------------------------------
 
 --
@@ -64,7 +71,7 @@ CREATE TABLE `almacenista` (
 
 INSERT INTO `almacenista` (`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`, `contraseña`, `sueldo`, `idDepo`) VALUES
 (1, 'pablo', 'patos', 'repositor', 5, 46546565, 'almacenista', '12345pablo', '103458.0', 1),
-(2, 'ramiro', 'lertora', 'hola', 4, 5465465, 'almacenista', '546546rama', '102458.0', 1);
+(2, 'ramiro', 'lertora', 'pedidos', 4, 456987321, 'alma', '546546rama', '102458.0', 1);
 
 -- --------------------------------------------------------
 
@@ -76,6 +83,13 @@ CREATE TABLE `categoriaproducto` (
   `idCategoria` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoriaproducto`
+--
+
+INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`) VALUES
+(8, 'salsas');
 
 -- --------------------------------------------------------
 
@@ -100,15 +114,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `razonSocial`, `condicionIVA`, `cuit`, `nombre`, `apellido`, `telefono`, `usuario`, `contraseña`) VALUES
-(1, 'hola', 'hola', 1254, 'pedro', 'pepe', 5546546, 'cliente', '123456789'),
-(2, 'hola', 'hola', 1254, 'hilda', 'pedro', 546546, 'cliente', '123456789'),
-(4, 'hola', 'quetal', 12345, 'julieta', 'ruiz', 6546546, 'cliente', '54545juli'),
-(5, 'holass', 'quehaceee', 123456, 'lautaro', 'fernandez', 6465465, 'cliente', '5454lauti'),
-(6, 'este', 'van', 123698, 'esteban', 'quito', 6465465, 'cliente', '545465esteban'),
-(7, 'hola', 'hola', 12345, 'maria', 'lopez', 65465, 'cliente', '54654'),
-(8, 'hola', 'asasa', 12345, 'sofia', 'castro', 1234567891, 'cliente', '554'),
-(9, 'hola', 'asasa', 12345, 'carlos', 'baker', 12345678, 'cliente', '6545664'),
-(10, 'hola', 'asasa', 1234, 'paloma', 'pajaro', 123456, 'cliente', '5465');
+(11, 'raazon', 'iva', 12345, 'julieta', 'ruiz', 1234567891, 'cliente', '123456jr');
 
 -- --------------------------------------------------------
 
@@ -136,6 +142,13 @@ CREATE TABLE `materiaprima` (
   `idDepo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `materiaprima`
+--
+
+INSERT INTO `materiaprima` (`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES
+(5, 'oregano', 'san luis', 450, 120, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -161,9 +174,9 @@ CREATE TABLE `operario` (
 
 INSERT INTO `operario` (`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`, `contraseña`, `sueldo`, `turno`) VALUES
 (1, 'claudio', 'pepper', 'produccion', 6, 1125478963, 'operario', '1234567clau', '125478.0', 'mañana'),
-(3, 'greta', 'panser', 'mezcla', 4, 1125478693, 'operario', '12345698gret', '102458.0', 'medio dia'),
-(4, 'pedro', 'carlos', 'repositor', 6, 6546546, 'operario', '5454carlos', '103456.0', 'mañana'),
-(5, 'juan', 'arturo', 'repositor', 6, 6546, 'operario', '5465', '102458.0', 'mañana');
+(2, 'greta', 'panser', 'mezcla', 4, 1125478693, 'operario', '12345698gret', '102458.0', 'noche'),
+(3, 'pedro', 'carlos', 'repositor', 6, 6546546, 'operario', '5454carlos', '103456.0', 'tarde'),
+(4, 'matias', 'robledo', 'produccion', 5, 1234569871, 'operario', '123456ma', '102453.0', 'mañana');
 
 -- --------------------------------------------------------
 
@@ -180,6 +193,41 @@ CREATE TABLE `pedido` (
   `idCliente` int(11) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idPedido`, `descuento`, `total`, `formaPago`, `idVendedor`, `idCliente`, `estado`) VALUES
+(1, 11, 50, 'Efectivo', 1, 1, 0),
+(2, 0, 76, 'Tarjeta de ', 2, 3, 0),
+(3, 5, 120, 'Transferenc', 1, 2, 0),
+(4, 0, 26, 'Efectivo', 3, 4, 0),
+(5, 9, 96, 'Tarjeta de ', 2, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido_producto`
+--
+
+CREATE TABLE `pedido_producto` (
+  `idPedido` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido_producto`
+--
+
+INSERT INTO `pedido_producto` (`idPedido`, `idProducto`, `cantidad`) VALUES
+(1, 5, 10),
+(2, 1, 1),
+(3, 3, 1),
+(3, 4, 1),
+(4, 4, 1),
+(5, 6, 15);
 
 -- --------------------------------------------------------
 
@@ -211,6 +259,20 @@ CREATE TABLE `producto` (
   `idCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, `idProduccion`, `idCategoria`) VALUES
+(1, 'Espaguetis', 6, 49, 1, 1, 1),
+(2, 'Fusilli', 5, 40, 1, 1, 1),
+(3, 'Salsa de tomate', 3, 99, 2, 1, 2),
+(4, 'Salsa Alfredo', 4, 79, 2, 1, 2),
+(5, 'Queso Parmesano', 8, 20, 3, 1, 3),
+(6, 'Queso Mozzarella', 7, 20, 3, 1, 3),
+(7, 'raviol', 254, 36, 1, 1, 1),
+(8, 'sorrentino', 45, 8, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -219,7 +281,7 @@ CREATE TABLE `producto` (
 
 CREATE TABLE `proveedor` (
   `cuit` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
   `montoComprado` decimal(10,0) DEFAULT NULL,
   `deuda` decimal(9,2) NOT NULL,
   `materialesQueProvee` varchar(60) NOT NULL
@@ -230,8 +292,10 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`cuit`, `nombre`, `montoComprado`, `deuda`, `materialesQueProvee`) VALUES
+(12536, 'alda', 14589, 0.00, 'fiambre'),
+(12345, 'esmeralda', 25789, 1200.00, 'harina'),
 (12345, 'manolete', 25478, 20145.00, 'harina'),
-(12536, 'alda', 14589, 0.00, 'fiambre');
+(12345, 'ramona', 12546, 1200.00, 'tomate');
 
 -- --------------------------------------------------------
 
@@ -267,7 +331,9 @@ CREATE TABLE `vendedor` (
 --
 
 INSERT INTO `vendedor` (`id`, `nombre`, `apellido`, `nombreArea`, `aniosAntiguedad`, `telefono`, `usuario`, `contraseña`, `sueldo`) VALUES
-(1, 'alda', 'rivera', 'ventas', 4, 6646546, 'vendedor', '1234alda', '102345.0');
+(1, 'alda', 'rivera', 'ventas', 4, 456789123, 'vendedor', '1234alda', '102345.0'),
+(2, 'julio', 'aguirre', 'ventas', 5, 1234567897, 'vendedor', '12345', '123456.0'),
+(3, 'pablo', 'esquivel', 'ventas', 9, 1234567891, 'vendedor', '12345', '123789.0');
 
 --
 -- Índices para tablas volcadas
@@ -337,7 +403,7 @@ ALTER TABLE `producto`
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`cuit`);
+  ADD PRIMARY KEY (`nombre`);
 
 --
 -- Indices de la tabla `proveedor_x_materiaprima`
@@ -359,7 +425,7 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `almacenista`
@@ -371,13 +437,13 @@ ALTER TABLE `almacenista`
 -- AUTO_INCREMENT de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `deposito`
@@ -389,13 +455,13 @@ ALTER TABLE `deposito`
 -- AUTO_INCREMENT de la tabla `operario`
 --
 ALTER TABLE `operario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `produccion`
@@ -407,13 +473,13 @@ ALTER TABLE `produccion`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

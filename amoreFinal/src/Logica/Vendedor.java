@@ -2,8 +2,10 @@ package Logica;
 
 	import java.sql.Connection;
     import java.sql.PreparedStatement;
-	
-	import Datos.Usuario;
+
+import javax.swing.JOptionPane;
+
+import Datos.Usuario;
 	import Datos.Conexion;
 
 	public class Vendedor extends Usuario {
@@ -89,6 +91,38 @@ package Logica;
 				return false;
 			}
 		}
+		
+		
+		
+		//EDITAR VENDEDOR
+	    public boolean editarVendedor(String id) { 	    	
+	    	String sql ="UPDATE `cliente` SET `nombre`=?,`apellido`=?, `id`=?,`usuario`=?, `telefono`=?,`contraseña`=?, `nombreArea`=?,`aniosAntiguedad`=?,`sueldo`=?"
+	    			+ "WHERE `id` = ?";	
+	    	try {
+	    		stmt = conexion.prepareStatement(sql);
+	    		stmt.setString(1, this.getId());
+				stmt.setString(2, this.getNombre());
+				stmt.setString(3, this.getApellido());
+				stmt.setString(4, this.getUsuario());
+				stmt.setLong(5, this.getTelefono());
+				stmt.setString(6, this.getContraseña());				
+				stmt.setString(7, this.getNombreArea());
+				stmt.setInt(8, this.getAniosAntiguedad());
+				stmt.setInt(9, this.getTelefono());
+				stmt.setString(10, this.getContraseña());					
+				stmt.setDouble(11, this.getSueldo());							
+				stmt.executeUpdate();
+				conexion.close();
+	    		return true;
+	    		
+	    		
+	    	} catch (Exception e) {
+	    		System.out.println("Hubo un error"+e.getMessage());
+	    		return false;
+	    	}
+	    	
+	    	
+	    }
 	
 		
 		/*

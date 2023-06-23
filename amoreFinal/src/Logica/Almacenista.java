@@ -2,7 +2,9 @@ package Logica;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 
 import Datos.Conexion;
 import Datos.Usuario;
@@ -13,18 +15,12 @@ public class Almacenista extends Usuario {
 		private int aniosAntiguedad;
 		private double sueldo;
 		private int idDepo;
-		/*
-		ArrayList<Producto> productos;
-		ArrayList<Almacenista> almacenistas;
 		
-
-
-		private ArrayList<Producto> paraEntregar;
-		private ArrayList<Pedido> preparados;
-		*/
+		private ArrayList<Producto> paraEntregar;	
+		private ArrayList<Pedido> preparados;	
+	
 
 		// clase hecha por Sebastian
-
 		public Almacenista(String nombre, String apellido, String id, String usuario, int telefono, String contraseña,
 				String nombreArea, int aniosAntiguedad, double sueldo, int idDepo)  {
 			super(nombre, apellido, id, usuario, telefono, contraseña);
@@ -69,11 +65,27 @@ public class Almacenista extends Usuario {
 			this.idDepo = idDepo;
 		}
 		
-		
-	
-		
+		public ArrayList<Producto> getParaEntregar() {
+			return paraEntregar;
+		}
+		public void setParaEntregar(ArrayList<Producto> paraEntregar) {
+			this.paraEntregar = paraEntregar;
+		}
 
- 
+		public ArrayList<Pedido> getPreparados() {
+			return preparados;
+		}
+		public void setPreparados(ArrayList<Pedido> preparados) {
+			this.preparados = preparados;
+		}
+
+
+
+
+
+
+
+
 		Conexion con =  new Conexion();;
 		
 		Connection conexion = con.conectar();
@@ -106,6 +118,60 @@ public class Almacenista extends Usuario {
 			}
 		}
 		
+		
+		//EDITAR ALMACENISTA
+	    public boolean editarAlmacenista(String id) { 	    	
+	    	String sql ="UPDATE `almacenista` SET `nombre`=?,`apellido`=?, `id`=?,`usuario`=?, `telefono`=?,`contraseña`=?, `nombreArea`=?,`aniosAntiguedad`=?,`sueldo`=?, `idDepo`=?"
+	    			+ "WHERE `id` = ?";	
+	    	try {
+	    		stmt = conexion.prepareStatement(sql);
+	    		stmt.setString(1, this.getId());
+				stmt.setString(2, this.getNombre());
+				stmt.setString(3, this.getApellido());
+				stmt.setString(4, this.getUsuario());
+				stmt.setLong(5, this.getTelefono());
+				stmt.setString(6, this.getContraseña());				
+				stmt.setString(7, this.getNombreArea());
+				stmt.setInt(8, this.getAniosAntiguedad());
+				stmt.setInt(9, this.getTelefono());
+				stmt.setString(10, this.getContraseña());					
+				stmt.setDouble(11, this.getSueldo());	
+				stmt.setInt(12, this.getIdDepo());	
+				stmt.executeUpdate();
+				conexion.close();
+	    		return true;
+	    		
+	    		
+	    	} catch (Exception e) {
+	    		System.out.println("Hubo un error"+e.getMessage());
+	    		return false;
+	    	}
+	    	
+	    	
+	    }
+		
+	    public ArrayList<Producto> prepararPedido(Deposito depo,Pedido p) {
+	    	//ArrayList<Producto> pedidoRearmado = new ArrayList<>();
+	    	p.setProductos(paraEntregar = depo.buscarProductos(p.productos));
+	    	//System.out.println(p.toString());
+	    	//System.out.println(paraEntregar);
+	    	this.preparados.add(p);
+	    	EnviarPedido(); // ESTE LO PUSE ACA PARA COMPROBAR QUE LA LISTA DE PREPARADOS CONTIENE ELEMENTOS
+	    	//System.out.println(p.getProductos());
+	    	return paraEntregar;
+	    	//return pedidoRearmado = depo.buscarProductos(p.productos);
+	    	
+	    }
+
+	    
+	    
+	    
+	    public void EnviarPedido() {
+	    	JOptionPane.showMessageDialog(null, this.preparados.toString());
+	    	
+	    	//p.setIdPedido(this.pedido.getCliente().getId());
+	    		
+	    }
 		
 		/*
 		//sebas
