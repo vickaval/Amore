@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -132,6 +134,63 @@ public class Administrador extends Usuario {
 					
     }
 	
+	
+	
+	//CATEGORIAS-------------
+	public boolean verSalsas() {
+        try {     	
+           String sql ="SELECT * FROM `salsas`";
+		   stmt = conexion.prepareStatement(sql);
+		   ResultSet result = stmt.executeQuery();
+                
+            while (result.next()) {
+                JOptionPane.showMessageDialog(null, "\nSALSAS:\n" +  " \nNOMBRE: " + result.getString("nombre")  + "\n"); 
+               
+            } 
+            conexion.close();        
+        } catch (SQLException ex) {
+        	System.out.println("Error en la conexion");
+        }
+		return false;     
+	}
+	
+	
+	public boolean verProductos() {
+        try {     	
+           String sql ="SELECT * FROM `producto`";
+		   stmt = conexion.prepareStatement(sql);
+		   ResultSet result = stmt.executeQuery();
+                
+            while (result.next()) {
+                JOptionPane.showMessageDialog(null, "\nPASTAS:\n" +  " \nNOMBRE: " + result.getString("nombre")  + "\n"); 
+               
+            } 
+            conexion.close();        
+        } catch (SQLException ex) {
+        	System.out.println("Error en la conexion");
+        }
+		return false;     
+	}
+	
+	
+	public boolean verQuesos() {
+        try {     	
+           String sql ="SELECT * FROM `quesos`";
+		   stmt = conexion.prepareStatement(sql);
+		   ResultSet result = stmt.executeQuery();
+                
+            while (result.next()) {
+                JOptionPane.showMessageDialog(null, "\nQUESOS:\n" +  " \nNOMBRE: " + result.getString("nombre")  + "\n"); 
+               
+            } 
+            conexion.close();        
+        } catch (SQLException ex) {
+        	System.out.println("Error en la conexion");
+        }
+		return false;     
+	}
+	
+	//----------------
 	
 
 	//METODOS DE MOSTRAR USUARIOS POR ROLES
@@ -664,9 +723,24 @@ public class Administrador extends Usuario {
 		
 	}
 
+	public boolean iniciarSesion(JPasswordField contraseñaLogin, JTextField nombreLogin) {
+		   
+		   if (nombreLogin.equals(getNombre()) && contraseñaLogin.equals(getContraseña())) {
+		        //System.out.println("Inicio de sesi�n exitoso.");
+		    	
+		        return true;
+		    } else {
+		    	JOptionPane.showMessageDialog(null, "Amore Pastas\nBienvenido al ABM de Usuarios");
+		       //System.out.println("Inicio de sesion fallo. \nPor favor verifique su contrasenia y permiso.");
+		        return false;
+
+	}
+	}
+
     
 	
 	
 	
 
 }
+	              
