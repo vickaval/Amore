@@ -63,7 +63,10 @@ public class metodosOperario extends JFrame {
         		eliminarProducto ep=new eliminarProducto();
         		ep.setVisible(true);
         		break;
-        	
+        	case 5:// no se visualiza bien
+        		visualizarInfoProductos vip=new visualizarInfoProductos();
+        		vip.setVisible(true);
+        		break;
         	}
         	}
         });
