@@ -1,5 +1,4 @@
 package UI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +26,7 @@ public class metodosOperario extends JFrame {
         panel.setLayout(null);
         
         JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(95, 112, 198, 26);
+        comboBox.setBounds(81, 79, 198, 26);
         panel.add(comboBox);
         comboBox.addItem("Ingresar materia prima");
         comboBox.addItem("Eliminar materia prima");
@@ -44,44 +43,30 @@ public class metodosOperario extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	int opcion=comboBox.getSelectedIndex();
         	switch(opcion) {
-        	case 0: 
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Materia Prima");
-        		break;        		
+        	case 0:
+        		ingresarMateriaPrima imp=new ingresarMateriaPrima();
+        		imp.setVisible(true);
+        		break;
         	case 1:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Materia Prima");
+        		eliminarMateriaPrima emp=new eliminarMateriaPrima();
+        		emp.setVisible(true);
         		break;
         	case 2:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion VISUALIZAR Materia Prima");
+        		visualizarInfoMP vim=new visualizarInfoMP();//no se visualiza bien
+        		vim.setVisible(true);
         		break;
         	case 3:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Producto");
+        		ingresarProducto ip=new ingresarProducto();
+        		ip.setVisible(true);
         		break;
         	case 4:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Producto");
-        		break;
-        	case 5:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion VISUALIZAR Producto");
-        		break;
-        	case 6:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Categoria");
-        		break;
-        	case 7:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Categoria");
-        		break;       		
-        	case 8:
-        		JOptionPane.showMessageDialog(btnNewButton, "Opcion EDITAR Categoria");
-        		break;
-        	default:
-        		break;
+        		
+        	
         	}
         	}
         });
-        btnNewButton.setBounds(95, 174, 198, 26);
+        btnNewButton.setBounds(256, 227, 118, 23);
         panel.add(btnNewButton);
-        
-        JLabel lblNewLabel = new JLabel("Seleccione la accion que desee realizar:");
-        lblNewLabel.setBounds(95, 51, 226, 26);
-        panel.add(lblNewLabel);
 
         // Display the frame
         setVisible(true);
