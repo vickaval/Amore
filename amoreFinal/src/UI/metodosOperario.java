@@ -1,35 +1,15 @@
 package UI;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class metodosOperario extends JFrame {
-	public metodosOperario() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		setTitle("Funcionalidades Operario");
-		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblNewLabel);
-		
-		JComboBox comboBox = new JComboBox();
-		getContentPane().add(comboBox);
-		
-		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		getContentPane().add(btnNewButton);
-	}
     private JComboBox<String>[] comboBoxes;
-    private final JLabel lblNewLabel = new JLabel("Seleccione una accion:");
 
-    public void visualizarMateriaPrima() {
-        setTitle("Opciones");
+    public metodosOperario() {
+        setTitle("Funcionalidades Operario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -47,7 +27,7 @@ public class metodosOperario extends JFrame {
         panel.setLayout(null);
         
         JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(81, 79, 198, 26);
+        comboBox.setBounds(95, 112, 198, 26);
         panel.add(comboBox);
         comboBox.addItem("Ingresar materia prima");
         comboBox.addItem("Eliminar materia prima");
@@ -58,6 +38,50 @@ public class metodosOperario extends JFrame {
         comboBox.addItem("Ingresar categoria");
         comboBox.addItem("Eliminar categoria");
         comboBox.addItem("Editar categoria");
+        
+        JButton btnNewButton = new JButton("Confirmar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	int opcion=comboBox.getSelectedIndex();
+        	switch(opcion) {
+        	case 0: 
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Materia Prima");
+        		break;        		
+        	case 1:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Materia Prima");
+        		break;
+        	case 2:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion VISUALIZAR Materia Prima");
+        		break;
+        	case 3:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Producto");
+        		break;
+        	case 4:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Producto");
+        		break;
+        	case 5:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion VISUALIZAR Producto");
+        		break;
+        	case 6:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion INGRESAR Categoria");
+        		break;
+        	case 7:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion ELIMINAR Categoria");
+        		break;       		
+        	case 8:
+        		JOptionPane.showMessageDialog(btnNewButton, "Opcion EDITAR Categoria");
+        		break;
+        	default:
+        		break;
+        	}
+        	}
+        });
+        btnNewButton.setBounds(95, 174, 198, 26);
+        panel.add(btnNewButton);
+        
+        JLabel lblNewLabel = new JLabel("Seleccione la accion que desee realizar:");
+        lblNewLabel.setBounds(95, 51, 226, 26);
+        panel.add(lblNewLabel);
 
         // Display the frame
         setVisible(true);
@@ -71,4 +95,5 @@ public class metodosOperario extends JFrame {
         });
     }
 }
+
 
