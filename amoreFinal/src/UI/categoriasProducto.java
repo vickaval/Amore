@@ -1,43 +1,21 @@
 package UI;
 
-import java.awt.EventQueue;
-import java.awt.GridLayout;
+import javax.swing.*;
+
+import Datos.Administrador;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-
 public class categoriasProducto extends JFrame {
-	public categoriasProducto() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		setTitle("Categorias Producto");
-		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblNewLabel);
-		
-		JComboBox comboBox = new JComboBox();
-		getContentPane().add(comboBox);
-		
-		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		getContentPane().add(btnNewButton);
-	}
+	
+	Administrador controlador = new Administrador("", "", "", "", 0, ""); 
+	
     private JComboBox<String>[] comboBoxes;
-    private final JLabel lblNewLabel = new JLabel("Categorias:");
 
-    public void visualizarMateriaPrima() {
-        setTitle("Opciones");
+    public categoriasProducto() {
+        setTitle("Funcionalidades Operario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -57,10 +35,30 @@ public class categoriasProducto extends JFrame {
         JComboBox comboBox = new JComboBox();
         comboBox.setBounds(81, 79, 198, 26);
         panel.add(comboBox);
-        comboBox.addItem("Fideos");
+        comboBox.addItem("Pastas");
         comboBox.addItem("Salsas");
         comboBox.addItem("Quesos");
-    
+
+        
+        JButton btnNewButton = new JButton("Aceptar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	int opcion=comboBox.getSelectedIndex();
+        	switch(opcion) {
+        	case 0:
+        		controlador.verProductos();
+        		break;
+        	case 1:
+        		controlador.verSalsas();
+        		break;
+        	case 2:
+        		controlador.verQuesos();
+        		break;
+        	}
+        	}
+        });
+        btnNewButton.setBounds(256, 227, 118, 23);
+        panel.add(btnNewButton);
 
         // Display the frame
         setVisible(true);
@@ -74,4 +72,3 @@ public class categoriasProducto extends JFrame {
         });
     }
 }
-
