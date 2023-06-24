@@ -75,6 +75,10 @@ public class metodosOperario extends JFrame {
         		eliminarC ec=new eliminarC();
         		ec.setVisible(true);
         		break;
+            case 8:
+        		editarC edc=new editarC();
+        		edc.setVisible(true);
+        		break;
         	}
         	}
         });
