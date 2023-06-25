@@ -2,14 +2,18 @@ package Datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+
+import Logica.Almacenista;
 
 public abstract class Usuario {
 		
 		private String nombre;
 		private String apellido;
-		private int id;
+		private String id;
 		private String usuario;
 		private int telefono;
 		private String contraseña;
@@ -32,7 +36,7 @@ public abstract class Usuario {
 		
 		PreparedStatement stmt;
 		
-		public Usuario(String nombre, String apellido, int id, String usuario, int telefono, String contraseña) {
+		public Usuario(String nombre, String apellido, String id, String usuario, int telefono, String contraseña) {
 			this.nombre = nombre;
 			this.apellido = apellido;
 			this.id = id;
@@ -67,10 +71,10 @@ public abstract class Usuario {
 			this.apellido = apellido;
 		}
 
-		public int getId() {
+		public String getId() {
 			return id;
 		}
-		public void setId(int id) {
+		public void setId(String id) {
 			this.id = id;
 		}
 
@@ -106,18 +110,24 @@ public abstract class Usuario {
 
 		
 		//metodos
-		public boolean iniciarSesion() {
-					
-			        String pass = (String)JOptionPane.showInputDialog(null, "Ingrese su contraseña: ");
-			        //numero maximo de caracteres de contraseña = 8
-			        if(pass.length() <= 8) {
-			        		    
-					if(pass.equals(getContraseña())) {
-						
-					}
-			    }
-			   return false;
+		public boolean iniciarSesion(String contraseñaLogin, String nombreLogin) {
+		    // Verificar si el usuario y la contrase�a son v�lidos
+			    			   
+				   if (nombreLogin.equals(getNombre()) && contraseñaLogin.equals(getContraseña())) {
+				        //System.out.println("Inicio de sesi�n exitoso.");
+				    	
+				        return true;
+				    } else {
+				    	JOptionPane.showMessageDialog(null, "Amore Pastas\nBienvenido al ABM de Usuarios");
+				       //System.out.println("Inicio de sesion fallo. \nPor favor verifique su contrasenia y permiso.");
+				        return false;
+				   
+		        }
 		}
+		
+	
+			  
+		   
 		
 
 	
