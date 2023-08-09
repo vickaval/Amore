@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2023 a las 22:09:45
+-- Tiempo de generación: 09-08-2023 a las 19:28:49
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89,9 +89,8 @@ CREATE TABLE `categoriaproducto` (
 --
 
 INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`) VALUES
-(1, 'Pastas'),
-(2, 'Salsas'),
-(3, 'Quesos');
+(1, 'pastas'),
+(3, 'quesos');
 
 -- --------------------------------------------------------
 
@@ -143,13 +142,6 @@ CREATE TABLE `materiaprima` (
   `stockDisponible` int(11) DEFAULT NULL,
   `idDepo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `materiaprima`
---
-
-INSERT INTO `materiaprima` (`idMp`, `nombre`, `procedencia`, `precio`, `stockDisponible`, `idDepo`) VALUES
-(5, 'oregano', 'san luis', 450, 120, 2);
 
 -- --------------------------------------------------------
 
@@ -205,7 +197,14 @@ INSERT INTO `pedido` (`idPedido`, `descuento`, `total`, `formaPago`, `idVendedor
 (2, 0, 76, 'Tarjeta de ', 2, 3, 0),
 (3, 5, 120, 'Transferenc', 1, 2, 0),
 (4, 0, 26, 'Efectivo', 3, 4, 0),
-(5, 9, 96, 'Tarjeta de ', 2, 1, 0);
+(5, 9, 96, 'Tarjeta de ', 2, 1, 0),
+(6, 0, 360, 'Efectivo', 1, 11, 1),
+(7, 0, 16, 'Efectivo', 1, 11, 1),
+(8, 0, 46, 'Crédito', 1, 11, 1),
+(9, 0, 116, 'Efectivo', 0, 11, 1),
+(10, 0, 6, 'Efectivo', 0, 11, 1),
+(11, 0, 1524, 'Efectivo', 0, 11, 1),
+(12, 0, 54, 'Cr�dito', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +228,16 @@ INSERT INTO `pedido_producto` (`idPedido`, `idProducto`, `cantidad`) VALUES
 (3, 3, 1),
 (3, 4, 1),
 (4, 4, 1),
-(5, 6, 15);
+(5, 6, 15),
+(6, 5, 45),
+(7, 4, 4),
+(8, 1, 5),
+(8, 5, 2),
+(9, 5, 10),
+(9, 1, 6),
+(10, 1, 1),
+(11, 7, 6),
+(12, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -272,7 +280,6 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `cantidad`, `idDepo`, 
 (4, 'Salsa Alfredo', 4, 79, 2, 1, 2),
 (5, 'Queso Parmesano', 8, 20, 3, 1, 3),
 (6, 'Queso Mozzarella', 7, 20, 3, 1, 3),
-(7, 'raviol', 254, 36, 1, 1, 1),
 (8, 'sorrentino', 45, 8, 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -493,6 +500,12 @@ ALTER TABLE `deposito`
   MODIFY `idDepo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `materiaprima`
+--
+ALTER TABLE `materiaprima`
+  MODIFY `idMp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `operario`
 --
 ALTER TABLE `operario`
@@ -502,7 +515,7 @@ ALTER TABLE `operario`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `produccion`
