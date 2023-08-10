@@ -30,7 +30,7 @@ public class visualizarStockProductos extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    visualizarStockProductos frame = new visualizarStockProductos(false);
+                    visualizarStockProductos frame = new visualizarStockProductos();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -42,83 +42,49 @@ public class visualizarStockProductos extends JFrame {
     /**
      * Create the frame.
      */
-    public visualizarStockProductos(boolean esCliente) {
+    public visualizarStockProductos() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-        
+
+        // Crear el modelo de la tabla
         DefaultTableModel model = new DefaultTableModel();
-        if(esCliente) {
-        	
-        	// Crear el modelo de la tabla
-            model.addColumn("Nombre");
-            model.addColumn("Precio");
-            model.addColumn("Stock");
-            model.addColumn("Categoria");
+        model.addColumn("ID Producto");
+        model.addColumn("Nombre");
+        model.addColumn("Precio");
+        model.addColumn("Cantidad");
+        model.addColumn("ID Depo");
+        model.addColumn("ID Produccion");
+        model.addColumn("ID Categoria");
 
-            // Obtener los datos de la base de datos y agregarlos al modelo de la tabla
-            try {
-                Conexion con = new Conexion();
-                Connection conexion = con.conectar();
-                String query = "SELECT * FROM producto p join categoriaproducto cp on cp.idCategoria = p.idCategoria";
-                Statement stmt = conexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
+        // Obtener los datos de la base de datos y agregarlos al modelo de la tabla
+        try {
+            Conexion con = new Conexion();
+            Connection conexion = con.conectar();
+            String query = "SELECT * FROM producto";
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
 
-                while (rs.next()) {
-                    String nombre = rs.getString("p.nombre");
-                    double precio = rs.getDouble("p.precio");
-                    int stock = rs.getInt("p.cantidad");
-                    String categoria = rs.getString("cp.nombre");
+            while (rs.next()) {
+                int idProducto = rs.getInt("idProducto");
+                String nombre = rs.getString("nombre");
+                double precio = rs.getDouble("precio");
+                int cantidad = rs.getInt("cantidad");
+                int idDepo = rs.getInt("idDepo");
+                int idProduccion = rs.getInt("idProduccion");
+                int idCategoria = rs.getInt("idCategoria");
 
-                    model.addRow(new Object[] { nombre, precio, stock, categoria });
-                }
-
-                rs.close();
-                stmt.close();
-                conexion.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                model.addRow(new Object[] { idProducto, nombre, precio, cantidad, idDepo, idProduccion, idCategoria });
             }
-        } else {
-        	
-        	// Crear el modelo de la tabla
-            model.addColumn("ID Producto");
-            model.addColumn("Nombre");
-            model.addColumn("Precio");
-            model.addColumn("Cantidad");
-            model.addColumn("ID Depo");
-            model.addColumn("ID Produccion");
-            model.addColumn("ID Categoria");
 
-            // Obtener los datos de la base de datos y agregarlos al modelo de la tabla
-            try {
-                Conexion con = new Conexion();
-                Connection conexion = con.conectar();
-                String query = "SELECT * FROM producto";
-                Statement stmt = conexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-
-                while (rs.next()) {
-                    int idProducto = rs.getInt("idProducto");
-                    String nombre = rs.getString("nombre");
-                    double precio = rs.getDouble("precio");
-                    int cantidad = rs.getInt("cantidad");
-                    int idDepo = rs.getInt("idDepo");
-                    int idProduccion = rs.getInt("idProduccion");
-                    int idCategoria = rs.getInt("idCategoria");
-
-                    model.addRow(new Object[] { idProducto, nombre, precio, cantidad, idDepo, idProduccion, idCategoria });
-                }
-
-                rs.close();
-                stmt.close();
-                conexion.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            rs.close();
+            stmt.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         // Crear la tabla y agregarla a un JScrollPane
@@ -126,7 +92,7 @@ public class visualizarStockProductos extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        // Crear el bot�n para volver atr�s
+        // Crear el botón para volver atrás
         JButton btnBack = new JButton("Volver");
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -137,5 +103,4 @@ public class visualizarStockProductos extends JFrame {
         contentPane.add(btnBack, BorderLayout.SOUTH);
     }
 }
-
 

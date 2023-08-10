@@ -9,7 +9,7 @@ public class metodosAlmacenista extends JFrame {
     private JComboBox<String>[] comboBoxes;
 
     public metodosAlmacenista() {
-        setTitle("Funcionalidades Almacenista");
+        setTitle("Funcionalidades Operario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -45,16 +45,16 @@ public class metodosAlmacenista extends JFrame {
         		vsmp.setVisible(true);
         		break;
         	case 1:
-        		visualizarStockProductos vsp=new visualizarStockProductos(false);
+        		visualizarStockProductos vsp= new visualizarStockProductos();
         		vsp.setVisible(true);
         		break;
         	case 2:
-        		visualizarStockMP vim=new visualizarStockMP();//no se visualiza bien
-        		vim.setVisible(true);
+        		visualizarPedidosPendientes vpp =new visualizarPedidosPendientes();
+        		vpp.setVisible(true);
         		break;
         	case 3:
-        		ingresarProducto ip=new ingresarProducto();
-        		ip.setVisible(true);
+        		prepararPedidos pp=new prepararPedidos();
+        		pp.setVisible(true);
         		break;
         	}       	
         	}
@@ -73,12 +73,9 @@ public class metodosAlmacenista extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new metodosOperario();
+                new metodosAlmacenista();
             }
         });
     }
 }
-
-
-
 
